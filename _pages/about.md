@@ -2,9 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='https://www-math.umd.edu/'>University of Maryland</a>, Professor of Mathematics, 
-<i>buckmaster </i><b>at</b><i> math <b> dot </b> princeton <b> dot </b> edu</i> 
-
+subtitle: <a href='https://www-math.umd.edu/'>University of Maryland</a>, Professor of Mathematics,<br><i>tristan </i><b>at</b><i> umd <b> dot </b> edu</i> 
 profile:
   align: right
   image: prof_pic.jpg
