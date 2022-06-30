@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: <a href='#'>Affiliations</a>. Professor of Mathematics. <br><br> <i>buckmaster </i><b>at</b><i> math <b> dot </b> princeton <b> dot </b> edu</i> 
 
 profile:
   align: right
