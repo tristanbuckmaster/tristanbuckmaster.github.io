@@ -18,3 +18,9 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: false  # includes social icons at the bottom of the page
 ---
 My main area of interest are Partial Differential Equations with a particular focus on equations related to fluid dynamics. I was a recipient of a 2019 Clay Research Award. My research is supported by the National Science Foundation grant DMS-1900149 'Analytic Methods in Hydrodynamic and Wave Turbulence', the Simons Foundation Mathematical and Physical Sciences collaborative grant 'Wave Turbulence' and a grant from the Insitute for Advanced Study. 
+
+<ul>
+<li>First Item</li>
+<li>Second Item</li>
+<li>Third Item</li>
+</ul>
