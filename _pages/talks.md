@@ -8,6 +8,8 @@ nav_order: 2
 ---
 <!-- _pages/talks.md -->
 <div class="talks">
+  
+  On this page, I will link to videos of a select number of talks that are available on YouTube.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tUkSms5Rk2E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
   
