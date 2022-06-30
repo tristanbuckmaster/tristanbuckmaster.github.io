@@ -1,7 +1,7 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2017-12-21 15:59:00-0400
 inline: true
 ---
 
-A simple inline announcement.
+<a href="https://www.quantamagazine.org/mathematicians-find-wrinkle-in-famed-fluid-equations-20171221/">Mathematicians Find Wrinkle in Famed Fluid Equations</a>, Kevin Hartnett, <i>Quanta Magazine</i>
