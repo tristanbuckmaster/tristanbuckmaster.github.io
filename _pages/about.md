@@ -19,9 +19,9 @@ social: false  # includes social icons at the bottom of the page
 ---
 My current research is divided into three projects:
 <ul>
-<li>Singularity formation and development for compressible fluid</li>
-<li>Self-similar blowup for incompressible fluid</li>
-<li>Development of a mathematically rigorous framework for the theory of wave turbulence</li>
+<li><i>Singularity formation and development for compressible fluid</i></li>
+<li><i>Self-similar blowup for incompressible fluid</i></li>
+<li><i>Development of a mathematically rigorous framework for the theory of wave turbulence</i></li>
 </ul>
 Previously, steming from my doctoral work, I worked on applying the technique of convex-integration to prove non-uniqueness results for weak solutions to fluid equations. For my joint work with Vlad Vicol on non-uniqueness of weak solutions to the Navier-Stokes, I was awarded the <a href="https://www.claymath.org/events/news/2019-clay-research-awards">2019 Clay Research Award</a> (joint with Vlad Vicol and Philip Isett).
 
