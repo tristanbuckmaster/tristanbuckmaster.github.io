@@ -8,7 +8,7 @@ profile:
   image: prof_pic.jpg
   image_cicular: false # crops the image to make it circular
   address: >
-    <p>Office ???,</p>
+    <p>Office 3115,</p>
     <p>4176 Campus Dr, </p>
     <p>College Park, MD 20742</p>
 
