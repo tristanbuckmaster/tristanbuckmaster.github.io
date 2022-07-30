@@ -7,3 +7,5 @@ scp site.zip tristanb@grace.umd.edu:
 rm site.zip
 cd ..
 ssh tristanb@grace.umd.edu 'bash -s' < server.sh
+git checkout master
+
