@@ -1,5 +1,6 @@
 #!/bin/bash
 git checkout --orphan gh-pages
+conda activate website
 bundle exec jekyll build
 cd _site
 zip -r site *
