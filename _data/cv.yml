@@ -10,8 +10,12 @@
   type: time_table
   contents:
     - title: Professor of Mathematics
-      institution: University of Maryland
+      institution: New York University
       year: 2022 - present
+
+    - title: Professor of Mathematics
+      institution: University of Maryland
+      year: 2022 - 2023
       
     - title: Assistant Professor of Mathematics
       institution: Princeton University

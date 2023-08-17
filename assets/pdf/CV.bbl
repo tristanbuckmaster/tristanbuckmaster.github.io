@@ -1,0 +1,176 @@
+\begin{thebibliography}{10}
+
+\bibitem{ICM}
+T.~Buckmaster, T.D. Drivas, S.~Shkoller, and V.~Vicol.
+\newblock Formation and development of singularities for the compressible
+  {E}uler equations.
+\newblock {\em Proceedings of the International Congress of Mathematicians}, to
+  appear.
+
+\bibitem{Buckmaster2023}
+T.~{Buckmaster}, G.~Cao-Labora, and J.~{G{\'o}mez-Serrano}.
+\newblock Smooth self-similar imploding profiles to 3{D} compressible {E}uler.
+\newblock {\em Quarterly of Applied Mathematics}, 81(3):517--532, March 2023.
+
+\bibitem{implosion}
+T.~{Buckmaster}, G.~Cao-Labora, and J.~{G{\'o}mez-Serrano}.
+\newblock {Smooth imploding solutions for 3D compressible fluids}.
+\newblock {\em arXiv e-prints}, page arXiv:2208.09445, 2022.
+
+\bibitem{PhysRevLett.130.244002}
+Y.~Wang, C.-Y. Lai, J.~G\'omez-Serrano, and T.~Buckmaster.
+\newblock Asymptotic self-similar blow-up profile for three-dimensional
+  axisymmetric euler equations using neural networks.
+\newblock {\em Phys. Rev. Lett.}, 130:244002, Jun 2023.
+
+\bibitem{PhysRevLett.129.034101}
+J.~W. Banks, T.~Buckmaster, A.~O. Korotkevich, G.~Kova\v{c}i\v{c}, and
+  J.~Shatah.
+\newblock Direct verification of the kinetic description of wave turbulence for
+  finite-size systems dominated by interactions among groups of six waves.
+\newblock {\em Phys. Rev. Lett.}, 129:034101, Jul 2022.
+
+\bibitem{BuDrShVi202}
+T.~Buckmaster, T.D. Drivas, S.~Shkoller, and V.~Vicol.
+\newblock Simultaneous development of shocks and cusps for 2d euler with
+  azimuthal symmetry from smooth data.
+\newblock {\em Annals of {PDE}}, 8(2), November 2022.
+
+\bibitem{buckmaster2021nonconservative}
+T.~Buckmaster, N.~Masmoudi, M.~Novack, and V.~Vicol.
+\newblock Intermittent convex integration for the 3{D} {E}uler equations.
+\newblock {\em Annals of Mathematics Studies}, 2023.
+
+\bibitem{Buckmaster2020BMS}
+T.~Buckmaster and V.~Vlad.
+\newblock Convex integration constructions in hydrodynamics.
+\newblock {\em Bulletin of the American Mathematical Society}, 58(1):1--44,
+  2020.
+
+\bibitem{BuIy2020}
+T.~Buckmaster and S.~Iyer.
+\newblock Formation of unstable shocks for {2D} isentropic compressible
+  {E}uler.
+\newblock {\em Communications in Mathematical Physics}, 2020.
+
+\bibitem{https://doi.org/10.1002/cpa.22067}
+T.~Buckmaster, S.~Shkoller, and V.~Vicol.
+\newblock Shock formation and vorticity creation for 3d euler.
+\newblock {\em Communications on Pure and Applied Mathematics},
+  76(9):1965--2072, 2023.
+
+\bibitem{BuckmasterBook2020}
+T.~Buckmaster and V.~Vicol.
+\newblock {\em Progress in Mathematical Fluid Dynamics: Cetraro, Italy 2019},
+  2020.
+
+\bibitem{https://doi.org/10.1002/cpa.22068}
+T.~Buckmaster, S.~Shkoller, and V.~Vicol.
+\newblock Formation of {P}oint {S}hocks for 3{D} {C}ompressible {E}uler.
+\newblock {\em Communications on Pure and Applied Mathematics},
+  76(9):2073--2191, 2023.
+
+\bibitem{Beekie2020}
+R.~Beekie, T.~Buckmaster, and V.~Vicol.
+\newblock Weak solutions of ideal {MHD} which do not conserve magnetic
+  helicity.
+\newblock {\em Annals of {PDE}}, 6(1), 2020.
+
+\bibitem{MR4077463}
+T.~Buckmaster, P.~Germain, Z.~Hani, and J.~Shatah.
+\newblock On the kinetic wave turbulence description for {NLS}.
+\newblock {\em Quarterly of Applied Mathematics}, 78(2):261--275, 2020.
+
+\bibitem{https://doi.org/10.1002/cpa.21956}
+T.~Buckmaster, S.~Shkoller, and V.~Vicol.
+\newblock Formation of shocks for {2D} isentropic compressible {E}uler.
+\newblock {\em Communications on Pure and Applied Mathematics},
+  75(9):2069--2120, 2022.
+
+\bibitem{BGHS18}
+T.~Buckmaster, P.~Germain, Z.~Hani, and J.~Shatah.
+\newblock Onset of the wave turbulence description of the longtime behavior of
+  the nonlinear {S}chr\"{o}dinger equation.
+\newblock {\em Inventiones mathematicae}, 2021.
+
+\bibitem{Buckmaster2020}
+T.~Buckmaster and V.~Vicol.
+\newblock Convex integration and phenomenologies in turbulence.
+\newblock {\em {EMS} Surveys in Mathematical Sciences}, 6(1):173--263, 2020.
+
+\bibitem{MR4422213}
+T.~Buckmaster, M.~Colombo, and V.~Vicol.
+\newblock Wild solutions of the {N}avier-{S}tokes equations whose singular sets
+  in time have {H}ausdorff dimension strictly less than 1.
+\newblock {\em Journal of the European Mathematical Society}, 24(9):3333--3378,
+  2022.
+
+\bibitem{10.1093/imrn/rny261}
+T.~Buckmaster, A.~Nahmod, G.~Staffilani, and K.~Widmayer.
+\newblock {The Surface Quasi-geostrophic Equation With Random Diffusion}.
+\newblock {\em International Mathematics Research Notices},
+  2020(23):9370--9385, 2018.
+
+\bibitem{BV}
+T.~Buckmaster and V.~Vicol.
+\newblock Nonuniqueness of weak solutions to the {N}avier-{S}tokes equation.
+\newblock {\em Annals of Mathematics}, 189(1):101, 2019.
+
+\bibitem{BDLSV17}
+T.~Buckmaster, C.~{De Lellis}, L.~{Sz{\'e}kelyhidi Jr.}, and V.~Vicol.
+\newblock Onsager's conjecture for admissible weak solutions.
+\newblock {\em Communications on Pure and Applied Mathematics}, 72(2):229--274,
+  2019.
+
+\bibitem{BGHS17-2}
+T.~Buckmaster, P.~Germain, Z.~Hani, and J.~Shatah.
+\newblock {Analysis of (CR) in Higher Dimension}.
+\newblock {\em International Mathematics Research Notices}, 2019(4):1265--1280,
+  2017.
+
+\bibitem{BGHS17}
+T.~Buckmaster, P.~Germain, Z.~Hani, and J.~Shatah.
+\newblock Effective dynamics of the nonlinear schr{\"o}dinger equation on large
+  domains.
+\newblock {\em Communications on Pure and Applied Mathematics},
+  71(7):1407--1460.
+
+\bibitem{BSV16}
+T.~Buckmaster, S.~Shkoller, and V.~Vicol.
+\newblock Nonuniqueness of weak solutions to the {SQG} equation.
+\newblock {\em Communications on Pure and Applied Mathematics},
+  72(9):1809--1874, 2019.
+
+\bibitem{BDLSZ16}
+T.~Buckmaster, C.~{De Lellis}, and L.~{Sz{\'e}kelyhidi Jr.}
+\newblock Dissipative {E}uler flows with {O}nsager-critical spatial regularity.
+\newblock {\em Comm. Pure Appl. Math.}, 69(9):1613--1670, 2016.
+
+\bibitem{Buckmaster15}
+T.~Buckmaster.
+\newblock Onsager's conjecture almost everywhere in time.
+\newblock {\em Communications in Mathematical Physics}, 333(3):1175--1198,
+  2015.
+
+\bibitem{BDLISZV15}
+T.~Buckmaster, C.~{De Lellis}, P.~Isett, and L.~{Sz{\'e}kelyhidi Jr.}
+\newblock Anomalous dissipation for $1/5$-{H}\"older {E}uler flows.
+\newblock {\em Annals of Mathematics}, 182(1):127--172, 2015.
+
+\bibitem{BDLISZ15}
+T.~Buckmaster, C.~{De Lellis}, and L.~{Sz{\'e}kelyhidi Jr.}
+\newblock Transporting microstructure and dissipative {E}uler flows.
+\newblock {\em preprint}, 2013.
+
+\bibitem{MR3400442}
+T.~Buckmaster and H.~Koch.
+\newblock The {K}orteweg--de {V}ries equation at {$H^{-1}$} regularity.
+\newblock {\em Ann. Inst. H. Poincar\'{e} C Anal. Non Lin\'{e}aire},
+  32(5):1071--1098, 2015.
+
+\bibitem{Buckmaster14}
+T.~Buckmaster.
+\newblock {O}nsager's {C}onjecture.
+\newblock {\em PhD Thesis}, 2014.
+
+\end{thebibliography}

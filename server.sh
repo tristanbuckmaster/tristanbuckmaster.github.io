@@ -1,3 +1,3 @@
-rm -r /pub/tristanb/* --force
-unzip site.zip -d /pub/tristanb/
-chmod -R 755 /pub/tristanb/*
+rm -r /web/tristanb/* --force
+unzip site.zip -d /web/tristanb/
+chmod -R 755 /web/tristanb/*

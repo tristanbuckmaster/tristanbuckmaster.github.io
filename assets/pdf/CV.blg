@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: CV.aux
+The style file: unsrt.bst
+Database file #1: papers.bib
+Name 3 in "J. W. Banks and T. Buckmaster and A. O. Korotkevich, and G. Kova\v{c}i\v{c} and J. Shatah" has a comma at the end for entry PhysRevLett.129.034101
+while executing---line 944 of file unsrt.bst
+Warning--empty title in BuckmasterBook2020
+Warning--empty year in BGHS17
+You've used 30 entries,
+            1791 wiz_defined-function locations,
+            628 strings with 8125 characters,
+and the built_in function-call counts, 7076 in all, are:
+= -- 626
+> -- 337
+< -- 1
++ -- 123
+- -- 93
+* -- 541
+:= -- 1141
+add.period$ -- 89
+call.type$ -- 30
+change.case$ -- 29
+chr.to.int$ -- 0
+cite$ -- 32
+duplicate$ -- 294
+empty$ -- 653
+format.name$ -- 93
+if$ -- 1546
+int.to.chr$ -- 0
+int.to.str$ -- 30
+missing$ -- 30
+newline$ -- 152
+num.names$ -- 30
+pop$ -- 49
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 144
+stack$ -- 0
+substring$ -- 531
+swap$ -- 63
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 2
+while$ -- 61
+width$ -- 32
+write$ -- 322
+(There was 1 error message)
