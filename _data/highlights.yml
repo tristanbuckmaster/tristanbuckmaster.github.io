@@ -23,18 +23,18 @@
   width: 660
   height: 310
   clips:
-    - label: Base flow
+    - label: Symmetric train
       movie: /assets/figures/viscous-ring-lift.mp4
       poster: /assets/figures/viscous-ring-lift-poster.webp
-      description: Four round vortex cores start in two pairs. Each pair tilts, develops a narrow waist and joins into one core. The smaller pair on the left merges first.
-      caption: For this illustration we bring the vortices closer together in pairs. The contours show positive planar vorticity in the paper’s ring coordinates. Watch the inner pair on the left merge first.
-    - label: Eigenmode perturbation
+      description: A train of round vortex cores gets smaller toward the axis on the left. The contours broaden symmetrically above and below the midline, then join into a common envelope.
+      caption: A freely diffusing Gaussian core repeats at equal intervals in the planar train. The ring coordinates place smaller cores toward the axis on the left. As they broaden, their outer streamlines join symmetrically.
+    - label: Perturbed train
       movie: /assets/figures/viscous-ring-mode.mp4
       poster: /assets/figures/viscous-ring-mode-poster.webp
-      description: A second view of the same two pairs merging, with a small angular perturbation in each initial core. The axes and clock match the base flow.
-      caption: We add the Gaussian’s angular-two eigenmode to the initial vorticity and use the same viscosity and spacing. Pause while a pair is joining and switch views to compare the shape of its waist.
-  figure_label: Gaussian instability and ring lift, §§4–5
-  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=12
+      description: The same train of cores, with contours that tilt across the midline. Warm and cool lobes show where reflection symmetry breaks. The axes and clock match the symmetric train.
+      caption: The same angular-two mode evolves at every core under the linearized equation. Warm and cool mark opposite departures from mirror symmetry across the dashed midline.
+  figure_label: Vortex train, Gaussian instability and ring lift, §§3–5
+  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=8
 - id: wave-turbulence
   topic: Wave turbulence
   title: How waves exchange energy
