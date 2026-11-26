@@ -1,25 +1,24 @@
-"""Render the planar train in §3 of https://hexagonmath.org/2611.00143v1.
+"""Draw the viscous raw ring lift in Proposition 5.1 of Hexagon 2611.00143v1.
 
-    python3 bin/generate-vortex-movies.py /tmp/vortex-frames --validate
-
-Requires NumPy and Pillow. The two numbered PNG sequences use the same clock,
-contours and passive-particle seeds. Encode each at 20 fps, e.g. on macOS:
+    python3 bin/generate-vortex-movies.py /tmp/ring-lift --validate
     swiftc bin/encode-figure-frames.swift -o /tmp/encode-figure-frames
-    /tmp/encode-figure-frames /tmp/vortex-frames/viscous vortex-train-evolution.mp4 20
-    /tmp/encode-figure-frames /tmp/vortex-frames/inviscid vortex-train-inviscid.mp4 20
+    /tmp/encode-figure-frames /tmp/ring-lift/frames /tmp/viscous-ring-lift.mp4 20
 
-This evolves the two-dimensional vorticity equation using the initial planar
-train of §3, p. 8. The viscous run uses nu=1/6 and spacing c=6. The comparison
-is two-dimensional Euler (nu=0). The paper's vertical coordinate extends to
-infinity; here the vertical period is 30 and only its central strip is shown.
-Fourier projection gives a divergence-free velocity; product dealiasing uses
-the 2/3 rule. The displayed streamfunction is referenced to its horizontal
-mean at the distant vertical seam. Tracers move with the fluid; contour levels
-remain fixed in time. s=0…9 is nondimensional simulation time.
+NumPy and Pillow suffice to render. The sheet shows instantaneous meridional
+streamlines, levels of the physical Stokes streamfunction r*psi, at one common
+physical time t per frame. The linear axes use the same distance per pixel.
+Section 3 supplies the c-periodic Gaussian planar train. Its viscous vorticity
+evolves on a tall periodic approximation to the infinite cylinder. Section 5
+lifts it into a thin-ring geometry using a logarithmic radial coordinate and
+the radius-dependent planar age s = R²t/r². The raw lifted field has a curvature
+residual. The paper subsequently corrects it to an exact unforced 3D solution.
 
-The validation option checks the energy balance and compares both runs
-against a finer spatial and temporal discretization and a taller vertical
-box. These movies illustrate the 2D building block used by the authors.
+The illustrative parameters c=6, R=14, nu=1/6 were chosen for readability.
+The paper takes small viscosity and much thinner rings to prove its theorem.
+We use fixed global levels of -r*psi/(2R), with the far-field gauge psi=0.
+Each animation frame samples the evolved planar field at all required ages;
+neighboring physical rings have different ages at the same positive t.
+See https://hexagonmath.org/pdf/2611.00143v1#page=19.
 """
 import argparse
 import json
@@ -31,16 +30,21 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 PERIOD = 6.0
-DURATION = 9
-FPS = 20
-LEVELS = np.array([.013, .020, .028, .040, .055, .073, .096, .123, .154, .182,
-                   .202, .220, .245, .280, .320, .365, .410, .455, .500, .550,
-                   .600, .650, .700, .750, .800, .850, .900, .940, .968, .987])
-SEEDS = np.array([[-.90, .35], [1.10, 1.45], [2.42, -.72]])
+RADIUS = 14.0
+VISCOSITY = 1 / 6
+RING_RATIO = math.exp(PERIOD / RADIUS)
+RADIAL_MIN, RADIAL_MAX = .235, 1.26       # r/R, increasing to the right
+FINAL_TIME = 1.25                         # physical time t
+FPS, FRAME_COUNT = 20, 181
+# Fixed absolute levels, more densely spaced near the smaller inner rings.
+LEVELS = np.array([.020,.029,.040,.055,.073,.094,.116,.138,.160,.182,.205,
+                   .230,.257,.286,.318,.352,.388,.425,.464,.504,.545,.587,
+                   .630,.674,.719,.765,.812,.860,.909,.955,.989])
+GOLD_LEVELS = [.138,.352,.674]
 
 
 def cubic_stencil(coordinates, spacing, size):
-    """Periodic cardinal cubic interpolation, also used for the passive tracers."""
+    """Indices and weights for periodic cardinal cubic interpolation."""
     position = np.asarray(coordinates) / spacing
     cell = np.floor(position).astype(int)
     t = position - cell
@@ -50,237 +54,248 @@ def cubic_stencil(coordinates, spacing, size):
             zip((-1, 0, 1, 2), weights)]
 
 
-class Flow:
-    def __init__(self, viscosity, nx=64, ny=320, height=30.0, steps_per_frame=2):
-        self.nx, self.ny, self.height = nx, ny, height
-        self.viscosity = viscosity
-        self.dt = 1 / (FPS * steps_per_frame)
-        self.shape = (ny, nx)
+class PlanarTrain:
+    """Dealiased Fourier vorticity evolution with integrating-factor RK4."""
+
+    def __init__(self, nx, ny, height, dt):
+        self.shape = ny, nx
         self.dx, self.dy = PERIOD/nx, height/ny
+        self.dt, self.height = dt, height
         self.kx = 2*np.pi*np.fft.rfftfreq(nx, self.dx)[None, :]
         self.ky = 2*np.pi*np.fft.fftfreq(ny, self.dy)[:, None]
         self.k2 = self.kx**2 + self.ky**2
         self.inverse_laplacian = np.zeros_like(self.k2)
         self.inverse_laplacian[self.k2 > 0] = -1/self.k2[self.k2 > 0]
-        # Strict 2/3 truncation on each axis for the quadratic advection product.
-        modes_x = np.arange(nx//2 + 1)
+        modes_x = np.arange(nx//2+1)
         modes_y = np.abs(np.rint(np.fft.fftfreq(ny)*ny))
         self.keep = (3*modes_x[None,:] < nx) & (3*modes_y[:,None] < ny)
-        self.heat_half = np.exp(-viscosity*self.dt*self.k2/2)
-        self.heat = self.heat_half**2
-        # Fourier transform of -2 exp(-|x|²/4), periodized in x and y.
-        # The paper is periodic only in x. Its cylinder is approximated by a
-        # tall periodic box in y; a second, taller box checks the visible strip.
+        self.half_heat = np.exp(-VISCOSITY*dt*self.k2/2)
+        self.full_heat = self.half_heat**2
+        # Fourier coefficients of the periodized Laplacian of -2 exp(-|x|²/4).
         self.omega = (8*np.pi*nx*ny/(PERIOD*height)*self.k2*
                       np.exp(-self.k2)*self.keep).astype(complex)
-        self.particles = SEEDS.copy()
         self.real_mode_weight = np.full((1, nx//2+1), 2.0)
         self.real_mode_weight[:, 0] = self.real_mode_weight[:, -1] = 1
-        self.max_cfl = 0.0
+        self.max_cfl = 0
 
-    def field(self, spectrum):
+    def real(self, spectrum):
         return np.fft.irfft2(spectrum, s=self.shape, axes=(-2,-1))
 
-    def rhs(self, omega, positions):
-        psi = self.inverse_laplacian * omega
-        u, v, wx, wy = self.field(np.stack((-1j*self.ky*psi, 1j*self.kx*psi,
-                                             1j*self.kx*omega, 1j*self.ky*omega)))
-        tendency = -np.fft.rfft2(u*wx + v*wy) * self.keep
-        tendency[0,0] = 0
-        xst = cubic_stencil(positions[:,0], self.dx, self.nx)
-        yst = cubic_stencil(positions[:,1], self.dy, self.ny)
-        particle_velocity = np.zeros_like(positions)
-        for ix, xweight in xst:
-            for iy, yweight in yst:
-                weight = xweight * yweight
-                particle_velocity[:,0] += weight * u[iy,ix]
-                particle_velocity[:,1] += weight * v[iy,ix]
-        self.max_cfl = max(self.max_cfl, float(self.dt*np.max(
+    def rhs(self, omega):
+        psi = self.inverse_laplacian*omega
+        u,v,wx,wy = self.real(np.stack((-1j*self.ky*psi,1j*self.kx*psi,
+                                         1j*self.kx*omega,1j*self.ky*omega)))
+        self.max_cfl = max(self.max_cfl,float(self.dt*np.max(
             np.abs(u)/self.dx + np.abs(v)/self.dy)))
-        return tendency, particle_velocity
+        tendency = -np.fft.rfft2(u*wx+v*wy)*self.keep
+        tendency[0,0] = 0
+        return tendency
 
     def step(self):
-        # Classical RK4 in the integrating factor for viscosity. Tracers use
-        # the corresponding velocity field at each of the four RK stages.
-        w, p, h = self.omega, self.particles, self.dt
-        a, pa = self.rhs(w,p)
-        b, pb = self.rhs(self.heat_half * (w + .5*h*a), p + .5*h*pa)
-        c, pc = self.rhs(self.heat_half*w + .5*h*b, p + .5*h*pb)
-        d, pd = self.rhs(self.heat*w + h*self.heat_half*c, p + h*pc)
-        self.omega = self.heat*w + h/6*(self.heat*a + 2*self.heat_half*(b+c) + d)
-        self.particles = p + h/6*(pa + 2*pb + 2*pc + pd)
-
-    def display_field(self):
-        # Restore the open-cylinder stream-function gauge at the remote seam.
-        psi = self.field(self.inverse_laplacian * self.omega)
-        return -.5 * (psi - np.mean(psi[self.ny//2,:]))
+        w,h = self.omega,self.dt
+        a = self.rhs(w)
+        b = self.rhs(self.half_heat*(w+h*a/2))
+        c = self.rhs(self.half_heat*w + h*b/2)
+        d = self.rhs(self.full_heat*w + h*self.half_heat*c)
+        self.omega = self.full_heat*w + h/6*(self.full_heat*a +
+                                               2*self.half_heat*(b+c) + d)
 
     def invariants(self):
-        norm = PERIOD*self.height/(self.nx*self.ny)**2
+        ny,nx = self.shape
+        norm = PERIOD*self.height/(nx*ny)**2
         power = np.abs(self.omega)**2*self.real_mode_weight
-        energy = -.5*norm*float(np.sum(power*self.inverse_laplacian))
-        enstrophy = .5*norm*float(np.sum(power))
-        return energy,enstrophy
+        return (-.5*norm*np.sum(power*self.inverse_laplacian),
+                .5*norm*np.sum(power))
 
-    def sample(self, field, q, eta):
-        cols = sum(field[:, ix]*weight[None,:] for ix,weight in
-                   cubic_stencil(q, self.dx, self.nx))
-        return sum(cols[iy,:]*weight[:,None] for iy,weight in
-                   cubic_stencil(eta, self.dy, self.ny))
+    def stream_field(self):
+        # Section 5 uses psi itself; a constant changes r*psi and the lifted
+        # velocity. Match the decaying-cylinder gauge at the far vertical seam.
+        psi = self.real(self.inverse_laplacian*self.omega)
+        return -.5*(psi - np.mean(psi[self.shape[0]//2,:]))
 
 
-class Renderer:
-    def __init__(self):
-        self.scale = 2
-        self.background = np.array([17,46,42])
-        self.mint = np.array([185,214,200])
-        self.gold = np.array([255,199,145])
-        self.highlight = np.isin(LEVELS,[.182,.455])
-        self.widths = np.where(self.highlight,1.75,
-                               np.where(np.arange(len(LEVELS))%4==0,.97,.72))
-        self.alphas = np.where(self.highlight,.97,
-                               np.where(np.arange(len(LEVELS))%4==0,.76,.57))
-        self.scale_space = 30
-        self.xc, self.yc = 330,143
-        self.q = ((np.arange(180*self.scale)+.5)/self.scale - 90)/self.scale_space
-        self.eta = (self.yc - (6+(np.arange(267*self.scale)+.5)/self.scale))/self.scale_space
-        x_screen = (np.arange(630*self.scale)+.5)/self.scale + 15
-        self.tile_columns = np.floor(((x_screen-self.xc+90)*self.scale) %
-                                     (180*self.scale)).astype(int)
-        self.fade = np.interp((x_screen-15)/630,[0,.08,.15,.85,.92,1],
-                              [.12,.85,1,1,.85,.12])
-        font_candidates = [
-            '/System/Library/Fonts/Supplemental/Georgia Italic.ttf',
-            '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf']
-        self.font = ImageFont.load_default(size=16*self.scale)
-        for filename in font_candidates:
-            if Path(filename).exists():
-                self.font = ImageFont.truetype(filename, 16*self.scale)
+class History:
+    """Numerical history of -psi/2 on the periodic planar coordinate grid."""
+
+    def __init__(self, nx=64, ny=512, height=48, dt=.025, stride=2):
+        self.flow = PlanarTrain(nx,ny,height,dt)
+        self.delta_age = stride*dt
+        # The validation samples the exact crop edges as well as pixel centers.
+        count = math.ceil(FINAL_TIME/RADIAL_MIN**2/self.delta_age) + 2
+        self.fields = np.empty((count,ny,nx),dtype=np.float32)
+        energy0,enstrophy0 = self.flow.invariants()
+        dissipation,previous_enstrophy = 0.0,enstrophy0
+        self.max_energy_increase = 0.0
+        previous_energy = energy0
+        for age_index in range(count):
+            self.fields[age_index] = self.flow.stream_field()
+            if age_index+1 == count:
                 break
+            for _ in range(stride):
+                self.flow.step()
+                energy,enstrophy = self.flow.invariants()
+                self.max_energy_increase = max(self.max_energy_increase,
+                                               energy-previous_energy)
+                dissipation += VISCOSITY*dt*(enstrophy+previous_enstrophy)
+                previous_energy,previous_enstrophy = energy,enstrophy
+        self.metrics = dict(nx=nx,ny=ny,height=height,dt=dt,delta_age=self.delta_age,
+                            maximum_computed_age=(count-1)*self.delta_age,
+                            maximum_cfl=self.flow.max_cfl,
+                            max_energy_increase=self.max_energy_increase,
+                            relative_energy_balance=abs(previous_energy-energy0+
+                                                        dissipation)/energy0)
 
-    def draw(self, flow, time):
-        # Render fixed isocontours by signed distance in screen pixels. Compute
-        # a single horizontal period, then tile it exactly like the static SVG.
-        field = flow.sample(flow.display_field(), self.q, self.eta)
-        gy = np.gradient(field, axis=0)
-        gx = (np.roll(field,-1,axis=1) - np.roll(field,1,axis=1))/2
-        gradient = np.maximum(np.hypot(gy,gx),1e-12)
-        hi = np.searchsorted(LEVELS,field)
-        coverage = np.zeros_like(field)
-        colored = np.zeros_like(field,dtype=bool)
-        for idx in [hi-1,hi]:
-            clipped = np.clip(idx,0,len(LEVELS)-1)
-            distance = np.abs(field - LEVELS[clipped])/gradient
-            alpha = np.clip(.5+.5*self.scale*self.widths[clipped]-distance,0,1)
-            alpha *= self.alphas[clipped]*(idx>=0)*(idx<len(LEVELS))
-            colored = np.where(alpha>coverage,self.highlight[clipped],colored)
-            coverage = np.maximum(alpha,coverage)
-        color = np.where(colored[:,:,None],self.gold,self.mint)
-        rgb = self.background + (color-self.background)*coverage[:,:,None]
-        display = (self.background + (rgb[:,self.tile_columns]-self.background)*
-                   self.fade[None,:,None]).round().astype('uint8')
+
+class MeridionalSampler:
+    """Evaluate a common physical-time meridional slice at normalized r,z."""
+
+    def __init__(self, history, radius, z):
+        self.history = history
+        self.radius = np.asarray(radius)
+        q = RADIUS*np.log(self.radius)
+        eta = RADIUS*np.asarray(z)[:,None]/self.radius[None,:]
+        ny,nx = history.flow.shape
+        self.x_stencil = cubic_stencil(q,history.flow.dx,nx)
+        self.y_stencil = cubic_stencil(eta,history.flow.dy,ny)
+
+    def sample(self, time):
+        # First interpolate time and q at each radius, producing one vertical
+        # grid column per image column; then interpolate its z-dependent eta.
+        idx = time/self.radius**2/self.history.delta_age
+        i = np.floor(idx).astype(int)
+        f = idx-i
+        fields = self.history.fields
+        if np.any(i < 0) or np.any(i+1 >= len(fields)):
+            raise ValueError('Requested physical slice lies outside planar age history')
+        columns = np.zeros((len(self.radius),fields.shape[1]))
+        for ix,weight in self.x_stencil:
+            columns += weight[:,None]*((1-f[:,None])*fields[i,:,ix] +
+                                        f[:,None]*fields[i+1,:,ix])
+        result = np.zeros(self.y_stencil[0][0].shape)
+        x = np.arange(len(self.radius))
+        for iy,weight in self.y_stencil:
+            result += weight*columns[x,iy]
+        return result*self.radius[None,:]
+
+
+def analytic_inlet(radius, z):
+    q = RADIUS*np.log(radius)
+    q = (q + PERIOD/2) % PERIOD - PERIOD/2
+    eta = RADIUS*np.asarray(z)[:,None]/radius
+    images = sum(np.exp(-((q-n*PERIOD)**2)/4) for n in range(-5,6))
+    return radius*images*np.exp(-eta**2/4)
+
+
+def font(size):
+    for path in ['/System/Library/Fonts/Supplemental/Georgia Italic.ttf',
+                 '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf']:
+        if Path(path).is_file():
+            return ImageFont.truetype(path,size)
+    return ImageFont.load_default(size=size)
+
+
+class Plate:
+    def __init__(self, history):
+        self.scale,self.width,self.plot_height = 2,630,260
+        scale=self.scale
+        self.bg = np.array([17,46,42])
+        self.ink = np.array([192,218,204])
+        self.gold = np.array([255,199,145])
+        self.accent = np.isin(LEVELS,GOLD_LEVELS)
+        self.widths = np.where(self.accent,1.6,np.where(np.arange(len(LEVELS))%4==0,1,.74))
+        self.alphas = np.where(self.accent,.96,np.where(np.arange(len(LEVELS))%4==0,.81,.61))
+        pitch = (RADIAL_MAX-RADIAL_MIN)/self.width
+        x = (np.arange(self.width*scale)+.5)/scale
+        z = (self.plot_height/2-(np.arange(self.plot_height*scale)+.5)/scale)*pitch
+        self.radius = RADIAL_MIN + x*pitch
+        self.sampler = MeridionalSampler(history,self.radius,z)
+        self.fade = np.interp(x/self.width,[0,.035,.08,.94,.985,1],
+                              [.25,.85,1,1,.85,.28])
+        self.label_font = font(15*scale)
+
+    def frame(self, time):
+        field = self.sampler.sample(time)
+        gy,gx=np.gradient(field)
+        gradient=np.maximum(np.hypot(gy,gx),1e-12)
+        upper=np.searchsorted(LEVELS,field)
+        coverage=np.zeros_like(field)
+        colored=np.zeros_like(field,dtype=bool)
+        for idx in [upper-1,upper]:
+            k=np.clip(idx,0,len(LEVELS)-1)
+            distance=np.abs(field-LEVELS[k])/gradient
+            alpha=np.clip(.5+.5*self.scale*self.widths[k]-distance,0,1)
+            alpha*=self.alphas[k]*(idx>=0)*(idx<len(LEVELS))
+            colored=np.where(alpha>coverage,self.accent[k],colored)
+            coverage=np.maximum(alpha,coverage)
+        color=np.where(colored[:,:,None],self.gold,self.ink)
+        rgb=self.bg + (color-self.bg)*coverage[:,:,None]*self.fade[None,:,None]
         s=self.scale
-        chart=Image.new('RGB',(660*s,310*s),tuple(self.background))
-        chart.paste(Image.fromarray(display),(15*s,6*s))
+        chart=Image.new('RGB',(660*s,310*s),tuple(self.bg))
+        chart.paste(Image.fromarray(rgb.round().astype('uint8')),(15*s,8*s))
         draw=ImageDraw.Draw(chart)
-        # Three passive material markers per period, identical in both runs.
-        for x,y in flow.particles:
-            for copy in range(-3,4):
-                dx=self.xc + self.scale_space*(x+copy*PERIOD)
-                dy=self.yc - self.scale_space*y
-                if 20 < dx < 640 and 9 < dy < 269:
-                    radius=2.5
-                    draw.ellipse(((dx-radius)*s,(dy-radius)*s,(dx+radius)*s,(dy+radius)*s),
-                                 fill=(246,237,205),outline=(55,72,58),width=s)
-        for period,label in [(-1,'−c'),(0,'0'),(1,'c')]:
-            x=(self.xc+period*180)*s
-            draw.line((x,275*s,x,281*s),fill=(138,166,151),width=s)
-            draw.text((x,297*s),label,font=self.font,anchor='ms',fill=(194,216,201))
-        draw.text((643*s,297*s),f's = {time:.1f}',font=self.font,
-                  anchor='rs',fill=(177,202,186))
+        for value,label in [(.25,'0.25'),(.5,'0.5'),(.75,'0.75'),(1,'1.0')]:
+            x=(15+self.width*(value-RADIAL_MIN)/(RADIAL_MAX-RADIAL_MIN))*s
+            draw.line((x,274*s,x,280*s),fill=(138,166,151),width=s)
+            draw.text((x,298*s),label,font=self.label_font,anchor='ms',
+                      fill=(194,216,201))
+        draw.text((535*s,298*s),'r/R',font=self.label_font,anchor='ms',fill=(194,216,201))
+        draw.text((642*s,298*s),f't = {time:.2f}',font=self.label_font,anchor='rs',
+                  fill=(194,216,201),stroke_width=s,stroke_fill=tuple(self.bg))
         return chart.resize((660,310),Image.Resampling.LANCZOS)
 
 
-def simulate(viscosity, frame_dir=None, nx=64, ny=320, height=30.0, steps_per_frame=2):
-    flow = Flow(viscosity,nx,ny,height,steps_per_frame)
-    initial_energy,initial_enstrophy=flow.invariants()
-    old_enstrophy=initial_enstrophy
-    dissipated=0
-    snapshots={}
-    max_divergence=0.0
-    renderer=Renderer() if frame_dir else None
-    if frame_dir:
-        frame_dir.mkdir(parents=True,exist_ok=True)
-    for frame in range(DURATION*FPS+1):
-        if frame and frame%60==0:
-            print(f'nu={viscosity:.5f}, {nx}×{ny}, s={frame/FPS:g}',flush=True)
-        if frame_dir:
-            image=renderer.draw(flow,frame/FPS)
-            image.save(frame_dir/f'{frame:04}.png',compress_level=2)
-            if frame==0 and viscosity>0:
-                image.save(frame_dir.parent/'vortex-train-poster.webp',lossless=True,method=6)
-        if frame % FPS == 0:
-            psi=flow.inverse_laplacian*flow.omega
-            uhat,vhat=-1j*flow.ky*psi,1j*flow.kx*psi
-            divergence=flow.field(1j*flow.kx*uhat + 1j*flow.ky*vhat)
-            max_divergence=max(max_divergence,float(np.max(np.abs(divergence))))
-            sample=flow.sample(flow.display_field(),
-                               np.linspace(-3,3,96,endpoint=False),
-                               np.linspace(-5,5,141))
-            snapshots[frame//FPS]=(sample,flow.particles.copy())
-        if frame<DURATION*FPS:
-            for _ in range(steps_per_frame):
-                flow.step()
-                _,enstrophy=flow.invariants()
-                dissipated+=viscosity*flow.dt*(old_enstrophy+enstrophy)
-                old_enstrophy=enstrophy
-    energy,enstrophy=flow.invariants()
-    metrics=dict(nx=nx,ny=ny,height=height,dt=flow.dt,viscosity=viscosity,
-                 duration=DURATION,initial_energy=initial_energy,final_energy=energy,
-                 initial_enstrophy=initial_enstrophy,final_enstrophy=enstrophy,
-                 relative_energy_balance_residual=abs(energy-initial_energy+dissipated)/initial_energy,
-                 relative_enstrophy_change=(enstrophy-initial_enstrophy)/initial_enstrophy,
-                 maximum_cfl=flow.max_cfl,maximum_divergence=max_divergence)
-    return snapshots,metrics
-
-
-def max_discrepancy(a,b):
-    return dict(maximum_stream_function_over_two_abs=float(max(
-                    np.max(np.abs(x-b[t][0])) for t,(x,p) in a.items())),
-                maximum_tracer_position_abs=float(max(
-                    np.max(np.linalg.norm(p-b[t][1],axis=1)) for t,(x,p) in a.items())))
+def validate(base):
+    radius=np.linspace(RADIAL_MIN,RADIAL_MAX,131)
+    z=np.linspace(-.21,.21,51)
+    probe=MeridionalSampler(base,radius,z)
+    times=np.array([0,.25,.50,.85,FINAL_TIME])
+    baseline=[probe.sample(t) for t in times]
+    inlet_error=np.max(np.abs(analytic_inlet(radius,z)-baseline[0]))
+    # Lambda*r at Lambda²*t has age s and exactly the same planar location
+    # modulo c, so the physical streamfunction increases by Lambda.
+    scaled=MeridionalSampler(base,RING_RATIO*radius,RING_RATIO*z)
+    scale_error=max(float(np.max(np.abs(scaled.sample(RING_RATIO**2*t)-
+                                        RING_RATIO*b))) for t,b in zip(times,baseline))
+    report=dict(base=base.metrics,ring_ratio=RING_RATIO,analytic_inlet_error=float(inlet_error),
+                maximum_discrete_scaling_error=scale_error,physical_times=times.tolist())
+    for name,params in [('refined',dict(nx=96,ny=768,height=48,dt=.0125,stride=2)),
+                        ('taller',dict(nx=64,ny=640,height=60,dt=.025,stride=2))]:
+        other=History(**params)
+        o=MeridionalSampler(other,radius,z)
+        errors=[float(np.max(np.abs(o.sample(t)-b))) for t,b in zip(times,baseline)]
+        report[name]=dict(other.metrics,physical_slice_errors=errors)
+        if max(errors)>2e-4:
+            raise ValueError(f'{name} meridional stream comparison failed: {errors}')
+        del other,o
+    if (inlet_error>2e-5 or scale_error>2e-8 or
+        base.metrics['relative_energy_balance']>2e-5 or base.max_energy_increase>1e-12):
+        raise ValueError(f'Physics check failed: {report}')
+    return report
 
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory',type=Path)
     parser.add_argument('--validate',action='store_true')
+    parser.add_argument('--preview',action='store_true',help='Render first, middle and last frame')
     parser.add_argument('--no-render',action='store_true')
     args=parser.parse_args()
     args.directory.mkdir(parents=True,exist_ok=True)
-    report={}
-    for mode,viscosity in [('viscous',1/6),('inviscid',0.0)]:
-        print(f'Simulating {mode} train',flush=True)
-        base,metrics=simulate(viscosity,None if args.no_render else args.directory/mode)
-        if args.validate:
-            fine,_=simulate(viscosity,nx=96,ny=480,steps_per_frame=4)
-            padded,_=simulate(viscosity,nx=64,ny=448,height=42)
-            metrics['higher_resolution']=max_discrepancy(base,fine)
-            metrics['taller_domain']=max_discrepancy(base,padded)
-            if metrics['maximum_divergence'] > 1e-12:
-                raise ValueError(f'Velocity divergence check failed: {metrics}')
-            if metrics['relative_energy_balance_residual'] > 2e-5:
-                raise ValueError(f'Energy balance check failed: {metrics}')
-            if viscosity==0 and abs(metrics['relative_enstrophy_change']) > 1e-5:
-                raise ValueError(f'Enstrophy balance check failed: {metrics}')
-            for key in ('higher_resolution','taller_domain'):
-                if (metrics[key]['maximum_stream_function_over_two_abs'] > 2e-4 or
-                    metrics[key]['maximum_tracer_position_abs'] > .01):
-                    raise ValueError(f'{key} comparison failed: {metrics}')
-        report[mode]=metrics
-        print(json.dumps(metrics,indent=2),flush=True)
-    report_name='validation.json' if args.validate else 'run.json'
-    (args.directory/report_name).write_text(json.dumps(report,indent=2)+'\n')
+    hist=History()
+    if not args.no_render:
+        plate=Plate(hist)
+        frames=args.directory/'frames'
+        frames.mkdir(exist_ok=True)
+        indices=[0,FRAME_COUNT//2,FRAME_COUNT-1] if args.preview else range(FRAME_COUNT)
+        for i in indices:
+            frame=plate.frame(FINAL_TIME*i/(FRAME_COUNT-1))
+            frame.save(frames/f'{i:04}.png',compress_level=2)
+            if i==0:
+                frame.save(args.directory/'viscous-ring-lift-poster.webp',lossless=True,method=6)
+    report=validate(hist) if args.validate else hist.metrics
+    name='validation.json' if args.validate else 'run.json'
+    (args.directory/name).write_text(json.dumps(report,indent=2)+'\n')
+    print(json.dumps(report,indent=2),flush=True)
 
 
 if __name__=='__main__':

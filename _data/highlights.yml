@@ -20,20 +20,14 @@
   description: In a preprint with Matei P. Coiculescu and Chen Li, we describe two Leray–Hopf solutions of the unforced three-dimensional Navier–Stokes equations with the same initial velocity.
   paper: Non-Uniqueness of Leray–Hopf Solutions to the Unforced Three-Dimensional Navier–Stokes Equations
   url: https://hexagonmath.org/2611.00143v1
-  figure: /assets/figures/vortex-train-poster.webp
-  simulations:
-    - label: Viscous
-      viscosity: 1/6
-      file: /assets/figures/vortex-train-evolution.mp4
-    - label: Inviscid
-      viscosity: '0'
-      file: /assets/figures/vortex-train-inviscid.mp4
+  figure: /assets/figures/viscous-ring-lift-poster.webp
+  movie: /assets/figures/viscous-ring-lift.mp4
   width: 660
   height: 310
-  alt: Closed streamlines circle three equally spaced vortex centers. Outer streamlines pass through neighboring periods.
-  caption: Two planar simulations start from the Gaussian vortex train used to build the three-dimensional flow. Curves show streamlines and dots follow fluid particles. With viscosity the cores spread and weaken.
-  figure_label: Construction, p. 8
-  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=8
+  alt: A radial slice through a train of viscous vortex rings. The cores start smaller and closer together toward the axis on the left. The smaller cores diffuse first.
+  caption: Streamlines of the paper’s approximate ring field in a radial slice. The rings start smaller and closer together toward the axis on the left. Their smaller cores diffuse first.
+  figure_label: Ring construction, §5
+  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=19
 - id: wave-turbulence
   topic: Wave turbulence
   title: How waves exchange energy

@@ -16,8 +16,13 @@
           <div class="feature-paper"><a class="paper-link" href="{{ item.url }}">{{ item.paper | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}</div>
         </div>
         <figure>
-          {% if item.simulations %}
-          {% include plates/flow-study.html %}
+          {% if item.movie %}
+          <video class="feature-image" data-feature-movie controls playsinline muted preload="none"
+                 poster="{{ item.figure | relative_url }}" width="{{ item.width }}" height="{{ item.height }}"
+                 aria-label="{{ item.alt | escape }}" aria-describedby="caption-{{ item.id }}">
+            <source src="{{ item.movie | relative_url }}" type="video/mp4">
+            <a href="{{ item.movie | relative_url }}">Open the animation (MP4)</a>
+          </video>
           {% else %}
           <img class="feature-image{% if item.light_ground %} on-paper{% endif %}" src="{{ item.figure | relative_url }}"
                alt="{{ item.alt | escape }}" width="{{ item.width }}" height="{{ item.height }}">

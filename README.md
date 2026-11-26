@@ -28,7 +28,7 @@ The Courant web directory also holds public documents outside this repository, i
 | Talks | `_data/talks.json` | Add a dated record with a title, venue, and recording URL. A YouTube ID enables playback on the page. An event URL, local poster, and description are optional. |
 | Media | `_data/media.json` | Add the publication date, headline, author, outlet, type, and article URL. Use the outlet name “Quanta Magazine” for Quanta entries. Use “News brief” for a dispatch. Optional companion links can point to audio or related coverage. |
 | CV | `assets/pdf/CV.pdf`, `_data/cv_overview.json` | Replace the PDF at its stable URL. Update the displayed revision date and the appointments, education, and honors in the HTML overview. |
-| Research highlights | `_data/highlights.yml`, `assets/figures/` | Add a record with a unique ID, tab label, summary, paper link, figure, dimensions, alt text, caption, and source link. A highlight can also have a `simulations` list. Each run has a label, viscosity and MP4 path, and the figure supplies the shared poster. List the default run first. |
+| Research highlights | `_data/highlights.yml`, `assets/figures/` | Add a record with a unique ID, tab label, summary, paper link, figure, dimensions, alt text, caption, and source link. To animate a highlight, set `movie` to an MP4 path and `figure` to its poster. |
 | What’s new | `_data/updates.yml` | Add a date, type, title, URL, and optional credit line. The homepage sorts entries by date. An archive item can be featured here when an announcement is appropriate. |
 | Profile and funding | `_data/profile.yml`, `_pages/about.md` | Update contact information, affiliation, portrait, or award links in the data file. The opening and acknowledgment are arranged in the homepage template. |
 | Navigation | `_data/navigation.yml` | Add or reorder a page title and site-relative path. The layout applies the site’s base URL. |
@@ -38,23 +38,21 @@ Page templates live in `_pages/`. The shared layout is `_layouts/plates.html`, a
 ## Research figures
 
 - **Singularity formation.** Figure 1 on page 4 of Levent Alpöge and Tristan Buckmaster’s *Finite-time blow-up for the Navier–Stokes equations*. The image is the original two-panel figure, encoded losslessly as WebP. It shows the computed approximate profile at two vorticity magnitudes. [Pinned manuscript](https://github.com/tristanbuckmaster/navier-stokes/blob/b86ec358087c6d32c4bff73f4ef440f7491b426f/paper/finite-time-blow-up-navier-stokes.pdf)
-- **Non-uniqueness.** The two movies evolve the planar Gaussian vortex train used in §3 of the Hexagon preprint. Both start with spacing `c = 6` and the same passive tracer particles. The viscous run solves the two-dimensional Navier–Stokes vorticity equation at `ν = 1/6`. The inviscid run solves the Euler equation at `ν = 0`. They share a clock and fixed streamfunction contour levels. The non-uniqueness theorem in the paper concerns three-dimensional solutions at a single viscosity. [Planar construction, p. 8](https://hexagonmath.org/pdf/2611.00143v1#page=8)
+- **Non-uniqueness.** One viscous animation draws the streamlines of the raw axisymmetric ring lift in a physical meridional slice. Initially the ring radii are `rₙ = R exp(nc/R)` and their core widths scale with `rₙ/R`. At physical time `t`, each radius samples the planar viscous solution at its own local age `s = R²t/r²`. The raw lift is the starting point for the paper’s curvature correction. [Construction overview, p. 6](https://hexagonmath.org/pdf/2611.00143v1#page=6) · [Ring lift, Proposition 5.1, p. 19](https://hexagonmath.org/pdf/2611.00143v1#page=19)
 - **Wave turbulence.** The two Feynman trees in `assets/figures/wave-interaction-diagrams.svg` represent the cubic term in equation (3.2b) and the third-order term in Figure 1. Each vertex has the momentum rule `k = k₁ − k₂ + k₃`. Dashed branches denote conjugated factors. [Figure 1 and equation (4.2)](https://arxiv.org/pdf/1907.03667#page=12)
 
-### Reproduce the vortex simulations
+### Reproduce the viscous ring animation
 
-The generator uses NumPy and Pillow 10.1 or newer. It evolves vorticity on a periodic box of size 6 × 30, with 64 × 320 grid points and time step 0.025. The tall transverse period approximates the paper’s infinite cylinder. The solver uses dealiased Fourier advection, integrating-factor RK4 for viscosity, and passive particles advanced with the same four velocity stages. The validation run compares both simulations against a finer mesh with half the time step and against a taller domain. It also checks the energy balance and inviscid enstrophy.
+The animation plots fixed levels of the physical stream function `r ψ(q,η,s)` in the `(r,z)` plane. The illustrative parameters are `R = 14`, `c = 6` and `ν = 1/6`. Each step toward the axis multiplies the initial ring radius by `exp(−6/14) ≈ 0.65`. The frame spans `0.235 ≤ r/R ≤ 1.26` and runs from physical time 0 to 1.25. The local planar age varies across each frame according to `s = R²t/r²`.
 
-```sh
-python3 bin/generate-vortex-movies.py /tmp/vortex-frames --validate
-```
+The generator integrates the viscous planar vorticity equation with dealiased Fourier advection and integrating-factor RK4. It interpolates the computed stream function in space and local age before applying the ring lift. Validation checks the analytic initial profile, discrete scaling, viscous energy balance, spatial and temporal refinement, and the height of the numerical cylinder.
 
-The output contains two frame sequences, the shared poster and a JSON validation report. Encode the frames at 20 frames per second, preserving the initial frame and the common clock through simulation time 9. On macOS the included encoder uses AVFoundation.
+Run with NumPy and Pillow 10.1 or newer. The macOS encoder uses AVFoundation.
 
 ```sh
+python3 bin/generate-vortex-movies.py /tmp/ring-lift --validate
 swiftc bin/encode-figure-frames.swift -o /tmp/encode-figure-frames
-/tmp/encode-figure-frames /tmp/vortex-frames/viscous /tmp/vortex-train-evolution.mp4 20
-/tmp/encode-figure-frames /tmp/vortex-frames/inviscid /tmp/vortex-train-inviscid.mp4 20
+/tmp/encode-figure-frames /tmp/ring-lift/frames /tmp/viscous-ring-lift.mp4 20
 ```
 
-To update the website, copy the two MP4s and `vortex-train-poster.webp` into `assets/figures/`. The checked-in movies play without Python or Swift.
+Copy the MP4 and `/tmp/ring-lift/viscous-ring-lift-poster.webp` into `assets/figures/` to update the site. The checked-in animation plays offline.
