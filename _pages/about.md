@@ -16,7 +16,10 @@ page_js: highlights
       <p class="support"><strong>Research support</strong> An <a href="{{ profile.funding.career }}">NSF CAREER award</a> supports my work on singularities in fluids. Other support has included an <a href="{{ profile.funding.frg }}">NSF Focused Research Group</a> and the <a href="{{ profile.funding.simons }}">Simons Collaboration on Wave Turbulence</a>.</p>
     </div>
   </div>
-  <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.name }} in front of bookshelves" width="690" height="740">
+  <figure class="profile-photo">
+    <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.name }} in front of bookshelves" width="690" height="740">
+    {% if profile.portrait_credit %}<figcaption>{{ profile.portrait_credit | escape }}{% if profile.portrait_location %}, {{ profile.portrait_location | escape }}{% endif %}</figcaption>{% endif %}
+  </figure>
 </section>
 {% include plates/highlights.html %}
 <section class="bound news" id="news" aria-labelledby="news-heading">
