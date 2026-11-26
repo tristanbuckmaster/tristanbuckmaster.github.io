@@ -1,0 +1,13 @@
+name: Tristan Buckmaster
+role: Professor of Mathematics
+institute: Courant Institute
+university: New York University
+institute_url: https://cims.nyu.edu/
+email: buckmaster@cims.nyu.edu
+address: Office 713, 251 Mercer Street, New York, NY 10012
+portrait: /assets/figures/tristan-buckmaster.webp
+intro: I study the equations of fluid motion, the formation of singularities, and the transfer of energy between waves.
+funding:
+  career: https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2407511
+  frg: https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2403764
+  simons: https://www.simonsfoundation.org/collaborations/wave-turbulence/

@@ -1,0 +1,52 @@
+---
+layout: plates
+title: Media
+permalink: /media/
+description: Media articles and interviews about the work of Tristan Buckmaster.
+page_css: catalogues
+---
+<div class="bound catalogue">
+  <header class="catalogue-heading">
+    <h1>Media</h1>
+    <p>Reporting and interviews about my work.</p>
+  </header>
+
+  {% assign media = site.data.media | sort: 'date' | reverse %}
+  {% assign quanta = media | where: 'outlet', 'Quanta Magazine' %}
+  {% assign quanta_articles = quanta | where_exp: 'item', 'item.type != "News brief"' %}
+  {% assign quanta_briefs = quanta | where: 'type', 'News brief' %}
+  {% assign other_media = media | where_exp: 'item', 'item.outlet != "Quanta Magazine"' %}
+  <nav class="catalogue-jumps" aria-label="Media sections">
+    {% if quanta_articles.size > 0 %}<a href="#quanta">Quanta articles</a>{% endif %}
+    {% if quanta_briefs.size > 0 %}<a href="#dispatches">Quanta news briefs</a>{% endif %}
+    {% if other_media.size > 0 %}<a href="#coverage">Other media</a>{% endif %}
+  </nav>
+
+  {% assign sections = "quanta,dispatches,coverage" | split: "," %}
+  {% for id in sections %}
+    {% case id %}
+      {% when 'quanta' %}{% assign section_title = 'Quanta Magazine' %}{% assign records = quanta_articles %}
+      {% when 'dispatches' %}{% assign section_title = 'Quanta news briefs' %}{% assign records = quanta_briefs %}
+      {% when 'coverage' %}{% assign section_title = 'Other media' %}{% assign records = other_media %}
+    {% endcase %}
+    {% if records.size > 0 %}
+      <section class="press-section" id="{{ id }}" aria-labelledby="heading-{{ id }}">
+        <h2 id="heading-{{ id }}">{{ section_title }}</h2>
+        <ol class="press-list">
+          {% for item in records %}
+            <li>
+              <time datetime="{{ item.date }}">{{ item.date | date: "%-d %b %Y" }}</time>
+              <div>
+                <h3><a href="{{ item.url | escape }}">{{ item.title | escape }}</a></h3>
+                <p class="press-credit">{{ item.author | escape }}{% if id == 'coverage' %} · {{ item.outlet | escape }}{% endif %}</p>
+                {% if item.links and item.links.size > 0 %}
+                  <div class="press-resources">{% for link in item.links %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% endfor %}</div>
+                {% endif %}
+              </div>
+            </li>
+          {% endfor %}
+        </ol>
+      </section>
+    {% endif %}
+  {% endfor %}
+</div>

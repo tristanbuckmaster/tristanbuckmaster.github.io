@@ -1,0 +1,51 @@
+[
+  {
+    "title": "Blow up for the Incompressible Euler equations with smooth space-time forcing",
+    "speaker": "Tristan Buckmaster",
+    "date": "2026-10-19",
+    "venue": "Institute for Advanced Study · Members’ Colloquium",
+    "youtube_id": "CGesyxtFs7g",
+    "url": "https://www.youtube.com/watch?v=CGesyxtFs7g",
+    "event_url": "https://www.ias.edu/video/blow-incompressible-euler-equations-smooth-space-time-forcing",
+    "poster": "/assets/img/recordings/ias-euler-2026.webp",
+    "description": "A multiscale construction for three-dimensional incompressible Euler flow with smooth forcing, from joint work with Levent Alpöge and Matei Coiculescu."
+  },
+  {
+    "title": "Smooth imploding solutions for 3D compressible fluids",
+    "speaker": "Tristan Buckmaster",
+    "date": "2022-01-18",
+    "date_kind": "Video published",
+    "venue": "SITE Research Center",
+    "status": "unavailable",
+    "youtube_id": "tUkSms5Rk2E",
+    "url": "https://www.youtube.com/watch?v=tUkSms5Rk2E",
+    "archive_url": "https://web.archive.org/web/20240602092206/https://www.youtube.com/watch?v=tUkSms5Rk2E"
+  },
+  {
+    "title": "The Shock Development Problem",
+    "speaker": "Tristan Buckmaster",
+    "date": "2021-10-19",
+    "venue": "Institute for Advanced Study · Seminar in Analysis and Geometry",
+    "youtube_id": "fXFunnAKhFY",
+    "url": "https://www.youtube.com/watch?v=fXFunnAKhFY",
+    "event_url": "https://www.ias.edu/video/shock-development-problem"
+  },
+  {
+    "title": "Stable shock wave formation for the compressible Euler equations",
+    "speaker": "Tristan Buckmaster",
+    "date": "2020-09-14",
+    "venue": "Fields Institute · Workshop on Euler and Navier–Stokes Equations",
+    "youtube_id": "mw_hhOqKDx4",
+    "url": "https://www.youtube.com/watch?v=mw_hhOqKDx4",
+    "event_url": "https://www.fields.utoronto.ca/talks/Stable-shock-wave-formation-compressible-Euler-equations"
+  },
+  {
+    "title": "A rigorous derivation of the kinetic wave equation",
+    "speaker": "Tristan Buckmaster",
+    "date": "2019-12-13",
+    "venue": "Institute for Advanced Study · Analysis and Mathematical Physics Seminar",
+    "youtube_id": "-rDoY-pPF_U",
+    "url": "https://www.youtube.com/watch?v=-rDoY-pPF_U",
+    "event_url": "https://www.ias.edu/math/events/analysismathematical-physics-seminar-48"
+  }
+]

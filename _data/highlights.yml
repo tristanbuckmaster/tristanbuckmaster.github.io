@@ -1,0 +1,38 @@
+- id: singularity
+  topic: Singularity formation
+  title: Singularities in Navier–Stokes flow
+  description: In our preprint, Levent Alpöge and I study how a smooth three-dimensional flow can develop a singularity in finite time without external forcing.
+  paper: Finite-time blow-up for the Navier–Stokes equations
+  url: https://github.com/tristanbuckmaster/navier-stokes
+  figure: /assets/figures/navier-stokes-vorticity.webp
+  width: 1860
+  height: 679
+  light_ground: true
+  alt: Two magenta and purple isosurfaces of vorticity magnitude. The lower level forms a connected whorl, and the higher level shows separated filaments.
+  caption: Vorticity magnitude in the computed approximate profile at s = 0. The surfaces show level 50 (left) and level 85 (right). Color indicates height.
+  figure_label: Figure 1, p. 4
+  figure_source: https://github.com/tristanbuckmaster/navier-stokes/blob/b86ec358087c6d32c4bff73f4ef440f7491b426f/paper/finite-time-blow-up-navier-stokes.pdf
+- id: non-uniqueness
+  topic: Non-uniqueness
+  title: One initial velocity, different flows
+  description: In a preprint with Matei P. Coiculescu and Chen Li, we describe two Leray–Hopf solutions of the unforced three-dimensional Navier–Stokes equations with the same initial velocity.
+  paper: Non-Uniqueness of Leray–Hopf Solutions to the Unforced Three-Dimensional Navier–Stokes Equations
+  url: https://hexagonmath.org/2611.00143v1
+  figure: /assets/figures/vortex-train.svg
+  width: 660
+  height: 310
+  alt: Closed streamlines circle three equally spaced vortex centers. Outer streamlines pass through neighboring periods.
+  caption: Initial streamlines of the periodic planar vortex train, drawn from the Gaussian stream function in §3 of the preprint.
+  figure_label: Construction, p. 8
+  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=8
+- id: wave-turbulence
+  topic: Wave turbulence
+  title: How waves exchange energy
+  description: With Pierre Germain, Zaher Hani, and Jalal Shatah, I studied when a kinetic equation describes the average exchange of energy among Fourier modes of the nonlinear Schrödinger equation.
+  paper: Onset of the wave turbulence description of the longtime behavior of the nonlinear Schrödinger equation
+  url: https://doi.org/10.1007/s00222-021-01039-z
+  figure: /assets/figures/resonant-quartet.svg
+  width: 660
+  height: 310
+  alt: Four Fourier modes form the corners of a rectangle in the plane.
+  caption: A resonant quartet. Opposite vertex pairs have equal sums of wave vectors and equal sums of squared lengths.

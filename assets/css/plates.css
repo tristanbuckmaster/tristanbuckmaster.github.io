@@ -1,0 +1,103 @@
+@font-face {
+  font-family: STIX;
+  src: url("../fonts/stix-two-text.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: DM;
+  src: url("../fonts/dm-sans.ttf") format("truetype");
+  font-display: swap;
+}
+:root {
+  --pine: #112e2a;
+  --ink: #142d28;
+  --paper: #fafbf7;
+  --muted: #52645c;
+  --hair: #b7c3b9;
+  --mint: #d7e8d9;
+  --peach: #f7c6a4;
+  --serif: STIX, "Iowan Old Style", Georgia, serif;
+  --sans: DM, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 1rem/1.48 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, p, figure { margin: 0; }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { color: #754527; }
+:where(a, button, input, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+.bound { width: min(89.5%, 1430px); margin-inline: auto; }
+.skip {
+  position: absolute;
+  left: 10px;
+  top: -100px;
+  z-index: 5;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: white;
+}
+.skip:focus { top: 10px; }
+.mast .bound {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  border-bottom: 1px solid var(--ink);
+  padding: 20px 0 17px;
+}
+.affil { font: 1.22rem/1.12 var(--serif); text-decoration: none; letter-spacing: -.035em; }
+.affil span {
+  display: inline-block;
+  margin-left: 10px;
+  padding-left: 11px;
+  border-left: 1px solid var(--hair);
+  color: var(--muted);
+  font: .85rem/1.27 var(--sans);
+  letter-spacing: 0;
+}
+.site-nav { display: flex; align-items: baseline; gap: clamp(18px, 2.6vw, 45px); }
+.site-nav a { font-size: .95rem; text-decoration: none; }
+.site-nav a:hover, .site-nav [aria-current="page"] { text-decoration: underline; }
+.page-heading { padding: clamp(30px, 4vw, 70px) 0 clamp(24px, 3vw, 49px); }
+.page-heading h1 {
+  font: 400 clamp(3rem, 6vw, 6.8rem)/1 var(--serif);
+  letter-spacing: -.055em;
+}
+.page-heading > p { margin-top: .85rem; color: var(--muted); }
+.site-foot .bound {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 23px 0 32px;
+  border-top: 1px solid var(--ink);
+  font-size: .91rem;
+}
+.site-foot address { margin-top: .28rem; font-style: normal; color: var(--muted); }
+.foot-name { font-weight: 600; text-decoration: none; }
+@media (max-width: 900px) {
+  .bound { width: 91%; }
+}
+@media (max-width: 640px) {
+  .mast .bound { align-items: flex-start; flex-direction: column; padding: 15px 0; }
+  .site-nav { gap: 23px; }
+  .site-nav a { font-size: .91rem; }
+  .affil { font-size: 1.1rem; }
+  .affil span { font-size: .81rem; }
+}
+@media print {
+  .mast .site-nav, .skip { display: none; }
+  .bound { width: 100%; }
+  a { text-decoration: none; }
+}

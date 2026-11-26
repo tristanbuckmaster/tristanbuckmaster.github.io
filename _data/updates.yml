@@ -1,0 +1,29 @@
+- date: '2026-11-20'
+  kind: Preprint
+  title: Finite-time blow-up for the Navier–Stokes equations
+  note: Levent Alpöge and Tristan Buckmaster
+  url: https://github.com/tristanbuckmaster/navier-stokes
+- date: '2026-11-19'
+  kind: Preprint
+  title: Finite-time singularity formation for the three-dimensional Euler equations
+  note: Levent Alpöge, Tristan Buckmaster, and Matei P. Coiculescu
+  url: https://arxiv.org/abs/2611.26772
+- date: '2026-11-06'
+  kind: Preprint
+  title: Non-uniqueness of Leray–Hopf solutions to the unforced three-dimensional Navier–Stokes equations
+  note: Tristan Buckmaster, Matei P. Coiculescu, and Chen Li
+  url: https://hexagonmath.org/2611.00143v1
+- date: '2026-10-21'
+  kind: Guest essay
+  title: Mathematics is a subject for the young
+  note: On Terence Tao’s blog
+  url: https://terrytao.wordpress.com/2026/10/21/mathematics-is-a-subject-for-the-young/
+- date: '2026-10-19'
+  kind: Video
+  title: Blow up for the incompressible Euler equations with smooth space-time forcing
+  note: Members’ Colloquium, Institute for Advanced Study
+  url: https://www.ias.edu/video/blow-incompressible-euler-equations-smooth-space-time-forcing
+- date: '2026-09-07'
+  kind: Statement
+  title: On the September release
+  url: https://cims.nyu.edu/~tristanb/statement.pdf

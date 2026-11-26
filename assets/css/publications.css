@@ -1,0 +1,257 @@
+.pub-page {
+  padding-block: clamp(2.5rem, 5vw, 5.5rem) clamp(3rem, 7vw, 7rem);
+}
+
+.pub-heading h1 {
+  margin: 0;
+  font: 400 clamp(3.5rem, 6.8vw, 7.25rem)/1.04 var(--serif);
+  letter-spacing: -.055em;
+}
+
+.pub-heading > p {
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  margin: .5rem 0 0;
+}
+
+.pub-tools {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: .9rem 1.2rem;
+  border-bottom: 1px solid var(--ink);
+  margin-top: clamp(2rem, 3.7vw, 3.75rem);
+  padding-bottom: 1.05rem;
+}
+
+.pub-count {
+  margin: 0 auto 0 0;
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  letter-spacing: -.025em;
+}
+
+.pub-tools label {
+  display: block;
+  margin-bottom: .3rem;
+  font-size: .83rem;
+  color: var(--muted);
+}
+
+.pub-tools input,
+.pub-tools select {
+  box-sizing: border-box;
+  margin: 0;
+  height: 2.62rem;
+  border: 1px solid var(--hair);
+  border-radius: 0;
+  background: var(--paper);
+  padding: .45rem .72rem;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.pub-search input {
+  width: clamp(15rem, 23vw, 23rem);
+}
+
+.pub-years {
+  display: grid;
+  grid-template-columns: clamp(6.5rem, 15vw, 15.25rem) minmax(0, 1fr);
+  align-items: start;
+}
+
+.pub-years > h2 {
+  margin: 0;
+  padding: 1.65rem 1rem 0 0;
+  font: 400 clamp(2.2rem, 3.4vw, 3.7rem)/1 var(--serif);
+  letter-spacing: -.055em;
+  scroll-margin-top: 1rem;
+}
+
+.pub-years > ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.pub-years > h2,
+.pub-years > ol {
+  border-top: 1px solid var(--ink);
+}
+
+.pub-years > h2:first-child,
+.pub-years > h2:first-child + ol {
+  border-top: none;
+}
+
+.pub-years > ol > li {
+  margin: 0;
+  padding: 0;
+}
+
+.pub-years > ol > li + li .pub-record {
+  border-top: 1px solid var(--hair);
+}
+
+.pub-record {
+  padding: 1.45rem 0 1.65rem;
+  min-width: 0;
+  scroll-margin-top: 1rem;
+}
+
+.pub-title {
+  margin: 0;
+  max-width: 48ch;
+  font: 400 clamp(1.48rem, 2.05vw, 2.25rem)/1.16 var(--serif);
+  letter-spacing: -.03em;
+}
+
+.pub-authors,
+.pub-venue {
+  max-width: 84ch;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.pub-authors {
+  margin: .52rem 0 0;
+  font-size: 1rem;
+}
+
+.pub-venue {
+  margin: .2rem 0 0;
+  color: var(--muted);
+  font-size: .94rem;
+}
+
+.pub-resources {
+  margin-top: .58rem;
+  line-height: 1.9;
+}
+
+.pub-resources > a,
+.pub-disclosure {
+  margin-right: 1rem;
+  font-size: .9rem;
+}
+
+.pub-resources > a,
+.pub-disclosure summary {
+  color: var(--pine);
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  text-decoration-thickness: 1px;
+}
+
+.pub-disclosure {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.pub-disclosure summary {
+  cursor: pointer;
+  width: fit-content;
+  list-style: none;
+}
+
+.pub-disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.pub-disclosure summary::after {
+  content: '+';
+  display: inline-block;
+  margin-left: .25em;
+  text-decoration: none;
+}
+
+.pub-disclosure[open] {
+  display: block;
+  margin: .3rem 0;
+}
+
+.pub-disclosure[open] summary::after {
+  content: '−';
+}
+
+.pub-abstract,
+.pub-disclosure pre {
+  max-width: 78ch;
+  margin: .65rem 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.pub-disclosure pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: .86rem;
+  padding: 1rem;
+  background: #edf1e9;
+}
+
+.pub-empty {
+  margin: 2rem 0 4rem;
+}
+
+.pub-empty button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--pine);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+  cursor: pointer;
+}
+
+.pub-page [hidden] {
+  display: none;
+}
+
+@media (max-width: 630px) {
+  .pub-tools {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    gap: .8rem;
+  }
+
+  .pub-count {
+    grid-column: 1 / -1;
+    font-size: 1.35rem;
+  }
+
+  .pub-search input {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .pub-years {
+    grid-template-columns: 1fr;
+  }
+
+  .pub-years > h2 {
+    padding: 1.45rem 0 .1rem;
+    font-size: 2.35rem;
+  }
+
+  .pub-years > ol {
+    border: none;
+  }
+
+  .pub-record {
+    padding: .95rem 0 1.2rem;
+  }
+}
+
+@media print {
+  .pub-tools,
+  .pub-resources {
+    display: none;
+  }
+}

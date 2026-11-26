@@ -1,0 +1,130 @@
+[
+  {
+    "date": "2026-11-21",
+    "title": "Navier-Stokes can blow up with no outside force, Buckmaster and Alpöge say",
+    "author": "Ana Maria Constantin",
+    "outlet": "The Next Web",
+    "type": "Article",
+    "url": "https://thenextweb.com/news/navier-stokes-blow-up-without-force-buckmaster-alpoge"
+  },
+  {
+    "date": "2026-11-20",
+    "title": "A claimed proof of the Riemann hypothesis",
+    "author": "Konstantin Kakaes",
+    "outlet": "Quanta Magazine",
+    "type": "News brief",
+    "url": "https://www.quantamagazine.org/update/169564/"
+  },
+  {
+    "date": "2026-11-20",
+    "title": "As mathematicians race to verify AI Riemann proof, a human proof emerges",
+    "author": "Konstantin Kakaes",
+    "outlet": "Quanta Magazine",
+    "type": "News brief",
+    "url": "https://www.quantamagazine.org/update/169569/"
+  },
+  {
+    "date": "2026-09-13",
+    "title": "He was close to a huge math breakthrough. Then he got scooped by AI.",
+    "author": "Miriam Waldvogel",
+    "outlet": "The Washington Post",
+    "type": "Article",
+    "url": "https://www.washingtonpost.com/technology/2026/09/13/he-was-close-1-million-breakthrough-then-openai-swooped/"
+  },
+  {
+    "date": "2026-09-10",
+    "title": "Elusive complex structure found for S⁶, the six-dimensional sphere",
+    "author": "Konstantin Kakaes",
+    "outlet": "Quanta Magazine",
+    "type": "News brief",
+    "url": "https://www.quantamagazine.org/update/166811/"
+  },
+  {
+    "date": "2026-09-08",
+    "title": "AI Has Solved One of Math’s $1 Million Millennium Prize Problems",
+    "author": "Konstantin Kakaes",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
+    "links": [
+      {
+        "label": "Related Quanta news brief",
+        "url": "https://www.quantamagazine.org/update/166812/"
+      }
+    ]
+  },
+  {
+    "date": "2026-07-23",
+    "title": "Amid Life’s Chaos, a Meticulous Mathematician Finds Stability",
+    "author": "Jordana Cepelewicz",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/yu-deng-wins-the-fields-medal-2026-for-his-work-on-the-random-data-problem-20260723/"
+  },
+  {
+    "date": "2026-01-09",
+    "title": "Using AI, Mathematicians Find Hidden Glitches in Fluid Equations",
+    "author": "Charlie Wood",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/using-ai-mathematicians-find-hidden-glitches-in-fluid-equations-20260109/",
+    "links": [
+      {
+        "label": "Companion podcast",
+        "url": "https://podcasts.apple.com/us/podcast/mathematicians-want-to-make-fluid-equations-glitch-out/id1021340531?i=1000749065367"
+      }
+    ]
+  },
+  {
+    "date": "2022-11-16",
+    "title": "Computer Proof ‘Blows Up’ Centuries-Old Fluid Equations",
+    "author": "Jordana Cepelewicz",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/computer-helps-prove-long-sought-fluid-equation-singularity-20221116/"
+  },
+  {
+    "date": "2022-04-12",
+    "title": "Deep Learning Poised to ‘Blow Up’ Famed Fluid Equations",
+    "author": "Jordana Cepelewicz",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/deep-learning-poised-to-blow-up-famed-fluid-equations-20220412/",
+    "links": [
+      {
+        "label": "Companion podcast",
+        "url": "https://podcasts.apple.com/us/podcast/deep-learning-poised-to-blow-up-famed-fluid-equations/id1021340531?i=1000574930829"
+      }
+    ]
+  },
+  {
+    "date": "2021-06-03",
+    "title": "Mathematicians Identify Threshold at Which Shapes Give Way",
+    "author": "Mordechai Rorvig",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/mathematicians-identify-threshold-at-which-shapes-give-way-20210603/"
+  },
+  {
+    "date": "2018-01-16",
+    "title": "What Makes the Hardest Equations in Physics So Difficult?",
+    "author": "Kevin Hartnett",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/what-makes-the-hardest-equations-in-physics-so-difficult-20180116/"
+  },
+  {
+    "date": "2017-12-21",
+    "title": "Mathematicians Find Wrinkle in Famed Fluid Equations",
+    "author": "Kevin Hartnett",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/mathematicians-find-wrinkle-in-famed-fluid-equations-20171221/",
+    "links": [
+      {
+        "label": "Companion podcast",
+        "url": "https://podcasts.apple.com/us/podcast/mathematicians-find-wrinkle-in-famed-fluid-equations/id1021340531?i=1000414320357"
+      }
+    ]
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "updated": "January 2026",
+  "sections": [
+    {
+      "title": "Academic appointments",
+      "items": [
+        {"date": "2023–present", "text": "Professor, Courant Institute of Mathematical Sciences, New York University"},
+        {"date": "2022–2023", "text": "Professor, Department of Mathematics, University of Maryland"},
+        {"date": "2017–2022", "text": "Assistant Professor, Department of Mathematics, Princeton University"},
+        {"date": "2014–2017", "text": "Courant Instructor, New York University"}
+      ]
+    },
+    {
+      "title": "Education",
+      "items": [
+        {"date": "2014", "text": "Dr. rer. nat., summa cum laude, University of Leipzig and Max Planck Institute for Mathematics in the Sciences"},
+        {"date": "", "text": "M.Sc. in Mathematics, University of Bonn"},
+        {"date": "", "text": "B.Sc. (Honours) in Mathematics, Australian National University"},
+        {"date": "", "text": "B.Sc. and B.Comp.Sc., Monash University"}
+      ]
+    },
+    {
+      "title": "Selected honors",
+      "items": [
+        {"date": "2025", "text": "R. E. Moore Prize for Applications of Interval Analysis"},
+        {"date": "2020", "text": "Hadamard Lecturer, Institut des Hautes Études Scientifiques"},
+        {"date": "2019", "text": "Clay Research Award"}
+      ]
+    }
+  ]
+}
