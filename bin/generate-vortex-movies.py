@@ -229,7 +229,6 @@ class Plate:
         scale=self.scale
         self.bg = np.array([17,46,42])
         self.ink = np.array([192,218,204])
-        self.fill = np.array([115,143,112])
         self.gold = np.array([255,199,145])
         self.accent = np.isin(LEVELS,GOLD_LEVELS)
         self.widths = np.where(self.accent,1.6,np.where(np.arange(len(LEVELS))%4==0,1,.74))
@@ -258,16 +257,7 @@ class Plate:
             colored=np.where(alpha>coverage,self.accent[k],colored)
             coverage=np.maximum(alpha,coverage)
         color=np.where(colored[:,:,None],self.gold,self.ink)
-        # Identical transfer functions in both runs. The odd part measures the
-        # signed departure from reflection through the horizontal centerline.
-        positive = np.maximum(field,0.)
-        ground = self.bg + (self.fill-self.bg)*(.50*positive/(positive+.22))[:,:,None]
-        odd = (field-field[::-1,:])/2
-        signed_color = np.where(odd[:,:,None]>0, [185,128,76], [77,158,157])
-        strength = .64*np.clip(np.abs(odd)/.019,0,1)
-        ground += (signed_color-ground)*strength[:,:,None]
-        rgb = ground + (color-ground)*coverage[:,:,None]
-        rgb = self.bg + (rgb-self.bg)*self.fade[None,:,None]
+        rgb = self.bg + (color-self.bg)*coverage[:,:,None]*self.fade[None,:,None]
         s=self.scale
         chart=Image.new('RGB',(660*s,310*s),tuple(self.bg))
         chart.paste(Image.fromarray(rgb.round().astype('uint8')),(15*s,23*s))

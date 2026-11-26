@@ -31,8 +31,8 @@
     - label: Perturbed train
       movie: /assets/figures/viscous-ring-mode.mp4
       poster: /assets/figures/viscous-ring-mode-poster.webp
-      description: The same train of cores, with contours that tilt across the midline. Warm and cool lobes show where reflection symmetry breaks. The axes and clock match the symmetric train.
-      caption: The same angular-two mode evolves at every core under the linearized equation. Warm and cool mark opposite departures from mirror symmetry across the dashed midline.
+      description: The same train of cores with tilted contours. Across the dashed midline, the upper and lower arcs now lean to opposite sides. The axes and clock match the symmetric train.
+      caption: The same angular-two mode evolves at every core under the linearized equation. Compare the upper and lower arcs of each contour across the dashed midline to see the tilt.
   figure_label: Vortex train, Gaussian instability and ring lift, §§3–5
   figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=8
 - id: wave-turbulence
