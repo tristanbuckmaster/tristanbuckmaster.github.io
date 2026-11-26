@@ -6,6 +6,44 @@ const movies = document.querySelectorAll('[data-feature-movie]');
 const unvisited = new Set(movies);
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+for (const choices of document.querySelectorAll('.clip-choices')) {
+  const figure = choices.closest('figure');
+  const movie = figure.querySelector('[data-feature-movie]');
+  const source = movie.querySelector('source');
+  const caption = figure.querySelector('figcaption span');
+  let current = choices.querySelector('[aria-current]');
+  let pendingTime = null;
+
+  movie.addEventListener('loadedmetadata', () => {
+    if (pendingTime === null || movie.currentSrc !== current.href) return;
+    movie.currentTime = Math.min(pendingTime, movie.duration);
+    pendingTime = null;
+  });
+
+  for (const clip of choices.querySelectorAll('[data-clip]')) {
+    clip.addEventListener('click', event => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (clip === current) return;
+
+      // Until metadata arrives the newly loaded file reports time zero.
+      if (pendingTime === null) pendingTime = movie.currentTime;
+      const wasPlaying = !movie.paused && !movie.ended;
+      current.removeAttribute('aria-current');
+      current = clip;
+      clip.setAttribute('aria-current', 'true');
+      movie.poster = clip.dataset.poster;
+      movie.setAttribute('aria-label', clip.dataset.description);
+      caption.textContent = clip.dataset.caption;
+      source.src = clip.href;
+      movie.querySelector('a').href = clip.href;
+      movie.preload = 'auto';
+      movie.load();
+      if (wasPlaying && !document.hidden) movie.play().catch(() => {});
+    });
+  }
+}
+
 function pauseMovies() {
   for (const movie of movies) movie.pause();
 }

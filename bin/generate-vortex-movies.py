@@ -1,24 +1,17 @@
-"""Draw the viscous raw ring lift in Proposition 5.1 of Hexagon 2611.00143v1.
+"""Generate matched viscous ring-lift movies for Hexagon 2611.00143v1, §§3–5.
 
     python3 bin/generate-vortex-movies.py /tmp/ring-lift --validate
     swiftc bin/encode-figure-frames.swift -o /tmp/encode-figure-frames
-    /tmp/encode-figure-frames /tmp/ring-lift/frames /tmp/viscous-ring-lift.mp4 20
+    /tmp/encode-figure-frames /tmp/ring-lift/reference/frames /tmp/viscous-ring-lift.mp4 20
+    /tmp/encode-figure-frames /tmp/ring-lift/perturbed/frames /tmp/viscous-ring-mode.mp4 20
 
-NumPy and Pillow suffice to render. The sheet shows instantaneous meridional
-streamlines, levels of the physical Stokes streamfunction r*psi, at one common
-physical time t per frame. The linear axes use the same distance per pixel.
-Section 3 supplies the c-periodic Gaussian planar train. Its viscous vorticity
-evolves on a tall periodic approximation to the infinite cylinder. Section 5
-lifts it into a thin-ring geometry using a logarithmic radial coordinate and
-the radius-dependent planar age s = R²t/r². The raw lifted field has a curvature
-residual. The paper subsequently corrects it to an exact unforced 3D solution.
-
-The illustrative parameters c=6, R=14, nu=1/6 were chosen for readability.
-The paper takes small viscosity and much thinner rings to prove its theorem.
-We use fixed global levels of -r*psi/(2R), with the far-field gauge psi=0.
-Each animation frame samples the evolved planar field at all required ages;
-neighboring physical rings have different ages at the same positive t.
-See https://hexagonmath.org/pdf/2611.00143v1#page=19.
+Both runs solve the two-dimensional viscous vorticity equation with a periodic
+Gaussian row on a tall box. The second initial condition adds the periodized
+angular-two eigenfunction of the isolated Euler vortex. Each trajectory is
+sampled through the same meridional ring chart from Proposition 5.1, at the
+local planar age s = R²t/r² and fixed physical streamfunction contours. These
+raw ring lifts illustrate the instability with different smooth planar inlets;
+the theorem also requires a three-dimensional correction and a Floquet mode.
 """
 import argparse
 import json
@@ -28,14 +21,18 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+from vortex_eigenmode import gaussian_mode, periodic_vorticity
 
-PERIOD = 6.0
-RADIUS = 14.0
-VISCOSITY = 1 / 6
+
+PERIOD = 12.0
+RADIUS = 40.0
+VISCOSITY = .001
+MODE_AMPLITUDE = .04
 RING_RATIO = math.exp(PERIOD / RADIUS)
-RADIAL_MIN, RADIAL_MAX = .235, 1.26       # r/R, increasing to the right
-FINAL_TIME = 1.25                         # physical time t
-FPS, FRAME_COUNT = 20, 181
+RADIAL_MIN, RADIAL_MAX = .385, 1.13       # r/R, increasing to the right
+FIRST_TIME, FINAL_TIME = .2, 32.0         # common physical times t
+FPS, FRAME_COUNT = 20, 241
+PROBE_AGES = [0., 9.92, 19.84, 40., 80., 120., 160., 200.]
 # Fixed absolute levels, more densely spaced near the smaller inner rings.
 LEVELS = np.array([.020,.029,.040,.055,.073,.094,.116,.138,.160,.182,.205,
                    .230,.257,.286,.318,.352,.388,.425,.464,.504,.545,.587,
@@ -57,7 +54,7 @@ def cubic_stencil(coordinates, spacing, size):
 class PlanarTrain:
     """Dealiased Fourier vorticity evolution with integrating-factor RK4."""
 
-    def __init__(self, nx, ny, height, dt):
+    def __init__(self, nx, ny, height, dt, amplitude):
         self.shape = ny, nx
         self.dx, self.dy = PERIOD/nx, height/ny
         self.dt, self.height = dt, height
@@ -74,6 +71,13 @@ class PlanarTrain:
         # Fourier coefficients of the periodized Laplacian of -2 exp(-|x|²/4).
         self.omega = (8*np.pi*nx*ny/(PERIOD*height)*self.k2*
                       np.exp(-self.k2)*self.keep).astype(complex)
+        self.seed_peak_fraction = 0.
+        if amplitude:
+            seed = amplitude*np.fft.rfft2(periodic_vorticity(nx,ny,PERIOD,height))*self.keep
+            seed[0,0] = 0
+            self.seed_peak_fraction = float(np.max(np.abs(self.real(seed))) /
+                                            np.max(np.abs(self.real(self.omega))))
+            self.omega += seed
         self.real_mode_weight = np.full((1, nx//2+1), 2.0)
         self.real_mode_weight[:, 0] = self.real_mode_weight[:, -1] = 1
         self.max_cfl = 0
@@ -117,8 +121,8 @@ class PlanarTrain:
 class History:
     """Numerical history of -psi/2 on the periodic planar coordinate grid."""
 
-    def __init__(self, nx=64, ny=512, height=48, dt=.025, stride=2):
-        self.flow = PlanarTrain(nx,ny,height,dt)
+    def __init__(self, amplitude, nx=96, ny=288, height=36, dt=.08, stride=4):
+        self.flow = PlanarTrain(nx,ny,height,dt,amplitude)
         self.delta_age = stride*dt
         # The validation samples the exact crop edges as well as pixel centers.
         count = math.ceil(FINAL_TIME/RADIAL_MIN**2/self.delta_age) + 2
@@ -139,6 +143,7 @@ class History:
                 dissipation += VISCOSITY*dt*(enstrophy+previous_enstrophy)
                 previous_energy,previous_enstrophy = energy,enstrophy
         self.metrics = dict(nx=nx,ny=ny,height=height,dt=dt,delta_age=self.delta_age,
+                            initial_peak_vorticity_fraction=self.flow.seed_peak_fraction,
                             maximum_computed_age=(count-1)*self.delta_age,
                             maximum_cfl=self.flow.max_cfl,
                             max_energy_increase=self.max_energy_increase,
@@ -233,68 +238,111 @@ class Plate:
         chart=Image.new('RGB',(660*s,310*s),tuple(self.bg))
         chart.paste(Image.fromarray(rgb.round().astype('uint8')),(15*s,8*s))
         draw=ImageDraw.Draw(chart)
-        for value,label in [(.25,'0.25'),(.5,'0.5'),(.75,'0.75'),(1,'1.0')]:
+        for value,label in [(.4,'0.4'),(.6,'0.6'),(.8,'0.8'),(1,'1.0')]:
             x=(15+self.width*(value-RADIAL_MIN)/(RADIAL_MAX-RADIAL_MIN))*s
             draw.line((x,274*s,x,280*s),fill=(138,166,151),width=s)
             draw.text((x,298*s),label,font=self.label_font,anchor='ms',
                       fill=(194,216,201))
-        draw.text((535*s,298*s),'r/R',font=self.label_font,anchor='ms',fill=(194,216,201))
-        draw.text((642*s,298*s),f't = {time:.2f}',font=self.label_font,anchor='rs',
+        draw.text((642*s,298*s),'r/R',font=self.label_font,anchor='rs',fill=(194,216,201))
+        draw.text((642*s,27*s),f't = {time:.2f}',font=self.label_font,anchor='rs',
                   fill=(194,216,201),stroke_width=s,stroke_fill=tuple(self.bg))
         return chart.resize((660,310),Image.Resampling.LANCZOS)
 
 
-def validate(base):
-    radius=np.linspace(RADIAL_MIN,RADIAL_MAX,131)
-    z=np.linspace(-.21,.21,51)
-    probe=MeridionalSampler(base,radius,z)
-    times=np.array([0,.25,.50,.85,FINAL_TIME])
-    baseline=[probe.sample(t) for t in times]
-    inlet_error=np.max(np.abs(analytic_inlet(radius,z)-baseline[0]))
-    # Lambda*r at Lambda²*t has age s and exactly the same planar location
-    # modulo c, so the physical streamfunction increases by Lambda.
-    scaled=MeridionalSampler(base,RING_RATIO*radius,RING_RATIO*z)
-    scale_error=max(float(np.max(np.abs(scaled.sample(RING_RATIO**2*t)-
-                                        RING_RATIO*b))) for t,b in zip(times,baseline))
-    report=dict(base=base.metrics,ring_ratio=RING_RATIO,analytic_inlet_error=float(inlet_error),
-                maximum_discrete_scaling_error=scale_error,physical_times=times.tolist())
-    for name,params in [('refined',dict(nx=96,ny=768,height=48,dt=.0125,stride=2)),
-                        ('taller',dict(nx=64,ny=640,height=60,dt=.025,stride=2))]:
-        other=History(**params)
-        o=MeridionalSampler(other,radius,z)
-        errors=[float(np.max(np.abs(o.sample(t)-b))) for t,b in zip(times,baseline)]
-        report[name]=dict(other.metrics,physical_slice_errors=errors)
-        if max(errors)>2e-4:
-            raise ValueError(f'{name} meridional stream comparison failed: {errors}')
-        del other,o
-    if (inlet_error>2e-5 or scale_error>2e-8 or
-        base.metrics['relative_energy_balance']>2e-5 or base.max_energy_increase>1e-12):
-        raise ValueError(f'Physics check failed: {report}')
-    return report
+def velocity_distances(flow, reference, perturbed):
+    """Planar velocity difference in unnormalized L² on one periodic cell."""
+    difference = -2*(perturbed.astype(float)-reference)
+    modes = np.fft.rfft2(difference,axes=(-2,-1))
+    squared = np.abs(modes)**2*flow.k2*flow.real_mode_weight
+    norms = np.sqrt(PERIOD*flow.height*squared.sum(axis=(-2,-1)))/np.prod(flow.shape)
+    return norms.tolist()
+
+
+def probe_fields(history):
+    indices = np.rint(np.array(PROBE_AGES)/history.delta_age).astype(int)
+    if not np.allclose(indices*history.delta_age,PROBE_AGES):
+        raise ValueError('Probe ages must coincide with saved timesteps')
+    return history.fields[indices]
+
+
+def validate(histories, separations):
+    radius = np.linspace(RADIAL_MIN, RADIAL_MAX, 161)
+    z = np.linspace(-.14, .14, 81)
+    times = [0, FIRST_TIME, 8., 16., 24., FINAL_TIME]
+    probes,scale_errors = {},{}
+    for name,hist in histories.items():
+        sampler = MeridionalSampler(hist, radius, z)
+        probes[name] = np.array([sampler.sample(t) for t in times])
+        scaled = MeridionalSampler(hist, RING_RATIO*radius, RING_RATIO*z)
+        scale_errors[name] = float(max(np.max(np.abs(scaled.sample(RING_RATIO**2*t)-RING_RATIO*field))
+                                       for t,field in zip(times,probes[name])))
+        if (scale_errors[name] > 2.e-8 or hist.max_energy_increase > 1.e-10
+                or hist.metrics['relative_energy_balance'] > 1.e-6 or hist.flow.max_cfl >= 1.5):
+            raise ValueError(f'{name} ring scaling, energy or timestep check failed: {hist.metrics}')
+    inlet_error = np.max(np.abs(analytic_inlet(radius,z)-probes['reference'][0]))
+    # Bound sampling error below 1% of the smallest contour interval.
+    if inlet_error > .01*np.min(np.diff(LEVELS)):
+        raise ValueError(f'Gaussian inlet error {inlet_error}')
+    comparison = {}
+    for refinement,params in [('refined',dict(nx=128,ny=384,dt=.04,stride=4)),
+                              ('taller',dict(ny=360,height=45))]:
+        sample_fields,errors = {},{}
+        for name,amplitude in [('reference',0.), ('perturbed',MODE_AMPLITUDE)]:
+            fine = History(amplitude, **params)
+            sample_fields[name] = probe_fields(fine)
+            sampler = MeridionalSampler(fine,radius,z)
+            errors[name] = [float(np.max(np.abs(sampler.sample(t)-field)))
+                            for t,field in zip(times,probes[name])]
+            flow = fine.flow
+            del sampler, fine
+        fine_separation = velocity_distances(flow,sample_fields['reference'],sample_fields['perturbed'])
+        relative_error = float(np.max(np.abs(np.array(fine_separation)/separations-1)))
+        comparison[refinement] = dict(maximum_slice_errors=errors,planar_velocity_l2=fine_separation,
+                                      maximum_relative_separation_error=relative_error)
+        print(refinement, json.dumps(comparison[refinement]), flush=True)
+        if (max(map(max,errors.values())) > .0025 or relative_error > .05
+                or fine_separation[-1] < 2*fine_separation[0]):
+            raise ValueError(f'{refinement} mesh or domain check failed')
+    return dict(physical_times=times, grid_checks=comparison, inlet_error=float(inlet_error),
+                discrete_scaling_errors=scale_errors)
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory',type=Path)
     parser.add_argument('--validate',action='store_true')
     parser.add_argument('--preview',action='store_true',help='Render first, middle and last frame')
     parser.add_argument('--no-render',action='store_true')
-    args=parser.parse_args()
+    args = parser.parse_args()
     args.directory.mkdir(parents=True,exist_ok=True)
-    hist=History()
-    if not args.no_render:
-        plate=Plate(hist)
-        frames=args.directory/'frames'
-        frames.mkdir(exist_ok=True)
-        indices=[0,FRAME_COUNT//2,FRAME_COUNT-1] if args.preview else range(FRAME_COUNT)
+    histories = {}
+    for name,amplitude,slug in [('reference',0.,'lift'), ('perturbed',MODE_AMPLITUDE,'mode')]:
+        hist = History(amplitude)
+        histories[name] = hist
+        print(f'{name} integrated to planar age {hist.metrics["maximum_computed_age"]:.2f}',flush=True)
+        if args.no_render:
+            continue
+        plate = Plate(hist)
+        frames = args.directory/name/'frames'
+        frames.mkdir(parents=True,exist_ok=True)
+        indices = [0,FRAME_COUNT//2,FRAME_COUNT-1] if args.preview else range(FRAME_COUNT)
         for i in indices:
-            frame=plate.frame(FINAL_TIME*i/(FRAME_COUNT-1))
+            t = FIRST_TIME + (FINAL_TIME-FIRST_TIME)*i/(FRAME_COUNT-1)
+            frame = plate.frame(t)
             frame.save(frames/f'{i:04}.png',compress_level=2)
-            if i==0:
-                frame.save(args.directory/'viscous-ring-lift-poster.webp',lossless=True,method=6)
-    report=validate(hist) if args.validate else hist.metrics
-    name='validation.json' if args.validate else 'run.json'
-    (args.directory/name).write_text(json.dumps(report,indent=2)+'\n')
+            if i == 0:
+                frame.save(args.directory/f'viscous-ring-{slug}-poster.webp',lossless=True,method=6)
+    reference,perturbed = histories['reference'],histories['perturbed']
+    separation = velocity_distances(reference.flow,probe_fields(reference),probe_fields(perturbed))
+    eigenvalue = gaussian_mode().eigenvalue
+    report = dict(physical_time=[FIRST_TIME,FINAL_TIME],viscosity=VISCOSITY,
+                  period=PERIOD,radius=RADIUS,ring_ratio=RING_RATIO,amplitude=MODE_AMPLITUDE,
+                  isolated_eigenvalue=[eigenvalue.real,eigenvalue.imag],
+                  runs={name:hist.metrics for name,hist in histories.items()},
+                  planar_ages=PROBE_AGES,planar_velocity_l2=separation)
+    if args.validate:
+        report.update(validate(histories,separation))
+    (args.directory/'run.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2),flush=True)
 
 

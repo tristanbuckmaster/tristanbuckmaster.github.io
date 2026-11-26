@@ -20,14 +20,21 @@
   description: In a preprint with Matei P. Coiculescu and Chen Li, we describe two Leray–Hopf solutions of the unforced three-dimensional Navier–Stokes equations with the same initial velocity.
   paper: Non-Uniqueness of Leray–Hopf Solutions to the Unforced Three-Dimensional Navier–Stokes Equations
   url: https://hexagonmath.org/2611.00143v1
-  figure: /assets/figures/viscous-ring-lift-poster.webp
-  movie: /assets/figures/viscous-ring-lift.mp4
   width: 660
   height: 310
-  alt: A radial slice through a train of viscous vortex rings. The cores start smaller and closer together toward the axis on the left. The smaller cores diffuse first.
-  caption: Streamlines of the paper’s approximate ring field in a radial slice. The rings start smaller and closer together toward the axis on the left. Their smaller cores diffuse first.
-  figure_label: Ring construction, §5
-  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=19
+  clips:
+    - label: Base flow
+      movie: /assets/figures/viscous-ring-lift.mp4
+      poster: /assets/figures/viscous-ring-lift-poster.webp
+      description: A radial slice through a train of viscous vortex rings. The cores start smaller and closer together toward the axis on the left.
+      caption: The two simulations start from slightly different smooth planar data. This view maps the unperturbed Gaussian vortex train into rings. The smaller rings on the left evolve faster.
+    - label: Eigenmode perturbation
+      movie: /assets/figures/viscous-ring-mode.mp4
+      poster: /assets/figures/viscous-ring-mode-poster.webp
+      description: The outer streamlines around each vortex core deform as the train evolves from perturbed planar vorticity. The view and clock match the base flow.
+      caption: We perturb the initial planar vorticity along the Gaussian’s unstable angular-two mode and evolve it with the same viscosity. Pause and switch views to see how the outer streamlines have shifted.
+  figure_label: Gaussian instability and ring lift, §§4–5
+  figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=12
 - id: wave-turbulence
   topic: Wave turbulence
   title: How waves exchange energy

@@ -41,6 +41,10 @@
 .feature-paper { max-width: 48ch; font-size: .95rem; margin-top: 17px; }
 .paper-link { color: var(--peach); }
 .feature-paper .slop-mark img { filter: brightness(0) invert(84%) sepia(17%) saturate(740%) hue-rotate(318deg); }
+.clip-choices { display: flex; flex-wrap: wrap; column-gap: 1.35rem; margin-bottom: .45rem; }
+.clip-choices a { padding: .4rem 0; color: #c5d8c9; font: .9rem/1.4 var(--sans); text-decoration: none; }
+.clip-choices a[aria-current] { color: var(--paper); text-decoration: underline; text-decoration-color: var(--peach); text-underline-offset: .3em; }
+.clip-choices a:hover { text-decoration: underline; text-underline-offset: .3em; }
 .feature-image { display: block; width: 100%; height: clamp(185px, 18.8vw, 305px); object-fit: contain; }
 .feature-image.on-paper { background: white; }
 video.feature-image { background: var(--pine); }
@@ -98,7 +102,7 @@ video.feature-image { background: var(--pine); }
   .subjects a { font-size: .79rem; }
 }
 @media print {
-  .subjects { display: none; }
+  .subjects, .clip-choices { display: none; }
   .highlights { color: var(--ink); background: white; }
   .feature[hidden] { display: grid; }
   .feature { break-inside: avoid; }
