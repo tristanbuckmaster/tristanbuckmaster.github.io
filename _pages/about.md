@@ -26,7 +26,7 @@ page_js: highlights
     {% for item in ordered_updates %}
       <li>
         <time datetime="{{ item.date }}">{{ item.date | date: '%-d %b %Y' }}</time>
-        <div><a class="entry-title" href="{{ item.url }}">{{ item.title | escape }}</a>{% if item.note %}<p class="entry-note">{{ item.note | escape }}</p>{% endif %}</div>
+        <div><a class="entry-title" href="{{ item.url }}">{{ item.title | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}{% if item.note %}<p class="entry-note">{{ item.note | escape }}</p>{% endif %}</div>
         <span class="entry-kind">{{ item.kind | escape }}</span>
       </li>
     {% endfor %}

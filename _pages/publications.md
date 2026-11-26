@@ -12,6 +12,9 @@ page_js: publications
   <header class="pub-heading">
     <h1>Publications</h1>
     <p>Papers, preprints, and my doctoral thesis.</p>
+    {% if site.data.slop_papers.size > 0 %}
+    <div class="pub-symbol-key" id="slop-key" tabindex="-1"><img src="{{ '/assets/figures/slop-mark.svg' | relative_url }}" width="24" height="20" alt=""> Papers I’ve marked as slop</div>
+    {% endif %}
   </header>
 
   <div class="pub-tools">

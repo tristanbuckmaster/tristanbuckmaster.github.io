@@ -9,8 +9,12 @@ module BibTeX
       FORMULA = /(?<!\\)\$\$(.+?)(?<!\\)\$\$|(?<!\\)\$(.+?)(?<!\\)\$|\\\((.+?)\\\)|\\\[(.+?)\\\]/m.freeze
 
       def apply(value)
+        text = value.to_s
+        # A tilde in a URL is part of the address, even though TeX uses it as a space.
+        return text if text.start_with?('https://', 'http://')
+
         formulas = []
-        protected_text = value.to_s.gsub(FORMULA) do
+        protected_text = text.gsub(FORMULA) do
           display, inline, parenthesized, bracketed = Regexp.last_match.captures
           tex = display || inline || parenthesized || bracketed
           formulas << render_formula(tex, !!(display || bracketed))

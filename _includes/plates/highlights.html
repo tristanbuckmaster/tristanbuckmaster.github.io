@@ -13,7 +13,7 @@
         <div class="feature-copy">
           <h3>{{ item.title | escape }}</h3>
           <p>{{ item.description | escape }}</p>
-          <a class="paper-link" href="{{ item.url }}">{{ item.paper | escape }}</a>
+          <div class="feature-paper"><a class="paper-link" href="{{ item.url }}">{{ item.paper | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}</div>
         </div>
         <figure>
           <img class="feature-image{% if item.light_ground %} on-paper{% endif %}" src="{{ item.figure | relative_url }}"

@@ -14,7 +14,7 @@
 {%- endif -%}
 
 <article class="pub-record" id="{{ entry.key | escape }}" data-paper>
-  <h3 class="pub-title">{{ entry.title }}</h3>
+  <h3 class="pub-title">{{ entry.title }}{% include plates/paper-mark.html key=entry.key %}</h3>
   <p class="pub-authors">{% for author in entry.author_array %}{% unless forloop.first %}{% if forloop.last and forloop.length == 2 %} and {% elsif forloop.last %}, and {% else %}, {% endif %}{% endunless %}{% if author.first and author.first != '' %}{{ author.first | escape }} {% endif %}{% if author.prefix and author.prefix != '' %}{{ author.prefix | escape }} {% endif %}{{ author.last | escape }}{% if author.suffix and author.suffix != '' %}, {{ author.suffix | escape }}{% endif %}{% endfor %}</p>
   <p class="pub-venue">{{ display_venue | escape }}{% if entry.volume %} · {{ entry.volume | escape }}{% endif %}{% if entry.pages %} · {{ entry.pages | replace: '--', '–' | escape }}{% endif %}</p>
   <div class="pub-resources">

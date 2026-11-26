@@ -1,14 +1,17 @@
 - date: '2026-11-20'
+  paper_key: AlpogeBuckmaster2026NavierStokes
   kind: Preprint
   title: Finite-time blow-up for the Navier–Stokes equations
   note: Levent Alpöge and Tristan Buckmaster
   url: https://github.com/tristanbuckmaster/navier-stokes
 - date: '2026-11-19'
+  paper_key: AlpogeBuckmasterCoiculescu2026Euler
   kind: Preprint
   title: Finite-time singularity formation for the three-dimensional Euler equations
   note: Levent Alpöge, Tristan Buckmaster, and Matei P. Coiculescu
   url: https://arxiv.org/abs/2611.26772
 - date: '2026-11-06'
+  paper_key: BuckmasterCoiculescuLi2026LerayHopf
   kind: Preprint
   title: Non-uniqueness of Leray–Hopf solutions to the unforced three-dimensional Navier–Stokes equations
   note: Tristan Buckmaster, Matei P. Coiculescu, and Chen Li

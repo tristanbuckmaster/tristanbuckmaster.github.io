@@ -86,6 +86,16 @@ a:hover { color: #754527; }
 }
 .site-foot address { margin-top: .28rem; font-style: normal; color: var(--muted); }
 .foot-name { font-weight: 600; text-decoration: none; }
+.slop-mark {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  vertical-align: -.15rem;
+  text-decoration: none;
+}
+.slop-mark img, .pub-symbol-key img { width: 1.25rem; height: auto; }
 @media (max-width: 900px) {
   .bound { width: 91%; }
 }

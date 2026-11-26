@@ -1,4 +1,5 @@
 - id: singularity
+  paper_key: AlpogeBuckmaster2026NavierStokes
   topic: Singularity formation
   title: Singularities in Navier–Stokes flow
   description: In our preprint, Levent Alpöge and I study how a smooth three-dimensional flow can develop a singularity in finite time without external forcing.
@@ -13,6 +14,7 @@
   figure_label: Figure 1, p. 4
   figure_source: https://github.com/tristanbuckmaster/navier-stokes/blob/b86ec358087c6d32c4bff73f4ef440f7491b426f/paper/finite-time-blow-up-navier-stokes.pdf
 - id: non-uniqueness
+  paper_key: BuckmasterCoiculescuLi2026LerayHopf
   topic: Non-uniqueness
   title: One initial velocity, different flows
   description: In a preprint with Matei P. Coiculescu and Chen Li, we describe two Leray–Hopf solutions of the unforced three-dimensional Navier–Stokes equations with the same initial velocity.
