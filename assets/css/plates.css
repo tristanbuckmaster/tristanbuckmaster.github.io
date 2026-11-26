@@ -101,7 +101,7 @@ a:hover { color: #754527; }
 }
 @media (max-width: 640px) {
   .mast .bound { align-items: flex-start; flex-direction: column; padding: 15px 0; }
-  .site-nav { gap: 23px; }
+  .site-nav { flex-wrap: wrap; gap: .5rem clamp(12px, 4.5vw, 23px); }
   .site-nav a { font-size: .91rem; }
   .affil { font-size: 1.1rem; }
   .affil span { font-size: .81rem; }
