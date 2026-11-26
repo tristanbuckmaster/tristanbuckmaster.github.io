@@ -20,11 +20,18 @@
   description: In a preprint with Matei P. Coiculescu and Chen Li, we describe two Leray–Hopf solutions of the unforced three-dimensional Navier–Stokes equations with the same initial velocity.
   paper: Non-Uniqueness of Leray–Hopf Solutions to the Unforced Three-Dimensional Navier–Stokes Equations
   url: https://hexagonmath.org/2611.00143v1
-  figure: /assets/figures/vortex-train.svg
+  figure: /assets/figures/vortex-train-poster.webp
+  simulations:
+    - label: Viscous
+      viscosity: 1/6
+      file: /assets/figures/vortex-train-evolution.mp4
+    - label: Inviscid
+      viscosity: '0'
+      file: /assets/figures/vortex-train-inviscid.mp4
   width: 660
   height: 310
   alt: Closed streamlines circle three equally spaced vortex centers. Outer streamlines pass through neighboring periods.
-  caption: Initial streamlines of the periodic planar vortex train, drawn from the Gaussian stream function in §3 of the preprint.
+  caption: Two planar simulations start from the Gaussian vortex train used to build the three-dimensional flow. Curves show streamlines and dots follow fluid particles. With viscosity the cores spread and weaken.
   figure_label: Construction, p. 8
   figure_source: https://hexagonmath.org/pdf/2611.00143v1#page=8
 - id: wave-turbulence
@@ -33,8 +40,10 @@
   description: With Pierre Germain, Zaher Hani, and Jalal Shatah, I studied when a kinetic equation describes the average exchange of energy among Fourier modes of the nonlinear Schrödinger equation.
   paper: Onset of the wave turbulence description of the longtime behavior of the nonlinear Schrödinger equation
   url: https://doi.org/10.1007/s00222-021-01039-z
-  figure: /assets/figures/resonant-quartet.svg
+  figure: /assets/figures/wave-interaction-diagrams.svg
   width: 660
   height: 310
-  alt: Four Fourier modes form the corners of a rectangle in the plane.
-  caption: A resonant quartet. Opposite vertex pairs have equal sums of wave vectors and equal sums of squared lengths.
+  alt: First- and third-order interaction trees combine three and seven initial Fourier modes, respectively, into the output mode k. Dashed branches mark conjugated factors.
+  caption: Read these Feynman trees from the leaves up. Each fork combines three Fourier modes. A dashed branch carries a complex conjugate.
+  figure_label: Equation (3.2b) and Figure 1
+  figure_source: https://arxiv.org/pdf/1907.03667#page=12

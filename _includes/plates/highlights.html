@@ -16,9 +16,13 @@
           <div class="feature-paper"><a class="paper-link" href="{{ item.url }}">{{ item.paper | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}</div>
         </div>
         <figure>
+          {% if item.simulations %}
+          {% include plates/flow-study.html %}
+          {% else %}
           <img class="feature-image{% if item.light_ground %} on-paper{% endif %}" src="{{ item.figure | relative_url }}"
                alt="{{ item.alt | escape }}" width="{{ item.width }}" height="{{ item.height }}">
-          <figcaption>{{ item.caption | escape }} {% if item.figure_source %}<a href="{{ item.figure_source }}">{{ item.figure_label | escape }}</a>{% endif %}</figcaption>
+          {% endif %}
+          <figcaption id="caption-{{ item.id }}">{{ item.caption | escape }} {% if item.figure_source %}<a href="{{ item.figure_source }}">{{ item.figure_label | escape }}</a>{% endif %}</figcaption>
         </figure>
       </article>
     {% endfor %}

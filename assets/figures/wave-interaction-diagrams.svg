@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="660" height="310" viewBox="0 0 660 310" role="img" aria-labelledby="interaction-title interaction-desc">
+  <title id="interaction-title">First- and third-order Fourier interaction diagrams</title>
+  <desc id="interaction-desc">Read each tree from its initial Fourier modes at the bottom to mode k at the top. The first tree has k = k₁ − k₂ + k₃. In the depth-three tree, p = k₂ − k₃ + k₄ forms at t₁, q = k₅ − k₆ + k₇ at t₂, and k = k₁ − p + q at t₃. The times satisfy 0 ≤ t₁ ≤ t₂ ≤ t₃ ≤ t. Dashed apricot edges denote conjugate Fourier factors. Redrawn from equation (3.2b) and figure 1 in Buckmaster, Germain, Hani and Shatah (2021).</desc>
+  <defs>
+    <style>
+      .guide{fill:none;stroke:#a7c2aa;stroke-width:1;stroke-opacity:.20}
+      .positive,.negative{fill:none;stroke-width:2.7;stroke-linecap:round}
+      .positive{stroke:#c2ddc9}.negative{stroke:#ffd09b;stroke-dasharray:6.7 5.3}
+      .vertex{fill:#112e2a;stroke:#d8e5c7;stroke-width:2.3}
+      .plus{fill:#c2ddc9}.minus{fill:#ffd09b}
+      .math{font:italic 23px Georgia,serif;fill:#e1e9db;text-anchor:middle}
+      .marked{fill:#ffd09b}.time{font:italic 20px Georgia,serif;fill:#b9d0bd}
+      .order{font:19px Georgia,serif;fill:#d8e5d7;text-anchor:middle}
+    </style>
+  </defs>
+  <g class="guide" aria-hidden="true">
+    <path d="M197 38V265"/>
+    <path d="M214 65H598M214 125H598M214 183H598M214 235H598" stroke-dasharray="2 7"/>
+    <path d="M21 235H173" stroke-dasharray="2 7"/>
+  </g>
+  <!-- The first cubic integration has a, conjugate(a), a in leaf order. -->
+  <g>
+    <path class="positive" d="M97 63V121 M97 121C86 146 34 168 34 201V235 M97 121C108 146 160 168 160 201V235"/>
+    <path class="negative" d="M97 121V235"/>
+    <circle class="vertex" cx="97" cy="121" r="5"/>
+    <g class="plus"><circle cx="34" cy="235" r="3.5"/><circle cx="160" cy="235" r="3.5"/></g>
+    <circle class="minus" cx="97" cy="235" r="3.5"/>
+    <g class="math">
+      <text x="97" y="54">k</text>
+      <text x="34" y="261">k₁</text><text class="marked" x="97" y="261">k₂</text><text x="160" y="261">k₃</text>
+    </g>
+    <text class="order" x="97" y="295">First order</text>
+  </g>
+  <!-- Fig. 1: ℓ = (2,3,1). The second leaf in the intermediate five-factor
+       product is conjugated, so its children inherit the signs −,+,−. -->
+  <g>
+    <path class="positive" d="M402 34V65 M402 65C361 91 231 102 231 158V235 M402 65C430 87 512 91 512 125"/>
+    <path class="negative" d="M402 65C381 94 338 119 338 153V183"/>
+    <path class="negative" d="M338 183C329 200 285 204 285 230V235 M338 183C347 200 391 204 391 230V235"/>
+    <path class="positive" d="M338 183V235"/>
+    <path class="positive" d="M512 125C501 146 453 154 453 189V235 M512 125C523 146 571 154 571 189V235"/>
+    <path class="negative" d="M512 125V235"/>
+    <g class="vertex"><circle cx="402" cy="65" r="5"/><circle cx="338" cy="183" r="5"/><circle cx="512" cy="125" r="5"/></g>
+    <g class="plus"><circle cx="231" cy="235" r="3.5"/><circle cx="338" cy="235" r="3.5"/><circle cx="453" cy="235" r="3.5"/><circle cx="571" cy="235" r="3.5"/></g>
+    <g class="minus"><circle cx="285" cy="235" r="3.5"/><circle cx="391" cy="235" r="3.5"/><circle cx="512" cy="235" r="3.5"/></g>
+    <g class="math">
+      <text x="402" y="27">k</text>
+      <text class="marked" x="320" y="173">p</text><text x="531" y="117">q</text>
+      <text x="231" y="261">k₁</text><text class="marked" x="285" y="261">k₂</text><text x="338" y="261">k₃</text><text class="marked" x="391" y="261">k₄</text><text x="453" y="261">k₅</text><text class="marked" x="512" y="261">k₆</text><text x="571" y="261">k₇</text>
+    </g>
+    <g class="time"><text x="609" y="71">t₃</text><text x="609" y="131">t₂</text><text x="609" y="189">t₁</text><text x="609" y="241">0</text></g>
+    <text class="order" x="402" y="295">Third order</text>
+  </g>
+</svg>
