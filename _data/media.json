@@ -5,7 +5,8 @@
     "author": "Ana Maria Constantin",
     "outlet": "The Next Web",
     "type": "Article",
-    "url": "https://thenextweb.com/news/navier-stokes-blow-up-without-force-buckmaster-alpoge"
+    "url": "https://thenextweb.com/news/navier-stokes-blow-up-without-force-buckmaster-alpoge",
+    "group": "general-media"
   },
   {
     "date": "2026-11-20",
@@ -13,7 +14,8 @@
     "author": "Konstantin Kakaes",
     "outlet": "Quanta Magazine",
     "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/169564/"
+    "url": "https://www.quantamagazine.org/update/169564/",
+    "group": "popular-science"
   },
   {
     "date": "2026-11-20",
@@ -21,7 +23,83 @@
     "author": "Konstantin Kakaes",
     "outlet": "Quanta Magazine",
     "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/169569/"
+    "url": "https://www.quantamagazine.org/update/169569/",
+    "group": "popular-science"
+  },
+  {
+    "date": "2026-10-16",
+    "title": "The mathematician taking on AI",
+    "outlet": "ABC News Daily",
+    "author": "Sam Hawley",
+    "type": "Podcast interview",
+    "group": "general-media",
+    "url": "https://www.abc.net.au/listen/programs/abc-news-daily/the-mathematician-taking-on-ai/107271114",
+    "description": "An interview about the Navier–Stokes problem and what AI changes for mathematicians."
+  },
+  {
+    "date": "2026-10-08",
+    "title": "NYU’s Tristan Buckmaster on the controversy over OpenAI’s math findings",
+    "outlet": "CNBC · Squawk Box",
+    "type": "TV interview",
+    "group": "general-media",
+    "url": "https://www.youtube.com/watch?v=GweKOBSJvEY",
+    "links": [
+      {
+        "label": "Listen on Squawk Pod (interview at 24:24)",
+        "url": "https://podcasts.apple.com/us/podcast/ai-math-vs-human-math-tariffs-in-the-midterms-10-8-26/id1480890290?i=1000793890870"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-07",
+    "title": "KI, dein Freund und Feind",
+    "outlet": "detektor.fm · Geschichten aus der Mathematik",
+    "author": "Rabea Schloz",
+    "type": "Podcast",
+    "group": "popular-science",
+    "url": "https://detektor.fm/wissen/geschichten-aus-der-mathematik-levent-alpoege-und-tristan-buckmaster",
+    "description": "A German-language discussion with Manon Bischoff and Demian Nahuel Goos about my work with Levent Alpöge."
+  },
+  {
+    "date": "2026-10-02",
+    "title": "The Moment AI Changed Mathematics Forever",
+    "outlet": "World Science Festival",
+    "author": "Brian Greene",
+    "type": "Video interview",
+    "group": "popular-science",
+    "url": "https://www.worldsciencefestival.com/videos/the-moment-ai-changed-mathematics-forever/",
+    "description": "Brian Greene and I discuss the Euler and Navier–Stokes equations and what it means to understand a computer-assisted proof.",
+    "links": [
+      {
+        "label": "Watch on YouTube",
+        "url": "https://www.youtube.com/watch?v=PQYFRuZ5phs"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-29",
+    "title": "The Buckmaster Interview",
+    "outlet": "Numberphile",
+    "author": "Brady Haran",
+    "type": "Video interview",
+    "group": "popular-science",
+    "url": "https://www.numberphile.com/videos/the-buckmaster-interview",
+    "links": [
+      {
+        "label": "Watch on YouTube",
+        "url": "https://www.youtube.com/watch?v=Mzbtj5nkMXI"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-15",
+    "title": "The AI maths wars",
+    "outlet": "ABC Radio National · Lab Notes",
+    "author": "Jonathan Webb and Cam Wilson",
+    "type": "Podcast",
+    "group": "popular-science",
+    "url": "https://www.abc.net.au/listen/programs/lab-notes/lab-notes-maths-ai-wars-navier-stokes/107094486",
+    "description": "A reported episode about the Navier–Stokes announcement, with excerpts from my interview with Cam Wilson."
   },
   {
     "date": "2026-09-13",
@@ -29,7 +107,18 @@
     "author": "Miriam Waldvogel",
     "outlet": "The Washington Post",
     "type": "Article",
-    "url": "https://www.washingtonpost.com/technology/2026/09/13/he-was-close-1-million-breakthrough-then-openai-swooped/"
+    "url": "https://www.washingtonpost.com/technology/2026/09/13/he-was-close-1-million-breakthrough-then-openai-swooped/",
+    "group": "general-media"
+  },
+  {
+    "date": "2026-09-11",
+    "title": "Out-numbered: AI’s contentious maths milestone",
+    "outlet": "The Economist · The Intelligence",
+    "author": "Jason Palmer and Sam Wikeley",
+    "type": "Podcast",
+    "group": "general-media",
+    "url": "https://shows.acast.com/theintelligencepodcast/episodes/out-numbered-ais-contentious-maths-milestone",
+    "description": "The opening segment covers the race to a Navier–Stokes proof and the debate over credit."
   },
   {
     "date": "2026-09-10",
@@ -37,7 +126,17 @@
     "author": "Konstantin Kakaes",
     "outlet": "Quanta Magazine",
     "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/166811/"
+    "url": "https://www.quantamagazine.org/update/166811/",
+    "group": "popular-science"
+  },
+  {
+    "date": "2026-09-09",
+    "title": "AI may have solved one of math’s biggest puzzles, raising controversy",
+    "author": "Emily Conover",
+    "outlet": "Science News",
+    "type": "Article",
+    "group": "popular-science",
+    "url": "https://www.sciencenews.org/article/ai-math-puzzle-navier-stokes-openai"
   },
   {
     "date": "2026-09-08",
@@ -51,7 +150,8 @@
         "label": "Related Quanta news brief",
         "url": "https://www.quantamagazine.org/update/166812/"
       }
-    ]
+    ],
+    "group": "popular-science"
   },
   {
     "date": "2026-07-23",
@@ -59,7 +159,8 @@
     "author": "Jordana Cepelewicz",
     "outlet": "Quanta Magazine",
     "type": "Article",
-    "url": "https://www.quantamagazine.org/yu-deng-wins-the-fields-medal-2026-for-his-work-on-the-random-data-problem-20260723/"
+    "url": "https://www.quantamagazine.org/yu-deng-wins-the-fields-medal-2026-for-his-work-on-the-random-data-problem-20260723/",
+    "group": "popular-science"
   },
   {
     "date": "2026-01-09",
@@ -70,10 +171,11 @@
     "url": "https://www.quantamagazine.org/using-ai-mathematicians-find-hidden-glitches-in-fluid-equations-20260109/",
     "links": [
       {
-        "label": "Companion podcast",
+        "label": "Podcast: Mathematicians Want to Make Fluid Equations Glitch Out",
         "url": "https://podcasts.apple.com/us/podcast/mathematicians-want-to-make-fluid-equations-glitch-out/id1021340531?i=1000749065367"
       }
-    ]
+    ],
+    "group": "popular-science"
   },
   {
     "date": "2022-11-16",
@@ -81,7 +183,8 @@
     "author": "Jordana Cepelewicz",
     "outlet": "Quanta Magazine",
     "type": "Article",
-    "url": "https://www.quantamagazine.org/computer-helps-prove-long-sought-fluid-equation-singularity-20221116/"
+    "url": "https://www.quantamagazine.org/computer-helps-prove-long-sought-fluid-equation-singularity-20221116/",
+    "group": "popular-science"
   },
   {
     "date": "2022-04-12",
@@ -92,10 +195,11 @@
     "url": "https://www.quantamagazine.org/deep-learning-poised-to-blow-up-famed-fluid-equations-20220412/",
     "links": [
       {
-        "label": "Companion podcast",
+        "label": "Listen to the Quanta podcast",
         "url": "https://podcasts.apple.com/us/podcast/deep-learning-poised-to-blow-up-famed-fluid-equations/id1021340531?i=1000574930829"
       }
-    ]
+    ],
+    "group": "popular-science"
   },
   {
     "date": "2021-06-03",
@@ -103,7 +207,8 @@
     "author": "Mordechai Rorvig",
     "outlet": "Quanta Magazine",
     "type": "Article",
-    "url": "https://www.quantamagazine.org/mathematicians-identify-threshold-at-which-shapes-give-way-20210603/"
+    "url": "https://www.quantamagazine.org/mathematicians-identify-threshold-at-which-shapes-give-way-20210603/",
+    "group": "popular-science"
   },
   {
     "date": "2018-01-16",
@@ -111,7 +216,8 @@
     "author": "Kevin Hartnett",
     "outlet": "Quanta Magazine",
     "type": "Article",
-    "url": "https://www.quantamagazine.org/what-makes-the-hardest-equations-in-physics-so-difficult-20180116/"
+    "url": "https://www.quantamagazine.org/what-makes-the-hardest-equations-in-physics-so-difficult-20180116/",
+    "group": "popular-science"
   },
   {
     "date": "2017-12-21",
@@ -122,9 +228,10 @@
     "url": "https://www.quantamagazine.org/mathematicians-find-wrinkle-in-famed-fluid-equations-20171221/",
     "links": [
       {
-        "label": "Companion podcast",
+        "label": "Listen to the Quanta podcast",
         "url": "https://podcasts.apple.com/us/podcast/mathematicians-find-wrinkle-in-famed-fluid-equations/id1021340531?i=1000414320357"
       }
-    ]
+    ],
+    "group": "popular-science"
   }
 ]

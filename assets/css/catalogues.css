@@ -245,11 +245,17 @@
   border-bottom: 0;
 }
 
-.press-list time,
+.press-meta,
 .press-credit {
   color: var(--muted);
   font-size: .91rem;
   line-height: 1.5;
+}
+
+.press-meta {
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
 }
 
 .press-list h3 {
@@ -261,6 +267,13 @@
 
 .press-credit {
   margin: .35rem 0 0;
+}
+
+.press-description {
+  max-width: 63ch;
+  margin: .5rem 0 0;
+  font-size: 1rem;
+  line-height: 1.45;
 }
 
 .press-resources {
@@ -304,5 +317,11 @@
     grid-template-columns: 1fr;
     gap: .35rem;
     padding: 1.1rem 0;
+  }
+
+  .press-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .2rem 1rem;
   }
 }
