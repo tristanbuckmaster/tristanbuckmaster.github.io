@@ -10,6 +10,9 @@
 
 - title: Around the web
   items:
+    - title: Center for Mathematics and AI at Courant (MAIC)
+      url: https://maic.courant.nyu.edu/
+      description: I serve as consortium lead at Courant, where we’re working with the University of Texas at Austin to build open AI tools for mathematical research.
     - title: Constructing Noncircular Schiffer Domains
       url: https://pompeiu-schiffer.org/
       description: An interactive exposition of two counterexamples to Schiffer’s conjecture, by Gonzalo Cao-Labora, Matthew J. Colbrook, Jaume de Dios Pont, and George Stepaniants.
