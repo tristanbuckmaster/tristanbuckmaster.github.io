@@ -15,7 +15,7 @@
   gap: clamp(22px, 3.2vw, 55px);
   margin-top: clamp(22px, 2.45vw, 41px);
 }
-.research-intro { max-width: 28ch; font: 400 clamp(20px, 1.85vw, 30px)/1.16 var(--serif); letter-spacing: -.025em; }
+.research-intro { max-width: 32ch; font: 400 clamp(1rem, .75rem + .75vw, 1.625rem)/1.27 var(--serif); letter-spacing: -.025em; }
 .support { max-width: 35ch; color: #46584e; font-size: .95rem; padding-left: clamp(12px, 1.3vw, 22px); border-left: 1px solid var(--hair); }
 .support strong { display: block; color: var(--ink); font-weight: 600; margin-bottom: 4px; }
 .portrait { display: block; width: 100%; height: clamp(250px, 20vw, 330px); object-fit: cover; object-position: 50% 5%; }
@@ -79,7 +79,7 @@ video.feature-image { background: var(--pine); }
 
 @media (max-width: 1000px) {
   .intro-grid { grid-template-columns: 1fr; gap: 13px; margin-top: 17px; }
-  .research-intro { max-width: 40ch; font-size: 1.35rem; }
+  .research-intro { max-width: 44ch; }
   .support { border: none; padding: 0; max-width: 56ch; font-size: .9rem; }
   .support strong { display: inline; margin-right: .35em; }
   .profile { grid-template-columns: minmax(0,1fr) minmax(185px,26%); }
@@ -93,7 +93,6 @@ video.feature-image { background: var(--pine); }
   .identity h1 { font-size: clamp(39px,8.4vw,60px); letter-spacing: -.055em; }
   .role { font-size: 1rem; }
   .portrait { height: clamp(190px,32vw,230px); }
-  .research-intro { font-size: 1.08rem; }
   .feature-head { flex-direction: column; gap: 11px; padding-top: 17px; }
   .subjects { column-gap: 18px; }
   .subjects a { font-size: .85rem; padding: 0 0 9px; }
