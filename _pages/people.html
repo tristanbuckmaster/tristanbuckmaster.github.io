@@ -1,30 +1,18 @@
 ---
-layout: plates
-title: People
+layout: null
 permalink: /people/
-description: Current and former PhD students and postdoctoral researchers working with Tristan Buckmaster.
-page_css: catalogues
+sitemap: false
 ---
-<div class="bound catalogue">
-  <header class="catalogue-heading">
-    <h1>People</h1>
-    <p>PhD students and postdoctoral researchers.</p>
-  </header>
-  {% for group in site.data.people %}
-    {% assign group_id = group.title | slugify %}
-    <section class="press-section" aria-labelledby="{{ group_id }}">
-      <h2 id="{{ group_id }}">{{ group.title | escape }}</h2>
-      <ul class="press-list">
-        {% for person in group.members %}
-          <li>
-            <span class="press-meta">{{ person.role | escape }}</span>
-            <div>
-              <h3>{% if person.url %}<a href="{{ person.url | escape }}">{{ person.name | escape }}</a>{% else %}{{ person.name | escape }}{% endif %}</h3>
-              {% if person.institution %}<p class="press-credit">{{ person.institution | escape }}</p>{% endif %}
-            </div>
-          </li>
-        {% endfor %}
-      </ul>
-    </section>
-  {% endfor %}
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=../index.html#people">
+  <link rel="canonical" href="{{ '/' | absolute_url }}#people">
+  <title>Students &amp; postdocs · Tristan Buckmaster</title>
+</head>
+<body>
+  <p><a href="../index.html#people">Students &amp; postdocs on Tristan Buckmaster’s homepage</a></p>
+</body>
+</html>

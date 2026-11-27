@@ -1,6 +1,6 @@
 # Tristan Buckmaster’s academic website
 
-The site uses Jekyll and Jekyll-Scholar. It builds static HTML for the homepage, Publications, Media, Talks, People, CV, and Misc. Every page uses the same navigation, footer, and type styles.
+The site uses Jekyll and Jekyll-Scholar. It builds static HTML for the homepage, Publications, Media, Talks, CV, and Misc. The homepage includes the students and postdocs roster at `/#people`. The former `/people/` page redirects there.
 
 ## Preview and build
 
@@ -32,7 +32,7 @@ The Courant web directory also holds public documents outside this repository, i
 | What’s new | `_data/updates.yml` | Add a date, type, title, URL, and optional credit line. The homepage sorts entries by date. An archive item can be featured here when an announcement is appropriate. |
 | Profile and funding | `_data/profile.yml`, `_pages/about.md` | Update contact information, affiliation, portrait, or award links in the data file. The opening and acknowledgment are arranged in the homepage template. |
 | Navigation | `_data/navigation.yml` | Add or reorder a page title and site-relative path. The layout applies the site’s base URL. |
-| People | `_data/people.yml` | Add a student or postdoc to the appropriate group, or move their entry when they leave. |
+| Students and postdocs | `_data/people.yml` | Add a student or postdoc to the appropriate group, or move their entry when they leave. The homepage disclosure uses this list. |
 | Misc | `_data/misc.yml` | Add a titled link and description to a section. An item can reuse a homepage update’s title and URL by referencing its `id` in `update`. |
 
 Page templates live in `_pages/`. The shared layout is `_layouts/plates.html`, and the shared header, footer, and research feature are in `_includes/plates/`. Page-specific styles and scripts are loaded through the `page_css` and `page_js` front matter fields. Publications and all research topics remain readable with JavaScript disabled.
