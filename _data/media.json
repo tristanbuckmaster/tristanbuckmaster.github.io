@@ -1,24 +1,6 @@
 [
   {
     "date": "2026-11-20",
-    "title": "A claimed proof of the Riemann hypothesis",
-    "author": "Konstantin Kakaes",
-    "outlet": "Quanta Magazine",
-    "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/169564/",
-    "group": "popular-science"
-  },
-  {
-    "date": "2026-11-20",
-    "title": "As mathematicians race to verify AI Riemann proof, a human proof emerges",
-    "author": "Konstantin Kakaes",
-    "outlet": "Quanta Magazine",
-    "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/169569/",
-    "group": "popular-science"
-  },
-  {
-    "date": "2026-11-20",
     "title": "After months of controversy, AI finally solved the ‘real’ Navier-Stokes problem",
     "outlet": "Scientific American",
     "author": "Peter Hall",
@@ -48,15 +30,6 @@
     "description": "An interview about the Navier–Stokes problem and what AI changes for mathematicians."
   },
   {
-    "date": "2026-10-13",
-    "title": "OpenAI’s blockbuster math proof isn’t what you think it is",
-    "outlet": "Scientific American",
-    "author": "Joseph Howlett",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.scientificamerican.com/article/openais-blockbuster-navier-stokes-proof-isnt-what-we-thought-it-was/"
-  },
-  {
     "date": "2026-10-08",
     "title": "NYU’s Tristan Buckmaster on the controversy over OpenAI’s math findings",
     "outlet": "CNBC · Squawk Box",
@@ -69,16 +42,6 @@
         "url": "https://podcasts.apple.com/us/podcast/ai-math-vs-human-math-tariffs-in-the-midterms-10-8-26/id1480890290?i=1000793890870"
       }
     ]
-  },
-  {
-    "date": "2026-10-07",
-    "title": "KI, dein Freund und Feind",
-    "outlet": "detektor.fm · Geschichten aus der Mathematik",
-    "author": "Rabea Schloz",
-    "type": "Podcast",
-    "group": "popular-science",
-    "url": "https://detektor.fm/wissen/geschichten-aus-der-mathematik-levent-alpoege-und-tristan-buckmaster",
-    "description": "A German-language discussion with Manon Bischoff and Demian Nahuel Goos about my work with Levent Alpöge."
   },
   {
     "date": "2026-10-02",
@@ -127,25 +90,6 @@
     ]
   },
   {
-    "date": "2026-09-22",
-    "title": "Navier-Stokes and that crazy week in mathematics",
-    "outlet": "Academia on the Line",
-    "author": "Carina Curto and Joel Fish",
-    "type": "Podcast",
-    "group": "popular-science",
-    "url": "https://podcasts.apple.com/us/podcast/episode-002-navier-stokes-and-that-crazy-week-in/id6786245532?i=1000791107075",
-    "description": "Javier Gómez-Serrano joins the hosts to discuss the proof and how it builds on earlier work. The Navier–Stokes discussion begins at 6:42."
-  },
-  {
-    "date": "2026-09-18",
-    "title": "Wie KI die Mathematik unter Druck setzt",
-    "outlet": "Spektrum der Wissenschaft · Spektrum-Podcast",
-    "author": "Marc Zimmer and Manon Bischoff",
-    "type": "Podcast",
-    "group": "popular-science",
-    "url": "https://www.spektrum.de/podcast/mathematik-in-aufruhr-loeste-ki-das-navier-stokes-problem/2345235"
-  },
-  {
     "date": "2026-09-18",
     "title": "Why an AI leap has left mathematicians feeling uneasy",
     "outlet": "CBC Radio · Quirks and Quarks",
@@ -156,15 +100,6 @@
     "description": "Buyting speaks with me about the Euler and Navier–Stokes equations. My comments begin about 14 minutes into the episode."
   },
   {
-    "date": "2026-09-17",
-    "title": "Who gets credit in the AI era? OpenAI maths bombshell sparks debate",
-    "outlet": "Nature",
-    "author": "Davide Castelvecchi",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.nature.com/articles/d41586-026-02910-w"
-  },
-  {
     "date": "2026-09-15",
     "title": "The AI maths wars",
     "outlet": "ABC Radio National · Lab Notes",
@@ -173,15 +108,6 @@
     "group": "popular-science",
     "url": "https://www.abc.net.au/listen/programs/lab-notes/lab-notes-maths-ai-wars-navier-stokes/107094486",
     "description": "A reported episode about the Navier–Stokes announcement, with excerpts from my interview with Cam Wilson."
-  },
-  {
-    "date": "2026-09-15",
-    "title": "OpenAI breakthrough triggers ‘existential crisis’ in math",
-    "outlet": "Science",
-    "author": "Celina Zhao",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.science.org/content/article/openai-breakthrough-triggers-existential-crisis-math"
   },
   {
     "date": "2026-09-13",
@@ -203,22 +129,12 @@
   },
   {
     "date": "2026-09-11",
-    "title": "Out-numbered: AI’s contentious maths milestone",
-    "outlet": "The Economist · The Intelligence",
-    "author": "Jason Palmer and Sam Wikeley",
-    "type": "Podcast",
+    "title": "‘Not selling my soul’: Why this Aussie maths professor took on OpenAI",
+    "outlet": "The Australian Financial Review",
+    "author": "Jessica Gardner",
+    "type": "Profile",
     "group": "general-media",
-    "url": "https://shows.acast.com/theintelligencepodcast/episodes/out-numbered-ais-contentious-maths-milestone",
-    "description": "The opening segment covers the race to a Navier–Stokes proof and the debate over credit."
-  },
-  {
-    "date": "2026-09-10",
-    "title": "Elusive complex structure found for S⁶, the six-dimensional sphere",
-    "author": "Konstantin Kakaes",
-    "outlet": "Quanta Magazine",
-    "type": "News brief",
-    "url": "https://www.quantamagazine.org/update/166811/",
-    "group": "popular-science"
+    "url": "https://www.afr.com/world/north-america/not-selling-my-soul-why-this-aussie-maths-professor-took-on-openai-20260911-p60wf8"
   },
   {
     "date": "2026-09-10",
@@ -230,50 +146,6 @@
     "url": "https://www.nytimes.com/2026/09/10/science/tristan-buckmaster-openai-math-navier-stokes.html"
   },
   {
-    "date": "2026-09-10",
-    "title": "What AI agents talk about behind your back",
-    "outlet": "BBC Radio 4 · BBC Inside Science",
-    "author": "Tom Whipple and Caroline Steel",
-    "type": "Radio / podcast",
-    "group": "popular-science",
-    "url": "https://www.bbc.co.uk/programmes/w3ct9784",
-    "description": "Caroline Steel covers the Navier–Stokes announcement in the programme’s science-news roundup.",
-    "links": [
-      {
-        "label": "Listen on Apple Podcasts",
-        "url": "https://podcasts.apple.com/gb/podcast/what-ai-agents-talk-about-behind-your-back/id670199157?i=1000788911137"
-      }
-    ]
-  },
-  {
-    "date": "2026-09-10",
-    "title": "La resa dei conti",
-    "outlet": "Rai Radio 3 · Radio3 Scienza",
-    "author": "Roberta Fulci",
-    "type": "Radio / podcast",
-    "group": "popular-science",
-    "url": "https://www.raiplaysound.it/audio/2026/09/Radio3-Scienza-del-10092026-2e429b93-0901-4897-951c-f4015f2458f1.html",
-    "description": "Alessio Figalli and Riccardo Brasca discuss the Navier–Stokes announcement and computer-verified proofs in Italian."
-  },
-  {
-    "date": "2026-09-09",
-    "title": "AI may have solved one of math’s biggest puzzles, raising controversy",
-    "author": "Emily Conover",
-    "outlet": "Science News",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.sciencenews.org/article/ai-math-puzzle-navier-stokes-openai"
-  },
-  {
-    "date": "2026-09-09",
-    "title": "Open AI will ein Millennium-Problem gelöst haben",
-    "outlet": "Süddeutsche Zeitung",
-    "author": "Max Muth, Theresa Palm and Marlene Weiß",
-    "type": "Article",
-    "group": "general-media",
-    "url": "https://www.sueddeutsche.de/wissen/openai-navier-stokes-problem-streit-li.3544733"
-  },
-  {
     "date": "2026-09-09",
     "title": "OpenAI’s sly mathematical breakthrough sends a chill through academia",
     "outlet": "The Verge",
@@ -281,69 +153,6 @@
     "type": "Article",
     "group": "general-media",
     "url": "https://www.theverge.com/ai-artificial-intelligence/992953/openai-math-millennium-prize-navier-stokes"
-  },
-  {
-    "date": "2026-09-08",
-    "title": "AI Has Solved One of Math’s $1 Million Millennium Prize Problems",
-    "author": "Konstantin Kakaes",
-    "outlet": "Quanta Magazine",
-    "type": "Article",
-    "url": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
-    "links": [
-      {
-        "label": "Related Quanta news brief",
-        "url": "https://www.quantamagazine.org/update/166812/"
-      }
-    ],
-    "group": "popular-science"
-  },
-  {
-    "date": "2026-09-08",
-    "title": "How an AI math breakthrough ignited a controversy",
-    "outlet": "Science",
-    "author": "Celina Zhao and Adrian Cho",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.science.org/content/article/how-ai-math-breakthrough-ignited-controversy",
-    "links": [
-      {
-        "label": "Watch Celina Zhao discuss the story",
-        "url": "https://www.youtube.com/watch?v=aCRsgLAl5gw"
-      }
-    ]
-  },
-  {
-    "date": "2026-09-08",
-    "title": "OpenAI claims huge maths breakthrough on a famed ‘Millennium Problem’",
-    "outlet": "Nature",
-    "author": "Davide Castelvecchi",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.nature.com/articles/d41586-026-02842-5"
-  },
-  {
-    "date": "2026-09-08",
-    "title": "AI may have just solved a million-dollar math problem. The field will never be the same",
-    "outlet": "Scientific American",
-    "author": "Joseph Howlett",
-    "type": "Article",
-    "group": "popular-science",
-    "url": "https://www.scientificamerican.com/article/ai-may-have-just-solved-a-million-dollar-math-problem-the-field-will-never-be-the-same/",
-    "links": [
-      {
-        "label": "OpenAI claims blockbuster math breakthrough amid swirl of controversy",
-        "url": "https://www.scientificamerican.com/article/openai-claims-blockbuster-math-breakthrough-amid-swirl-of-controversy/"
-      }
-    ]
-  },
-  {
-    "date": "2026-07-23",
-    "title": "Amid Life’s Chaos, a Meticulous Mathematician Finds Stability",
-    "author": "Jordana Cepelewicz",
-    "outlet": "Quanta Magazine",
-    "type": "Article",
-    "url": "https://www.quantamagazine.org/yu-deng-wins-the-fields-medal-2026-for-his-work-on-the-random-data-problem-20260723/",
-    "group": "popular-science"
   },
   {
     "date": "2026-01-09",
@@ -361,15 +170,6 @@
     "group": "popular-science"
   },
   {
-    "date": "2022-11-16",
-    "title": "Computer Proof ‘Blows Up’ Centuries-Old Fluid Equations",
-    "author": "Jordana Cepelewicz",
-    "outlet": "Quanta Magazine",
-    "type": "Article",
-    "url": "https://www.quantamagazine.org/computer-helps-prove-long-sought-fluid-equation-singularity-20221116/",
-    "group": "popular-science"
-  },
-  {
     "date": "2022-04-12",
     "title": "Deep Learning Poised to ‘Blow Up’ Famed Fluid Equations",
     "author": "Jordana Cepelewicz",
@@ -382,24 +182,6 @@
         "url": "https://podcasts.apple.com/us/podcast/deep-learning-poised-to-blow-up-famed-fluid-equations/id1021340531?i=1000574930829"
       }
     ],
-    "group": "popular-science"
-  },
-  {
-    "date": "2021-06-03",
-    "title": "Mathematicians Identify Threshold at Which Shapes Give Way",
-    "author": "Mordechai Rorvig",
-    "outlet": "Quanta Magazine",
-    "type": "Article",
-    "url": "https://www.quantamagazine.org/mathematicians-identify-threshold-at-which-shapes-give-way-20210603/",
-    "group": "popular-science"
-  },
-  {
-    "date": "2018-01-16",
-    "title": "What Makes the Hardest Equations in Physics So Difficult?",
-    "author": "Kevin Hartnett",
-    "outlet": "Quanta Magazine",
-    "type": "Article",
-    "url": "https://www.quantamagazine.org/what-makes-the-hardest-equations-in-physics-so-difficult-20180116/",
     "group": "popular-science"
   },
   {
