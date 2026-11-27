@@ -27,7 +27,7 @@ The Courant web directory also holds public documents outside this repository, i
 | Slop mark | `_data/slop_papers.yml` | Add or remove a paper’s BibTeX key. For a research highlight or news entry featuring that paper, set its `paper_key` to the same key. The ink mark links to the symbol key on Publications. |
 | Videos | `_data/talks.json` | Add a dated record with a title, venue, and recording URL. A YouTube ID enables playback on the page. An event URL, local poster, and description are optional. |
 | Media | `_data/media.json` | Add a date, title, outlet, format (`type`), publisher URL and audience (`group`, either `popular-science` or `general-media`). Add an author or interviewer when credited. An optional description can distinguish an interview from reporting. Use `links` for a companion podcast or another way to watch the same recording. |
-| CV | `assets/pdf/CV.pdf`, `_data/cv_overview.json` | Replace the PDF at its stable URL. Update the displayed revision date and the appointments, education, and honors in the HTML overview. |
+| CV | `assets/pdf/CV.tex`, `assets/pdf/papers.bib`, `_data/cv_overview.json` | Edit the LaTeX or bibliography and rebuild the PDF. For content revisions, update the revision date in the LaTeX and HTML overview. |
 | Research highlights | `_data/highlights.yml`, `assets/figures/` | Add a record with a unique ID, tab label, summary, paper link, figure, dimensions, alt text, caption, and source link. For one movie, set `movie` to the MP4 and `figure` to its poster. For matched movies, add a `clips` list with a label, MP4 path (`movie`), poster, description, and caption for each. Give the clips a common timeline so the player can switch at the same instant. |
 | What’s new | `_data/updates.yml` | Add a date, type, title, URL, and optional credit line. The homepage sorts entries by date. An archive item can be featured here when an announcement is appropriate. |
 | Profile and funding | `_data/profile.yml`, `_pages/about.md` | Update contact information, affiliation, portrait, or award links in the data file. The opening and acknowledgment are arranged in the homepage template. |
@@ -36,6 +36,17 @@ The Courant web directory also holds public documents outside this repository, i
 | Misc | `_data/misc.yml` | Add a titled link and description to a section. An item can reuse a homepage update’s title and URL by referencing its `id` in `update`. |
 
 Page templates live in `_pages/`. The shared layout is `_layouts/plates.html`, and the shared header, footer, and research feature are in `_includes/plates/`. Page-specific styles and scripts are loaded through the `page_css` and `page_js` front matter fields. Publications and all research topics remain readable with JavaScript disabled.
+
+## Build the CV
+
+From the repository root, use a clean build directory so BibTeX reads the current bibliography. The PDF uses the TeX Live packages `stix2-type1` and `sourcesanspro`.
+
+```sh
+cv_build_dir=$(mktemp -d)
+cp assets/pdf/CV.tex assets/pdf/papers.bib "$cv_build_dir/"
+(cd "$cv_build_dir" && latexmk -pdf -halt-on-error CV.tex)
+cp "$cv_build_dir/CV.pdf" assets/pdf/CV.pdf
+```
 
 ## Research figures
 
