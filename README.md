@@ -1,6 +1,6 @@
 # Tristan Buckmaster’s academic website
 
-The site uses Jekyll and Jekyll-Scholar. It builds static HTML for the homepage, Publications, Media, Talks, CV, and Misc. The homepage includes the students and postdocs roster at `/#people`. The former `/people/` page redirects there.
+The site uses Jekyll and Jekyll-Scholar. It builds static HTML for the homepage, Publications, Media, Videos, CV, and Misc. The homepage includes the students and postdocs roster at `/#people`. The former `/people/` page redirects there, and `/talks/` redirects to `/videos/`.
 
 ## Preview and build
 
@@ -25,7 +25,7 @@ The Courant web directory also holds public documents outside this repository, i
 | --- | --- | --- |
 | Publications | `_bibliography/papers.bib` | Add a BibTeX record with a unique key, title, authors, and year. The bibliography groups years automatically. Optional fields include abstract, DOI, arXiv, URL, PDF, and code. |
 | Slop mark | `_data/slop_papers.yml` | Add or remove a paper’s BibTeX key. For a research highlight or news entry featuring that paper, set its `paper_key` to the same key. The ink mark links to the symbol key on Publications. |
-| Talks | `_data/talks.json` | Add a dated record with a title, venue, and recording URL. A YouTube ID enables playback on the page. An event URL, local poster, and description are optional. |
+| Videos | `_data/talks.json` | Add a dated record with a title, venue, and recording URL. A YouTube ID enables playback on the page. An event URL, local poster, and description are optional. |
 | Media | `_data/media.json` | Add a date, title, outlet, format (`type`), publisher URL and audience (`group`, either `popular-science` or `general-media`). Add an author or interviewer when credited. An optional description can distinguish an interview from reporting. Use `links` for a companion podcast or another way to watch the same recording. |
 | CV | `assets/pdf/CV.pdf`, `_data/cv_overview.json` | Replace the PDF at its stable URL. Update the displayed revision date and the appointments, education, and honors in the HTML overview. |
 | Research highlights | `_data/highlights.yml`, `assets/figures/` | Add a record with a unique ID, tab label, summary, paper link, figure, dimensions, alt text, caption, and source link. For one movie, set `movie` to the MP4 and `figure` to its poster. For matched movies, add a `clips` list with a label, MP4 path (`movie`), poster, description, and caption for each. Give the clips a common timeline so the player can switch at the same instant. |

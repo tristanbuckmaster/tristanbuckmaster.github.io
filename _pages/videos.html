@@ -1,0 +1,46 @@
+---
+layout: plates
+title: Videos
+permalink: /videos/
+description: Recorded lectures and seminars by Tristan Buckmaster.
+page_css: catalogues
+page_js: talks
+---
+<div class="bound catalogue">
+  <header class="catalogue-heading">
+    <h1>Videos</h1>
+    <p>Recorded lectures and seminars.</p>
+  </header>
+
+  {% assign talks = site.data.talks | sort: 'date' | reverse %}
+  {% for talk in talks %}
+    <article class="recording{% if talk.poster and talk.status != 'unavailable' %} recording-feature{% endif %}" data-recording>
+      <div class="recording-copy">
+        <p class="catalogue-meta">
+          {% if talk.date %}<span>{% if talk.date_kind %}{{ talk.date_kind | escape }} {% endif %}<time datetime="{{ talk.date }}">{{ talk.date | date: "%-d %B %Y" }}</time></span>{% endif %}
+          {% if talk.venue %}<span>{{ talk.venue | escape }}</span>{% endif %}
+        </p>
+        <h2><a href="{{ talk.event_url | default: talk.archive_url | default: talk.url | escape }}">{{ talk.title | escape }}</a></h2>
+        {% if talk.description %}<p class="recording-description">{{ talk.description | escape }}</p>{% endif %}
+        <div class="recording-links">
+          {% if talk.status == 'unavailable' %}
+            <span>Recording unavailable</span>
+            {% if talk.archive_url %}<a href="{{ talk.archive_url | escape }}">Archived listing</a>{% endif %}
+          {% else %}
+            {% unless talk.poster %}
+              {% if talk.youtube_id %}<a class="recording-inline-play" data-play="{{ talk.youtube_id | escape }}" href="{{ talk.url | escape }}">Play recording</a>{% endif %}
+            {% endunless %}
+            {% if talk.event_url %}<a href="{{ talk.event_url | escape }}">Event page</a>{% endif %}
+            <a href="{{ talk.url | escape }}">{% if talk.youtube_id %}Watch on YouTube{% else %}Watch recording{% endif %}</a>
+          {% endif %}
+        </div>
+      </div>
+      {% if talk.poster and talk.status != 'unavailable' %}
+        <a class="recording-poster" href="{{ talk.url | escape }}" {% if talk.youtube_id %}data-play="{{ talk.youtube_id | escape }}"{% endif %} aria-label="Play {{ talk.title | escape }}">
+          <img src="{{ talk.poster | relative_url }}" alt="" width="960" height="540">
+          <span>Play recording</span>
+        </a>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>
