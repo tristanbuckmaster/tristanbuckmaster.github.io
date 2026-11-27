@@ -1,6 +1,6 @@
 ---
 ---
-{%- assign display_venue = entry.fjournal | default: entry.journal | default: entry.booktitle | default: entry.note -%}
+{%- assign display_venue = entry.fjournal | default: entry.journal | default: entry.booktitle | default: entry.note | default: entry.series | default: entry.publisher -%}
 {%- if entry.type == 'phdthesis' -%}{%- assign display_venue = 'Doctoral thesis' -%}{%- endif -%}
 {%- if display_venue == 'arXiv e-prints' or display_venue == 'preprint' -%}{%- assign display_venue = 'Preprint' -%}{%- endif -%}
 {%- assign arxiv_id = entry.arxiv -%}

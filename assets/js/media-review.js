@@ -34,7 +34,7 @@
   for (const [key, checkbox] of byStorageKey) {
     try {
       checkbox.checked = localStorage.getItem(key) === 'keep';
-    } catch {
+    } catch (error) {
       unsaved.add(key);
     }
     checkbox.addEventListener('change', () => {
@@ -42,7 +42,7 @@
         if (checkbox.checked) localStorage.setItem(key, 'keep');
         else localStorage.removeItem(key);
         unsaved.delete(key);
-      } catch {
+      } catch (error) {
         unsaved.add(key);
       }
       showCount();

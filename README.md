@@ -4,10 +4,11 @@ The site uses Jekyll and Jekyll-Scholar. It builds static HTML for the homepage,
 
 ## Preview and build
 
-Use the repository’s Ruby environment and run the commands from its root.
+Use Ruby 3.1.2 (see `.ruby-version`) and run these commands from the repository root. The lockfile pins the gems for macOS and Linux.
 
 ```sh
-bundle install
+gem install bundler -v 2.3.7
+BUNDLE_FROZEN=true bundle _2.3.7_ install
 bundle exec jekyll serve --baseurl ""
 ```
 
@@ -17,19 +18,23 @@ Open the local URL printed by Jekyll. A standard build uses the configured Coura
 bundle exec jekyll build
 ```
 
-The Courant web directory also holds public documents outside this repository, including `statement.pdf`. The legacy `deploy.sh` calls `server.sh`, which clears that directory before it uploads the build. A future Courant deployment should preserve those files and their existing URLs.
+## Publish to Courant
+
+Run `./deploy.sh --dry-run` to compare a fresh build with the Courant web directory over SSH. It lists pending changes. When ready to publish, run `./deploy.sh --apply`. The upload overlays built files and leaves server-only documents in place, including those in subdirectories. It explicitly protects the root `statement.pdf` and server `.htaccess` files. To retire a URL, remove its remote file separately.
+
+Run `bin/test-courant-upload` to exercise the uploader against a temporary local directory.
 
 ## Add or update content
 
 | Content | Source | How to update it |
 | --- | --- | --- |
-| Publications | `_bibliography/papers.bib` | Add a BibTeX record with a unique key, title, authors, and year. The bibliography groups years automatically. Optional fields include abstract, DOI, arXiv, URL, PDF, and code. |
+| Publications | `_bibliography/papers.bib` | Edit this shared bibliography once, then run `bin/build-cv` to refresh the PDF. Publications groups entries by year. For a manuscript hosted outside arXiv, use its actual `url` or `pdf` and an optional `link_label`. |
 | Slop mark | `_data/slop_papers.yml` | Add or remove a paper’s BibTeX key. For a research highlight or news entry featuring that paper, set its `paper_key` to the same key. The ink mark links to the symbol key on Publications. |
 | Videos | `_data/talks.json` | Add a dated record with a title, venue, and recording URL. A YouTube ID enables playback on the page. An event URL, local poster, and description are optional. |
 | Media | `_data/media.json` | Add a date, title, outlet, format (`type`), publisher URL and audience (`group`, either `popular-science` or `general-media`). Add an author or interviewer when credited. An optional description can distinguish an interview from reporting. Use `links` for companion media. Add `youtube_id` and a local `poster` path to a recording link for an inline player. An optional entry `id` gives it a direct link on the Media page. |
-| CV | `assets/pdf/CV.tex`, `assets/pdf/papers.bib`, `_data/cv_overview.json` | Edit the LaTeX or bibliography and rebuild the PDF. For content revisions, update the revision date in the LaTeX and HTML overview. |
+| CV | `assets/pdf/CV.tex`, `_data/cv_overview.json` | Edit the LaTeX for the full CV or the overview for the short HTML version. Rebuild the PDF after changing the LaTeX or shared bibliography. |
 | Research highlights | `_data/highlights.yml`, `assets/figures/` | Add a record with a unique ID, tab label, summary, paper link, figure, dimensions, alt text, caption, and source link. For one movie, set `movie` to the MP4 and `figure` to its poster. For matched movies, add a `clips` list with a label, MP4 path (`movie`), poster, description, and caption for each. Give the clips a common timeline so the player can switch at the same instant. |
-| What’s new | `_data/updates.yml` | Add a date, type, title, URL, and optional credit line. The homepage sorts entries by date. An archive item can be featured here when an announcement is appropriate. |
+| What’s new | `_data/updates.yml` | Add a `date`, `kind`, `title`, `url`, and optional `note`. The homepage sorts entries by date. An archive item can be featured here when an announcement is appropriate. |
 | Profile and funding | `_data/profile.yml`, `_pages/about.md` | Update contact information, affiliation, portrait, or award links in the data file. The opening and acknowledgment are arranged in the homepage template. |
 | Navigation | `_data/navigation.yml` | Add or reorder a page title and site-relative path. The layout applies the site’s base URL. |
 | Students and postdocs | `_data/people.yml` | Add a student or postdoc to the appropriate group, or move their entry when they leave. The homepage disclosure uses this list. |
@@ -51,14 +56,14 @@ Add `--apply` to write those changes to `_data/media.json`. Links added after th
 
 ## Build the CV
 
-From the repository root, use a clean build directory so BibTeX reads the current bibliography. The PDF uses the TeX Live packages `stix2-type1` and `sourcesanspro`.
+Run the commands below from the repository root. Building the PDF requires Python 3, `latexmk`, pdfLaTeX, BibLaTeX, Biber, and the TeX Live font packages `stix2-type1` and `sourcesanspro`. The build uses a clean directory and refreshes `assets/pdf/CV.pdf`. The downloadable `assets/pdf/papers.bib` points to the same bibliography used by Publications.
 
 ```sh
-cv_build_dir=$(mktemp -d)
-cp assets/pdf/CV.tex assets/pdf/papers.bib "$cv_build_dir/"
-(cd "$cv_build_dir" && latexmk -pdf -halt-on-error CV.tex)
-cp "$cv_build_dir/CV.pdf" assets/pdf/CV.pdf
+bin/build-cv
+bin/build-cv --check
 ```
+
+Commit the rebuilt PDF with any change to the bibliography or CV source. The check only needs Python 3. It verifies the source fingerprints embedded in the PDF and also runs before a Courant upload.
 
 ## Research figures
 

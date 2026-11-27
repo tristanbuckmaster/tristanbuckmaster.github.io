@@ -1,4 +1,4 @@
-% Build alongside papers.bib: latexmk -pdf CV.tex
+% From the repository root: bin/build-cv. Here, latexmk -pdf CV.tex also works.
 \documentclass[10pt,letterpaper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -7,6 +7,15 @@
 \usepackage{microtype,xcolor,enumitem,needspace,fancyhdr,lastpage}
 \usepackage[left=.78in,right=.78in,top=.78in,bottom=.77in,
             headheight=20pt,headsep=14pt,footskip=28pt]{geometry}
+\usepackage[backend=biber,style=numeric,maxbibnames=99,
+            doi=false,url=false,eprint=false,isbn=false]{biblatex}
+\DeclareSortingTemplate{cvdate}{%
+  \sort[direction=descending]{\field{year}}
+  \sort[direction=descending]{\field{month}\literal{0}}
+  \sort[direction=descending]{\field{day}\literal{0}}
+  \sort{\citeorder}}
+\ExecuteBibliographyOptions{sorting=cvdate}
+\addbibresource{papers.bib}
 \usepackage[unicode,bookmarksopen,bookmarksopenlevel=0]{hyperref}
 \input{glyphtounicode}
 \pdfgentounicode=1
@@ -18,6 +27,9 @@
 \hypersetup{pdftitle={Tristan Buckmaster — Curriculum vitae},
   pdfauthor={Tristan Buckmaster},pdfsubject={Academic curriculum vitae},
   pdflang={en-US},colorlinks=true,allcolors=pine,pdfdisplaydoctitle=true}
+% bin/build-cv --check compares these fingerprints without running TeX.
+\pdfinfo{/CVSourceMDfive (\pdfmdfivesum file {CV.tex})
+         /CVBibliographyMDfive (\pdfmdfivesum file {papers.bib})}
 \urlstyle{same}
 \setlength{\parindent}{0pt}
 \raggedbottom
@@ -52,20 +64,28 @@
 \newenvironment{recordlist}{\begin{itemize}[leftmargin=14pt,label=\textcolor{muted}{\textperiodcentered},
   labelsep=7pt,topsep=1pt,itemsep=6pt,parsep=0pt,partopsep=0pt]\raggedright\interlinepenalty=10000}{\end{itemize}}
 
-% Keep the BibTeX reference order and formatting while replacing the default
-% undifferentiated bullets with a reference number for each publication.
-\makeatletter
-\renewenvironment{thebibliography}[1]
-  {\list{\textcolor{copper}{\smalltype\arabic{enumiv}.}}
-    {\usecounter{enumiv}\setlength{\leftmargin}{28pt}\setlength{\labelwidth}{21pt}%
+% Link each title to its manuscript or publisher and keep the printed reference compact.
+\DeclareSourcemap{\maps[datatype=bibtex]{%
+  \map{\step[fieldsource=arxiv,fieldtarget=eprint,final]\step[fieldset=eprinttype,fieldvalue=arxiv]}%
+  \map{\step[fieldsource=doi,match=\regexp{^https?://(dx\.)?doi\.org/},replace={}]}%
+}}
+\DeclareFieldFormat*{title}{%
+  \iffieldundef{url}
+    {\iffieldundef{doi}
+      {\iffieldequalstr{eprinttype}{arxiv}
+        {\href{https://arxiv.org/abs/\thefield{eprint}}{#1}}{#1}}
+      {\href{https://doi.org/\thefield{doi}}{#1}}}
+    {\href{\thefield{url}}{#1}}}
+\DeclareNameWrapperFormat{author}{{\sffamily\fontsize{9.5}{12}\selectfont\color{muted}#1}}
+\newcommand*{\cvauthorbreak}{\addperiod\par\nobreak}
+\DeclareDelimFormat[bib]{nametitledelim}{\cvauthorbreak}
+\defbibenvironment{bibliography}
+  {\list{\textcolor{copper}{\smalltype\printfield{labelnumber}.}}
+    {\setlength{\leftmargin}{28pt}\setlength{\labelwidth}{21pt}%
      \setlength{\labelsep}{7pt}\setlength{\itemsep}{5pt}\setlength{\parsep}{0pt}\setlength{\topsep}{1pt}}%
-   \raggedright\interlinepenalty=10000
-   \let\plainbibitem\bibitem
-   \renewcommand{\bibitem}[1]{\par\Needspace{3\baselineskip}\plainbibitem{##1}\sffamily\fontsize{9.5}{12}\selectfont\color{muted}%
-     \renewcommand{\newblock}{\par\nobreak\normalfont\normalsize\color{ink}%
-       \renewcommand{\newblock}{\hskip .16em plus .25em minus .05em}}}}
+   \raggedright\interlinepenalty=10000}
   {\endlist}
-\makeatother
+  {\Needspace{3\baselineskip}\item}
 
 % A group shares one year label; individual talks keep their day and month
 % when known. Long lists flow naturally onto the next page.
@@ -168,8 +188,7 @@ Courant Institute of Mathematical Sciences, New York University\par
 \fancyhead[R]{\smalltype\color{muted}Publications}
 \cvsection{Publications}
 \nocite{*}
-\bibliographystyle{unsrt}
-\bibliography{papers}
+\printbibliography[heading=none]
 \clearpage
 
 \fancyhead[R]{\smalltype\color{muted}\nouppercase{\rightmark}}

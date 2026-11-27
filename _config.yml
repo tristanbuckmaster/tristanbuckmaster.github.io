@@ -142,9 +142,21 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ['_pages']
+include: ['_pages', '_bibliography']
 exclude:
   - README.md
+  - deploy.sh
+  - test.sh
+  - assets/pdf/*.aux
+  - assets/pdf/*.bbl
+  - assets/pdf/*.bcf
+  - assets/pdf/*.blg
+  - assets/pdf/*.fdb_latexmk
+  - assets/pdf/*.fls
+  - assets/pdf/*.log
+  - assets/pdf/*.out
+  - assets/pdf/*.run.xml
+  - assets/pdf/*.synctex.gz
   # Unused al-folio example collections and sample blog.
   - _posts
   - _projects
