@@ -281,6 +281,17 @@
   font-size: .85rem;
 }
 
+.resource-list li {
+  display: block;
+}
+.resource-list h3 a {
+  text-decoration: underline;
+  text-decoration-color: var(--hair);
+}
+.resource-list h3 a:hover {
+  text-decoration-color: currentColor;
+}
+
 @media (max-width: 800px) {
   .recording-feature {
     grid-template-columns: 1fr;

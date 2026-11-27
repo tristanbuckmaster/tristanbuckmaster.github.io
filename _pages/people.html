@@ -1,0 +1,30 @@
+---
+layout: plates
+title: People
+permalink: /people/
+description: Current and former PhD students and postdoctoral researchers working with Tristan Buckmaster.
+page_css: catalogues
+---
+<div class="bound catalogue">
+  <header class="catalogue-heading">
+    <h1>People</h1>
+    <p>PhD students and postdoctoral researchers.</p>
+  </header>
+  {% for group in site.data.people %}
+    {% assign group_id = group.title | slugify %}
+    <section class="press-section" aria-labelledby="{{ group_id }}">
+      <h2 id="{{ group_id }}">{{ group.title | escape }}</h2>
+      <ul class="press-list">
+        {% for person in group.members %}
+          <li>
+            <span class="press-meta">{{ person.role | escape }}</span>
+            <div>
+              <h3>{% if person.url %}<a href="{{ person.url | escape }}">{{ person.name | escape }}</a>{% else %}{{ person.name | escape }}{% endif %}</h3>
+              {% if person.institution %}<p class="press-credit">{{ person.institution | escape }}</p>{% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

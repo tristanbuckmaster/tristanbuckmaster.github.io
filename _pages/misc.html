@@ -1,0 +1,30 @@
+---
+layout: plates
+title: Misc
+permalink: /misc/
+description: Writings, interactive mathematics, and formalization projects selected by Tristan Buckmaster.
+page_css: catalogues
+---
+<div class="bound catalogue">
+  <header class="catalogue-heading">
+    <h1>Misc</h1>
+  </header>
+  {% for section in site.data.misc %}
+    <section class="press-section" aria-labelledby="{{ section.title | slugify }}">
+      <h2 id="{{ section.title | slugify }}">{{ section.title | escape }}</h2>
+      <ul class="press-list resource-list">
+        {% for item in section.items %}
+          {% assign update = site.data.updates | where: "id", item.update | first %}
+          <li>
+            <h3><a href="{{ item.url | default: update.url | escape }}">{{ item.title | default: update.title | escape }}</a></h3>
+            <p class="press-description">{{ item.description | escape }}</p>
+            {% if item.detail %}<p class="press-credit">{{ item.detail | escape }}</p>{% endif %}
+            {% if item.links %}
+              <p class="press-resources">{% for link in item.links %}<a href="{{ link.url | escape }}">{{ link.title | escape }}</a>{% endfor %}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endfor %}
+</div>

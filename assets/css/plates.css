@@ -65,7 +65,7 @@ a:hover { color: #754527; }
   font: .85rem/1.27 var(--sans);
   letter-spacing: 0;
 }
-.site-nav { display: flex; align-items: baseline; gap: clamp(18px, 2.6vw, 45px); }
+.site-nav { display: flex; align-items: baseline; margin-inline-start: auto; gap: clamp(18px, 2.6vw, 45px); }
 .site-nav a { font-size: .95rem; text-decoration: none; }
 .site-nav a:hover, .site-nav [aria-current="page"] { text-decoration: underline; }
 .page-heading { padding: clamp(30px, 4vw, 70px) 0 clamp(24px, 3vw, 49px); }
@@ -101,10 +101,13 @@ a:hover { color: #754527; }
 }
 @media (max-width: 640px) {
   .mast .bound { align-items: flex-start; flex-direction: column; padding: 15px 0; }
-  .site-nav { flex-wrap: wrap; gap: .5rem clamp(12px, 4.5vw, 23px); }
+  .site-nav { flex-wrap: wrap; margin-inline-start: 0; gap: .5rem clamp(12px, 4.5vw, 23px); }
   .site-nav a { font-size: .91rem; }
   .affil { font-size: 1.1rem; }
   .affil span { font-size: .81rem; }
+}
+@media (min-width: 18rem) and (max-width: 28rem) {
+  .site-nav { display: grid; grid-template-columns: repeat(4, max-content); }
 }
 @media print {
   .mast .site-nav, .skip { display: none; }

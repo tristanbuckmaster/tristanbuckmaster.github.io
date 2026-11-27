@@ -17,6 +17,7 @@
   note: Tristan Buckmaster, Matei P. Coiculescu, and Chen Li
   url: https://hexagonmath.org/2611.00143v1
 - date: '2026-10-21'
+  id: guest-essay
   kind: Guest essay
   title: Mathematics is a subject for the young
   note: On Terence Tao’s blog
@@ -27,6 +28,7 @@
   note: Members’ Colloquium, Institute for Advanced Study
   url: https://www.ias.edu/video/blow-incompressible-euler-equations-smooth-space-time-forcing
 - date: '2026-09-07'
+  id: september-statement
   kind: Statement
   title: On the September release
   url: https://cims.nyu.edu/~tristanb/statement.pdf
