@@ -11,17 +11,6 @@
     "description": "I discuss my work with Levent Alpöge on finite-time blow-up for the incompressible Euler equations, the role AI played in the proof, and what that experience suggests about how mathematicians might work with these tools."
   },
   {
-    "title": "Blow up for the Incompressible Euler equations with smooth space-time forcing",
-    "speaker": "Tristan Buckmaster",
-    "date": "2026-10-19",
-    "venue": "Institute for Advanced Study · Members’ Colloquium",
-    "youtube_id": "CGesyxtFs7g",
-    "url": "https://www.youtube.com/watch?v=CGesyxtFs7g",
-    "event_url": "https://www.ias.edu/video/blow-incompressible-euler-equations-smooth-space-time-forcing",
-    "poster": "/assets/img/recordings/ias-euler-2026.webp",
-    "description": "In joint work with Levent Alpöge and Matei Coiculescu, we construct a smooth forcing that drives a three-dimensional incompressible Euler flow to blow up in finite time. The mechanism is a sequence of hydrodynamic instabilities that amplify vorticity at progressively smaller scales."
-  },
-  {
     "title": "Computer-Assisted Proofs in Fluid PDEs",
     "speaker": "Tristan Buckmaster",
     "date": "2026-07-03",
