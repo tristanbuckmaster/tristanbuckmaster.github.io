@@ -11,7 +11,7 @@ case "$#:${1-}" in
 esac
 
 cd -- "$(dirname -- "$0")"
-destination=${COURANT_DESTINATION:-tristanb@access.cims.nyu.edu:/web/tristanb/}
+destination=${COURANT_DESTINATION:-tb97@access.cims.nyu.edu:/web/tb97/}
 bin/build-cv --check
 build_dir=$(mktemp -d)
 trap 'rm -rf -- "$build_dir"' EXIT

@@ -20,6 +20,8 @@ bundle exec jekyll build
 
 ## Publish to Courant
 
+The SSH account is `tb97@access.cims.nyu.edu`. Its `~/public_html` is a symlink to `/web/tb97/`, which also serves the existing `/~tristanb/` URLs. On macOS use upstream rsync 3.x on your PATH (available via `brew install rsync`). Apple's bundled openrsync fails to send the nested file list to Courant.
+
 Run `./deploy.sh --dry-run` to compare a fresh build with the Courant web directory over SSH. It lists pending changes. When ready to publish, run `./deploy.sh --apply`. The upload overlays built files and leaves server-only documents in place, including those in subdirectories. It explicitly protects the root `statement.pdf` and server `.htaccess` files. To retire a URL, remove its remote file separately.
 
 Run `bin/test-courant-upload` to exercise the uploader against a temporary local directory.
