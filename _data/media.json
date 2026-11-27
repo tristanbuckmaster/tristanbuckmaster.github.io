@@ -61,7 +61,8 @@
   },
   {
     "date": "2026-09-29",
-    "title": "The Buckmaster Interview",
+    "id": "numberphile-interview",
+    "title": "The Buckmaster Interview (Navier-Stokes)",
     "outlet": "Numberphile",
     "author": "Brady Haran",
     "type": "Video interview",
@@ -69,8 +70,10 @@
     "url": "https://www.numberphile.com/videos/the-buckmaster-interview",
     "links": [
       {
-        "label": "Watch on YouTube",
-        "url": "https://www.youtube.com/watch?v=Mzbtj5nkMXI"
+        "label": "Watch the Numberphile interview on YouTube",
+        "url": "https://www.youtube.com/watch?v=Mzbtj5nkMXI",
+        "youtube_id": "Mzbtj5nkMXI",
+        "poster": "/assets/img/recordings/numberphile-interview-2026.webp"
       }
     ]
   },

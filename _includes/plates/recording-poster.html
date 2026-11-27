@@ -1,0 +1,4 @@
+<a class="recording-poster" href="{{ include.url | escape }}"{% if include.youtube_id %} data-play="{{ include.youtube_id | escape }}"{% endif %} aria-label="Play {{ include.title | escape }}">
+  <img src="{{ include.poster | relative_url }}" alt="" width="960" height="540"{% unless include.priority %} loading="lazy"{% endunless %}>
+  <span>{{ include.label | default: 'Play recording' | escape }}</span>
+</a>

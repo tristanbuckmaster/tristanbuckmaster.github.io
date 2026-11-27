@@ -98,6 +98,10 @@
   line-height: 1.05;
 }
 
+.recording-feature + .recording-feature {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+}
+
 .recording-feature .catalogue-meta,
 .recording-feature .recording-description {
   color: #d1e2d5;
@@ -274,6 +278,11 @@
   margin: .5rem 0 0;
   font-size: 1rem;
   line-height: 1.45;
+}
+
+.press-list .recording-poster {
+  max-width: 26rem;
+  margin-top: .85rem;
 }
 
 .press-resources {

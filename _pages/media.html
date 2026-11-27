@@ -4,6 +4,7 @@ title: Media
 permalink: /media/
 description: Articles, videos, and podcasts about the work of Tristan Buckmaster.
 page_css: catalogues
+page_js: talks
 ---
 <div class="bound catalogue">
   <header class="catalogue-heading">
@@ -27,15 +28,21 @@ page_css: catalogues
         <h2 id="heading-{{ section.id }}">{{ section.title | escape }}</h2>
         <ol class="press-list">
           {% for item in group.items %}
-            <li>
+            {% assign clip = item.primary_link_metadata %}
+            {% unless clip.poster %}{% assign clip = item.links | where_exp: 'link', 'link.poster' | first %}{% endunless %}
+            <li{% if item.id %} id="{{ item.id | escape }}"{% endif %}>
               <div class="press-meta">
                 <time datetime="{{ item.date }}">{{ item.date | date: "%-d %b %Y" }}</time>
                 <span>{{ item.type | escape }}</span>
               </div>
-              <div>
+              <div{% if clip.poster %} data-recording{% endif %}>
                 <h3>{% if item.primary_label %}{{ item.title | escape }}{% else %}<a href="{{ item.url | escape }}">{{ item.title | escape }}</a>{% endif %}</h3>
                 <p class="press-credit">{{ item.outlet | escape }}{% if item.author and item.author != item.outlet %} · {{ item.author | escape }}{% endif %}</p>
                 {% if item.description %}<p class="press-description">{{ item.description | escape }}</p>{% endif %}
+                {% if clip.poster %}
+                  {% assign clip_url = clip.url | default: item.url %}
+                  {% include plates/recording-poster.html url=clip_url youtube_id=clip.youtube_id title=item.title poster=clip.poster %}
+                {% endif %}
                 {% if item.primary_label or item.links.size > 0 %}
                   <div class="press-resources">
                     {% if item.primary_label %}<a href="{{ item.url | escape }}">{{ item.primary_label | escape }}</a>{% endif %}

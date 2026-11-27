@@ -1,5 +1,16 @@
 [
   {
+    "title": "A ‘Deep Blue-Kasparov moment for mathematics’",
+    "speaker": "Tristan Buckmaster",
+    "date": "2026-10-28",
+    "venue": "Harvard CMSA · AI for the Working Mathematician",
+    "youtube_id": "XcYKzHqJuaw",
+    "url": "https://www.youtube.com/watch?v=XcYKzHqJuaw",
+    "event_url": "https://cmsa.fas.harvard.edu/event/ai_102826/",
+    "poster": "/assets/img/recordings/cmsa-ai-2026.webp",
+    "description": "I discuss my work with Levent Alpöge on finite-time blow-up for the incompressible Euler equations, the role AI played in the proof, and what that experience suggests about how mathematicians might work with these tools."
+  },
+  {
     "title": "Blow up for the Incompressible Euler equations with smooth space-time forcing",
     "speaker": "Tristan Buckmaster",
     "date": "2026-10-19",
@@ -8,18 +19,18 @@
     "url": "https://www.youtube.com/watch?v=CGesyxtFs7g",
     "event_url": "https://www.ias.edu/video/blow-incompressible-euler-equations-smooth-space-time-forcing",
     "poster": "/assets/img/recordings/ias-euler-2026.webp",
-    "description": "A multiscale construction for three-dimensional incompressible Euler flow with smooth forcing, from joint work with Levent Alpöge and Matei Coiculescu."
+    "description": "In joint work with Levent Alpöge and Matei Coiculescu, we construct a smooth forcing that drives a three-dimensional incompressible Euler flow to blow up in finite time. The mechanism is a sequence of hydrodynamic instabilities that amplify vorticity at progressively smaller scales."
   },
   {
-    "title": "Smooth imploding solutions for 3D compressible fluids",
+    "title": "Computer-Assisted Proofs in Fluid PDEs",
     "speaker": "Tristan Buckmaster",
-    "date": "2022-01-18",
-    "date_kind": "Video published",
-    "venue": "SITE Research Center",
-    "status": "unavailable",
-    "youtube_id": "tUkSms5Rk2E",
-    "url": "https://www.youtube.com/watch?v=tUkSms5Rk2E",
-    "archive_url": "https://web.archive.org/web/20240602092206/https://www.youtube.com/watch?v=tUkSms5Rk2E"
+    "date": "2026-07-03",
+    "venue": "London Mathematical Society · General Meeting, Edinburgh",
+    "youtube_id": "VgaB0M9NH3Y",
+    "url": "https://www.youtube.com/watch?v=VgaB0M9NH3Y",
+    "event_url": "https://www.lms.ac.uk/events/lms-general-meeting-2026",
+    "poster": "/assets/img/recordings/lms-fluid-2026.webp",
+    "description": "A numerical simulation can suggest the shape of a fluid singularity. How can we prove that shape exists? I explain how interval arithmetic puts rigorous bounds on numerical errors, and how those bounds enter a proof of self-similar blow-up."
   },
   {
     "title": "The Shock Development Problem",
@@ -28,7 +39,9 @@
     "venue": "Institute for Advanced Study · Seminar in Analysis and Geometry",
     "youtube_id": "fXFunnAKhFY",
     "url": "https://www.youtube.com/watch?v=fXFunnAKhFY",
-    "event_url": "https://www.ias.edu/video/shock-development-problem"
+    "event_url": "https://www.ias.edu/video/shock-development-problem",
+    "poster": "/assets/img/recordings/ias-shock-2021.webp",
+    "description": "What happens just after a shock forms? In joint work with Theodore Drivas, Steve Shkoller, and Vlad Vicol, I follow the shock front and the weaker discontinuities that emerge alongside it in two-dimensional compressible Euler flow with azimuthal symmetry."
   },
   {
     "title": "Stable shock wave formation for the compressible Euler equations",
@@ -37,7 +50,9 @@
     "venue": "Fields Institute · Workshop on Euler and Navier–Stokes Equations",
     "youtube_id": "mw_hhOqKDx4",
     "url": "https://www.youtube.com/watch?v=mw_hhOqKDx4",
-    "event_url": "https://www.fields.utoronto.ca/talks/Stable-shock-wave-formation-compressible-Euler-equations"
+    "event_url": "https://www.fields.utoronto.ca/talks/Stable-shock-wave-formation-compressible-Euler-equations",
+    "poster": "/assets/img/recordings/fields-shock-2020.webp",
+    "description": "How does a shock first form in a smooth compressible fluid? I describe joint work with Steve Shkoller and Vlad Vicol on how the velocity gradient becomes singular and why shock formation persists under small changes to the initial flow."
   },
   {
     "title": "A rigorous derivation of the kinetic wave equation",
@@ -46,6 +61,8 @@
     "venue": "Institute for Advanced Study · Analysis and Mathematical Physics Seminar",
     "youtube_id": "-rDoY-pPF_U",
     "url": "https://www.youtube.com/watch?v=-rDoY-pPF_U",
-    "event_url": "https://www.ias.edu/math/events/analysismathematical-physics-seminar-48"
+    "event_url": "https://www.ias.edu/math/events/analysismathematical-physics-seminar-48",
+    "poster": "/assets/img/recordings/ias-kinetic-2019.webp",
+    "description": "Starting from the cubic nonlinear Schrödinger equation with random initial phases, how does energy move among Fourier modes? I describe joint work with Pierre Germain, Zaher Hani, and Jalal Shatah that uses analysis and number theory to recover the first stages of this transfer."
   }
 ]

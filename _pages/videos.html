@@ -36,10 +36,7 @@ page_js: talks
         </div>
       </div>
       {% if talk.poster and talk.status != 'unavailable' %}
-        <a class="recording-poster" href="{{ talk.url | escape }}" {% if talk.youtube_id %}data-play="{{ talk.youtube_id | escape }}"{% endif %} aria-label="Play {{ talk.title | escape }}">
-          <img src="{{ talk.poster | relative_url }}" alt="" width="960" height="540">
-          <span>Play recording</span>
-        </a>
+        {% include plates/recording-poster.html url=talk.url youtube_id=talk.youtube_id title=talk.title poster=talk.poster priority=forloop.first %}
       {% endif %}
     </article>
   {% endfor %}

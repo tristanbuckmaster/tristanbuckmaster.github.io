@@ -25,7 +25,7 @@
       const panel = document.createElement('div');
       panel.className = 'recording-player';
       const frame = document.createElement('iframe');
-      frame.title = article.querySelector('h2').textContent.trim();
+      frame.title = article.querySelector('h2, h3').textContent.trim();
       frame.src = 'https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1';
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
       frame.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
