@@ -159,7 +159,7 @@
 .pub-disclosure {
   display: inline-block;
   max-width: 100%;
-  vertical-align: top;
+  vertical-align: baseline;
 }
 
 .pub-disclosure summary {
