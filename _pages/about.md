@@ -26,12 +26,17 @@ page_js: highlights
 <section class="bound news" id="news" aria-labelledby="news-heading">
   <h2 class="section-title" id="news-heading">What’s new</h2>
   <ul>
-    {% assign ordered_updates = site.data.updates | sort: 'date' | reverse %}
+    {% assign featured_media = site.data.media | where: 'in_news', true %}
+    {% assign ordered_updates = featured_media | concat: site.data.updates | sort: 'date' | reverse %}
     {% for item in ordered_updates %}
       <li>
         <time datetime="{{ item.date }}">{{ item.date | date: '%-d %b %Y' }}</time>
-        <div><a class="entry-title" href="{{ item.url }}">{{ item.title | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}{% if item.note %}<p class="entry-note">{{ item.note | escape }}</p>{% endif %}</div>
-        <span class="entry-kind">{{ item.kind | escape }}</span>
+        <div>
+          <a class="entry-title" href="{{ item.url | escape }}">{{ item.title | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}
+          {% if item.outlet %}<p class="entry-note">{{ item.outlet | escape }}{% if item.author %} · {{ item.author | escape }}{% endif %}</p>
+          {% elsif item.note %}<p class="entry-note">{{ item.note | escape }}</p>{% endif %}
+        </div>
+        <span class="entry-kind">{{ item.kind | default: item.type | escape }}</span>
       </li>
     {% endfor %}
   </ul>

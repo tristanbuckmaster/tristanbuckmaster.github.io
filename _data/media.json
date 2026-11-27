@@ -2,6 +2,7 @@
   {
     "date": "2026-11-20",
     "title": "After months of controversy, AI finally solved the ‘real’ Navier-Stokes problem",
+    "in_news": true,
     "outlet": "Scientific American",
     "author": "Peter Hall",
     "type": "Article",
@@ -62,6 +63,7 @@
   {
     "date": "2026-09-29",
     "id": "numberphile-interview",
+    "in_news": true,
     "title": "The Buckmaster Interview (Navier-Stokes)",
     "outlet": "Numberphile",
     "author": "Brady Haran",
