@@ -10,10 +10,11 @@
 \usepackage[unicode,bookmarksopen,bookmarksopenlevel=0]{hyperref}
 \input{glyphtounicode}
 \pdfgentounicode=1
-\definecolor{pine}{HTML}{193B34}
-\definecolor{ink}{HTML}{1E2B27}
-\definecolor{muted}{HTML}{4B6158}
-\definecolor{hairline}{HTML}{BCC7C0}
+\definecolor{pine}{HTML}{09665F}
+\definecolor{copper}{HTML}{974821}
+\definecolor{ink}{HTML}{232B2A}
+\definecolor{muted}{HTML}{485A59}
+\definecolor{hairline}{HTML}{B2C5C2}
 \hypersetup{pdftitle={Tristan Buckmaster — Curriculum vitae},
   pdfauthor={Tristan Buckmaster},pdfsubject={Academic curriculum vitae},
   pdflang={en-US},colorlinks=true,allcolors=pine,pdfdisplaydoctitle=true}
@@ -23,7 +24,8 @@
 \setlength{\emergencystretch}{2em}
 \newcommand{\cvdate}{November 2026}
 \newcommand{\smalltype}{\sffamily\fontsize{9}{11}\selectfont}
-\newcommand{\rulecolorline}{\color{hairline}\rule{\linewidth}{.45pt}}
+\newcommand{\rulecolorline}{\textcolor{copper}{\rule{\railwidth}{.45pt}}%
+  \textcolor{hairline}{\rule{\dimexpr\linewidth-\railwidth\relax}{.45pt}}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -43,7 +45,7 @@
   {\color{pine}\fontsize{19}{22}\selectfont #1\par}\nobreak\vspace{5pt}}
 \newcommand{\cvrow}[2]{%
   \par\noindent
-  \makebox[\railwidth][l]{\smalltype\bfseries\color{muted}#1}%
+  \makebox[\railwidth][l]{\smalltype\bfseries\color{copper}#1}%
   \parbox[t]{\dimexpr\linewidth-\railwidth\relax}{\raggedright\strut #2\strut}%
   \par\addvspace{6pt}}
 \newcommand{\appointment}[3]{\cvrow{#1}{\textbf{#2}\\#3}}
@@ -54,7 +56,7 @@
 % undifferentiated bullets with a reference number for each publication.
 \makeatletter
 \renewenvironment{thebibliography}[1]
-  {\list{\textcolor{muted}{\smalltype\arabic{enumiv}.}}
+  {\list{\textcolor{copper}{\smalltype\arabic{enumiv}.}}
     {\usecounter{enumiv}\setlength{\leftmargin}{28pt}\setlength{\labelwidth}{21pt}%
      \setlength{\labelsep}{7pt}\setlength{\itemsep}{5pt}\setlength{\parsep}{0pt}\setlength{\topsep}{1pt}}%
    \raggedright\interlinepenalty=10000
@@ -72,7 +74,7 @@
    \begin{list}{}{\setlength{\leftmargin}{.66in}\setlength{\labelwidth}{.53in}%
      \setlength{\labelsep}{.13in}\setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}%
      \setlength{\parsep}{0pt}\setlength{\itemsep}{5.5pt}%
-     \renewcommand{\makelabel}[1]{\hfill\smalltype\bfseries\color{muted}##1}}%
+     \renewcommand{\makelabel}[1]{\hfill\smalltype\bfseries\color{copper}##1}}%
    \raggedright\interlinepenalty=10000\item[#1]\markright{Seminars and talks\enspace/\enspace #1}%
    \let\talkitem\item\renewcommand{\item}{\talkitem\markright{Seminars and talks\enspace/\enspace #1}}}
   {\end{list}}
@@ -80,7 +82,7 @@
 \begin{document}
 \color{ink}\thispagestyle{opening}
 {\sffamily\bfseries\fontsize{10}{12}\selectfont\color{pine}Curriculum vitae}%
-\hfill{\smalltype\color{muted}\cvdate}\par
+\hfill{\smalltype\color{copper}\cvdate}\par
 \vspace{6pt}
 {\fontsize{39}{42}\selectfont\color{pine}Tristan Buckmaster\par}
 \vspace{5pt}
