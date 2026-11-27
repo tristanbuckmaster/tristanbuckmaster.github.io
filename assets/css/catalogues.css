@@ -1,0 +1,347 @@
+/* The Talks and Media archives share the typographic scale of the homepage. */
+.catalogue {
+  padding-bottom: clamp(3.5rem, 7vw, 7rem);
+}
+
+.catalogue-heading {
+  padding: clamp(2.75rem, 5vw, 5.5rem) 0 clamp(1.8rem, 3.4vw, 3.5rem);
+}
+
+.catalogue-heading h1 {
+  margin: 0;
+  font: 400 clamp(4rem, 7vw, 7.1rem)/.96 var(--serif);
+  letter-spacing: -.058em;
+}
+
+.catalogue-heading p {
+  margin: .75rem 0 0;
+  color: var(--muted);
+  font: 400 clamp(1.05rem, 1.35vw, 1.3rem)/1.45 var(--sans);
+}
+
+.catalogue a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: .22em;
+}
+
+.catalogue h2 a,
+.catalogue h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.catalogue h2 a:hover,
+.catalogue h3 a:hover {
+  text-decoration: underline;
+}
+
+.recording {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: clamp(1.45rem, 2.25vw, 2.4rem) 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.recording-copy {
+  min-width: 0;
+}
+
+.recording h2 {
+  max-width: 42ch;
+  margin: .48rem 0 0;
+  font: 400 clamp(1.55rem, 2.35vw, 2.5rem)/1.12 var(--serif);
+  letter-spacing: -.035em;
+  text-wrap: pretty;
+}
+
+.catalogue-meta,
+.recording-links,
+.press-resources,
+.catalogue-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.catalogue-meta {
+  gap: .2rem 1.1rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: .89rem;
+  line-height: 1.45;
+}
+
+.catalogue time {
+  font-variant-numeric: tabular-nums;
+}
+
+.recording-links,
+.press-resources {
+  margin-top: .65rem;
+  gap: .35rem 1.15rem;
+  font-size: .91rem;
+}
+
+.recording-feature {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(1.5rem, 3.4vw, 4.2rem);
+  padding: clamp(1.45rem, 3vw, 3.25rem);
+  background: var(--pine);
+  color: #f3f7ec;
+  border-bottom: 0;
+}
+
+.recording-feature h2 {
+  margin: .85rem 0 0;
+  font-size: clamp(1.85rem, 3.15vw, 3.45rem);
+  line-height: 1.05;
+}
+
+.recording-feature + .recording-feature {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+.recording-feature .catalogue-meta,
+.recording-feature .recording-description {
+  color: #d1e2d5;
+}
+
+.recording-feature .catalogue-meta {
+  display: grid;
+  gap: .12rem;
+}
+
+.recording-description {
+  max-width: 52ch;
+  margin: .9rem 0;
+  line-height: 1.48;
+}
+
+.recording-feature a {
+  color: inherit;
+}
+
+.recording-feature .recording-links a,
+.recording-feature a:hover {
+  color: #ffd1a3;
+}
+
+.recording-poster {
+  display: block;
+  position: relative;
+  background: #0b211b;
+  text-decoration: none;
+}
+
+.recording-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.recording-poster span {
+  position: absolute;
+  bottom: .7rem;
+  left: .7rem;
+  display: flex;
+  gap: .55rem;
+  align-items: center;
+  padding: .43rem .7rem;
+  border: 1px solid #51675c;
+  background: var(--pine);
+  color: #fff;
+  font: 500 .85rem/1.2 var(--sans);
+}
+
+.recording-poster span::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: .27rem solid transparent;
+  border-bottom: .27rem solid transparent;
+  border-left: .43rem solid #ffd1a3;
+}
+
+.recording-poster[hidden],
+.recording-inline-play[hidden] {
+  display: none;
+}
+
+.recording-player {
+  width: 100%;
+  max-width: 59rem;
+  margin-top: 1.2rem;
+}
+
+.recording-feature .recording-player {
+  margin: 0;
+}
+
+.recording-player iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  background: #111;
+}
+
+.recording-player button {
+  margin-top: .6rem;
+  border: 0;
+  background: none;
+  padding: 0;
+  color: inherit;
+  font: 400 .91rem/1.5 var(--sans);
+  text-decoration: underline;
+  text-underline-offset: .2em;
+  cursor: pointer;
+}
+
+.catalogue-jumps {
+  gap: .5rem 1.5rem;
+  padding: .8rem 0;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--pine);
+  font-size: .94rem;
+}
+
+.press-section {
+  display: grid;
+  grid-template-columns: minmax(14rem, .8fr) 2.4fr;
+  gap: clamp(1.4rem, 4vw, 4rem);
+  padding: clamp(1.8rem, 3.1vw, 3.4rem) 0;
+  border-bottom: 1px solid var(--pine);
+  scroll-margin-top: 1.6rem;
+}
+
+.press-section:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.press-section > h2 {
+  margin: 0;
+  font: 400 clamp(1.95rem, 3.25vw, 3.4rem)/1.01 var(--serif);
+  letter-spacing: -.045em;
+}
+
+.press-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.press-list li {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, .5fr) 2.4fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--hair);
+}
+
+.press-list li:first-child {
+  padding-top: 0;
+}
+
+.press-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.press-meta,
+.press-credit {
+  color: var(--muted);
+  font-size: .91rem;
+  line-height: 1.5;
+}
+
+.press-meta {
+  display: flex;
+  flex-direction: column;
+  gap: .12rem;
+}
+
+.press-list h3 {
+  margin: 0;
+  font: 400 clamp(1.5rem, 2.01vw, 2.1rem)/1.12 var(--serif);
+  letter-spacing: -.028em;
+  text-wrap: pretty;
+}
+
+.press-credit {
+  margin: .35rem 0 0;
+}
+
+.press-description {
+  max-width: 63ch;
+  margin: .5rem 0 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.press-list .recording-poster {
+  max-width: 26rem;
+  margin-top: .85rem;
+}
+
+.press-resources {
+  margin-top: .5rem;
+  font-size: .85rem;
+}
+
+.resource-list li {
+  display: block;
+}
+.resource-list h3 a {
+  text-decoration: underline;
+  text-decoration-color: var(--hair);
+}
+.resource-list h3 a:hover {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 800px) {
+  .recording-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .recording-feature .recording-player,
+  .recording-poster {
+    max-width: 44rem;
+  }
+
+  .press-section {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .recording-feature {
+    gap: 1rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .catalogue-meta {
+    display: grid;
+    gap: .12rem;
+  }
+
+  .catalogue-jumps {
+    gap: .5rem 1rem;
+    font-size: .87rem;
+  }
+
+  .press-list li {
+    grid-template-columns: 1fr;
+    gap: .35rem;
+    padding: 1.1rem 0;
+  }
+
+  .press-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: .2rem 1rem;
+  }
+}

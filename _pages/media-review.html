@@ -1,0 +1,83 @@
+---
+layout: null
+title: Media review
+permalink: /media/review/
+sitemap: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Media review · {{ site.data.profile.name | escape }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/plates.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/media-review.css' | relative_url }}">
+  <script defer src="{{ '/assets/js/media-review.js' | relative_url }}"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to review</a>
+  <div class="review-wrap">
+    <header class="review-mast">
+      <span>{{ site.data.profile.name | escape }}</span>
+      <a href="{{ '/media/' | relative_url }}" target="_blank" rel="noopener noreferrer">View media archive</a>
+    </header>
+    <main id="main">
+      <header class="review-heading">
+        <h1>Media review</h1>
+        <p>Links open in new tabs. Check the ones you want to keep. Each unchecked link will be marked for removal in your export.</p>
+      </header>
+      {% assign media = site.data.media | sort: 'date' | reverse %}
+      {% assign groups = media | group_by_exp: 'item', "item.group | default: 'general-media'" %}
+      <nav class="review-jumps" aria-label="Media sections">
+        {% for section in site.data.media_sections %}
+          {% assign group = groups | where: 'name', section.id | first %}
+          {% if group %}<a href="#{{ section.id }}">{{ section.title | escape }}</a>{% endif %}
+        {% endfor %}
+      </nav>
+      <form id="review">
+        <div class="review-actions">
+          <div>
+            <strong id="count" aria-live="polite">Keep selections</strong>
+            <p id="save-note" role="status"></p>
+          </div>
+          <button type="submit" id="export" disabled>Export decisions</button>
+        </div>
+        <noscript><p>Enable JavaScript to save selections and download your decisions.</p></noscript>
+        {% for section in site.data.media_sections %}
+          {% assign group = groups | where: 'name', section.id | first %}
+          {% if group %}
+            <section class="review-section" id="{{ section.id }}" aria-labelledby="title-{{ section.id }}">
+              <h2 id="title-{{ section.id }}">{{ section.title | escape }}</h2>
+              <ul class="review-list">
+                {% for item in group.items %}
+                  <li class="review-item" data-item data-title="{{ item.title | escape }}">
+                    <p class="item-meta"><time datetime="{{ item.date }}">{{ item.date | date: "%-d %b %Y" }}</time><span>{{ item.outlet | escape }}</span><span>{{ item.type | escape }}</span></p>
+                    <div class="link-row primary" data-link>
+                      <div>
+                        {% if item.primary_label %}<p class="context-title">{{ item.title | escape }}</p>{% endif %}
+                        <h3><a href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">{{ item.primary_label | default: item.title | escape }}</a></h3>
+                      </div>
+                      <label class="keep"><input type="checkbox" aria-label="Keep {{ item.primary_label | default: item.title | escape }}"> Keep</label>
+                    </div>
+                    {% if item.links %}
+                      <ul class="companion-list">
+                        {% for link in item.links %}
+                          <li class="link-row companion" data-link>
+                            <a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }}</a>
+                            <label class="keep"><input type="checkbox" aria-label="Keep {{ link.label | escape }} for {{ item.title | escape }}"> Keep</label>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </section>
+          {% endif %}
+        {% endfor %}
+      </form>
+    </main>
+  </div>
+</body>
+</html>

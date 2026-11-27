@@ -4,8 +4,18 @@ _site
 .jekyll-cache
 .jekyll-metadata
 .DS_store
-.ruby-version
 .tweet-cache
-Gemfile.lock
 vendor
+
+# Only the PDF is distributed from a LaTeX build.
+/assets/pdf/CV.aux
+/assets/pdf/CV.bbl
+/assets/pdf/CV.bcf
+/assets/pdf/CV.blg
+/assets/pdf/CV.fdb_latexmk
+/assets/pdf/CV.fls
+/assets/pdf/CV.log
+/assets/pdf/CV.out
+/assets/pdf/CV.run.xml
+/assets/pdf/CV.synctex.gz
 

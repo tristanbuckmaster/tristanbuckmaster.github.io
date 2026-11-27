@@ -15,7 +15,7 @@ keywords:
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon:   # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
-url: https://terpconnect.umd.edu # the base hostname & protocol for your site
+url: https://cims.nyu.edu # the base hostname & protocol for your site
 baseurl: /~tristanb # the subpath of your site, e.g. /blog/
 last_updated: false # set to true if you want to display last updated in the footer
 impressum_path:  # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
@@ -142,8 +142,26 @@ kramdown:
       start_line: 1
 
 # Includes & excludes
-include: ['_pages']
+include: ['_pages', '_bibliography']
 exclude:
+  - README.md
+  - deploy.sh
+  - test.sh
+  - assets/pdf/*.aux
+  - assets/pdf/*.bbl
+  - assets/pdf/*.bcf
+  - assets/pdf/*.blg
+  - assets/pdf/*.fdb_latexmk
+  - assets/pdf/*.fls
+  - assets/pdf/*.log
+  - assets/pdf/*.out
+  - assets/pdf/*.run.xml
+  - assets/pdf/*.synctex.gz
+  # Unused al-folio example collections and sample blog.
+  - _posts
+  - _projects
+  - _news
+  - blog
   - bin
   - Gemfile
   - Gemfile.lock
@@ -212,11 +230,10 @@ scholar:
 
   source: /_bibliography/
   bibliography: papers.bib
+  bibtex_skip_fields: [abstract, month_numeric, abbr, bibtex_show, html, pdf, selected, supp, blog, code, poster, slides, website, link_label, date-added, date-modified, bdsk-url-1, bdsk-url-2]
   bibliography_template: bib
-  # Note: if you have latex math in your bibtex, the latex filter
-  # preprocessing may conflict with MathJAX if the latter is enabled.
-  # See https://github.com/alshedivat/al-folio/issues/357.
-  bibtex_filters: [latex, smallcaps, superscript]
+  # Convert BibTeX accents and typeset formulas as static, accessible MathML.
+  bibtex_filters: [PlatesBibliography, smallcaps, superscript]
 
   replace_strings: true
   join_strings: true

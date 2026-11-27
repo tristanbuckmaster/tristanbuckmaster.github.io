@@ -1,0 +1,7 @@
+{% assign profile = site.data.profile %}
+<footer class="site-foot" id="contact">
+  <div class="bound">
+    <div><a class="foot-name" href="{{ '/' | relative_url }}">{{ profile.name }}</a><address>{{ profile.address }}</address></div>
+    <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+  </div>
+</footer>

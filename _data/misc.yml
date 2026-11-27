@@ -1,0 +1,39 @@
+- title: Writing
+  items:
+    - update: september-statement
+      title: My September 7 statement
+      description: On the release of my work with Levent Alpöge on singularities in fluid equations.
+      detail: PDF · September 2026
+    - update: guest-essay
+      description: My guest essay on Terence Tao’s blog about what AI means for the next generation of mathematicians.
+      detail: October 2026
+
+- title: Around the web
+  items:
+    - title: Center for Mathematics and AI at Courant (MAIC)
+      url: https://maic.courant.nyu.edu/
+      description: I serve as consortium lead at Courant, where we’re working with the University of Texas at Austin to build open AI tools for mathematical research.
+    - title: Constructing Noncircular Schiffer Domains
+      url: https://pompeiu-schiffer.org/
+      description: An interactive exposition of two counterexamples to Schiffer’s conjecture, by Gonzalo Cao-Labora, Matthew J. Colbrook, Jaume de Dios Pont, and George Stepaniants.
+    - title: Timeline of Math Results
+      url: https://curticapean.net/math-notes/
+      description: Radu Curticapean’s result-by-result timelines place OpenAI’s October 2026 manuscripts alongside related preprints and researchers’ accounts of work in progress.
+    - title: What’s new
+      url: https://terrytao.wordpress.com/
+      description: Terence Tao’s blog on mathematical research, open problems, and expository writing.
+
+- title: Formalization
+  items:
+    - title: Enslopification
+      url: https://github.com/scottnarmstrong/enslopification
+      description: Scott Armstrong’s tools for turning a completed Lean proof into a mathematical manuscript.
+    - title: Lean autoformalization skills
+      url: https://github.com/scottnarmstrong/LeanAutoformalizationSkills
+      description: Scott Armstrong’s tools for translating mathematical arguments into Lean 4 and checking the formal statements against the originals.
+      links:
+        - title: Read Scott’s autoformalization guide
+          url: https://www.scottnarmstrong.com/2026/10/autoformalization-is-now-very-easy/
+    - title: The KAM theorem in Lean
+      url: https://github.com/scottnarmstrong/KAM-dev
+      description: Scott Armstrong and Zohar Komargodski’s Lean formalization of the positive-measure Kolmogorov–Arnold–Moser theorem.

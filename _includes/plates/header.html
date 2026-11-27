@@ -1,0 +1,15 @@
+{% assign profile = site.data.profile %}
+<header class="mast">
+  <div class="bound">
+    {% if page.url == '/' %}
+      <a class="affil" href="{{ profile.institute_url }}">{{ profile.institute }}<span>{{ profile.university }}</span></a>
+    {% else %}
+      <a class="affil" href="{{ '/' | relative_url }}">{{ profile.name }}<span>{{ profile.institute }}, NYU</span></a>
+    {% endif %}
+    <nav class="site-nav" aria-label="Main navigation">
+      {% for item in site.data.navigation %}
+        <a href="{{ item.path | relative_url }}"{% if page.url == item.path %} aria-current="page"{% endif %}>{{ item.title | escape }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,217 @@
+[
+  {
+    "date": "2026-11-20",
+    "title": "After months of controversy, AI finally solved the ‘real’ Navier-Stokes problem",
+    "in_news": true,
+    "outlet": "Scientific American",
+    "author": "Peter Hall",
+    "type": "Article",
+    "group": "popular-science",
+    "url": "https://www.scientificamerican.com/article/ai-just-solved-the-real-navier-stokes-problem/",
+    "description": "On the preprint in which Levent Alpöge and I study blow-up without external forcing."
+  },
+  {
+    "date": "2026-10-22",
+    "title": "The inside story behind OpenAI’s million-dollar math proof",
+    "outlet": "Scientific American",
+    "author": "Joseph Howlett",
+    "type": "Feature",
+    "group": "popular-science",
+    "url": "https://www.scientificamerican.com/article/the-inside-story-behind-openais-million-dollar-math-proof/",
+    "description": "Howlett reports from my Courant lecture on the Euler proof and the events surrounding the Navier–Stokes announcement."
+  },
+  {
+    "date": "2026-10-16",
+    "title": "The mathematician taking on AI",
+    "outlet": "ABC News Daily",
+    "author": "Sam Hawley",
+    "type": "Podcast interview",
+    "group": "general-media",
+    "url": "https://www.abc.net.au/listen/programs/abc-news-daily/the-mathematician-taking-on-ai/107271114",
+    "description": "An interview about the Navier–Stokes problem and what AI changes for mathematicians."
+  },
+  {
+    "date": "2026-10-08",
+    "title": "NYU’s Tristan Buckmaster on the controversy over OpenAI’s math findings",
+    "outlet": "CNBC · Squawk Box",
+    "type": "TV interview",
+    "group": "general-media",
+    "url": "https://www.youtube.com/watch?v=GweKOBSJvEY",
+    "links": [
+      {
+        "label": "Listen on Squawk Pod (interview at 24:24)",
+        "url": "https://podcasts.apple.com/us/podcast/ai-math-vs-human-math-tariffs-in-the-midterms-10-8-26/id1480890290?i=1000793890870"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "id": "wired-openai-mathematicians",
+    "title": "OpenAI Is Pissing Off a Bunch of Mathematicians—Again",
+    "outlet": "WIRED",
+    "author": "Isabella Ward",
+    "type": "Article",
+    "group": "general-media",
+    "url": "https://www.wired.com/story/openai-is-pissing-off-a-bunch-of-mathematicians-again/"
+  },
+  {
+    "date": "2026-10-02",
+    "title": "The Moment AI Changed Mathematics Forever",
+    "outlet": "World Science Festival",
+    "author": "Brian Greene",
+    "type": "Video interview",
+    "group": "popular-science",
+    "url": "https://www.worldsciencefestival.com/videos/the-moment-ai-changed-mathematics-forever/",
+    "description": "Brian Greene and I discuss the Euler and Navier–Stokes equations and what it means to understand a computer-assisted proof.",
+    "links": [
+      {
+        "label": "Watch on YouTube",
+        "url": "https://www.youtube.com/watch?v=PQYFRuZ5phs"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-29",
+    "id": "numberphile-interview",
+    "in_news": true,
+    "title": "The Buckmaster Interview (Navier-Stokes)",
+    "outlet": "Numberphile",
+    "author": "Brady Haran",
+    "type": "Video interview",
+    "group": "popular-science",
+    "url": "https://www.numberphile.com/videos/the-buckmaster-interview",
+    "links": [
+      {
+        "label": "Watch the Numberphile interview on YouTube",
+        "url": "https://www.youtube.com/watch?v=Mzbtj5nkMXI",
+        "youtube_id": "Mzbtj5nkMXI",
+        "poster": "/assets/img/recordings/numberphile-interview-2026.webp"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-22",
+    "title": "AI solved one of math’s hardest problems. Humanity learned nothing (so far)",
+    "outlet": "NPR · All Things Considered",
+    "author": "Geoff Brumfiel",
+    "type": "Radio",
+    "group": "general-media",
+    "url": "https://www.npr.org/2026/09/22/nx-s1-5968588/openai-navier-stokes-problem-mathematicians-learn-little",
+    "links": [
+      {
+        "label": "Listen on WBUR (3:50)",
+        "url": "https://www.wbur.org/npr/nx-s1-5968588/openai-navier-stokes-problem-mathematicians-learn-little"
+      }
+    ]
+  },
+  {
+    "date": "2026-09-18",
+    "title": "Why an AI leap has left mathematicians feeling uneasy",
+    "outlet": "CBC Radio · Quirks and Quarks",
+    "author": "Sonya Buyting",
+    "type": "Radio segment",
+    "group": "popular-science",
+    "url": "https://podcasts.apple.com/ca/podcast/a-feather-found-in-dino-poop-and-more/id151485804?i=1000790585315",
+    "description": "Buyting speaks with me about the Euler and Navier–Stokes equations. My comments begin about 14 minutes into the episode."
+  },
+  {
+    "date": "2026-09-15",
+    "title": "The AI maths wars",
+    "outlet": "ABC Radio National · Lab Notes",
+    "author": "Jonathan Webb and Cam Wilson",
+    "type": "Podcast",
+    "group": "popular-science",
+    "url": "https://www.abc.net.au/listen/programs/lab-notes/lab-notes-maths-ai-wars-navier-stokes/107094486",
+    "description": "A reported episode about the Navier–Stokes announcement, with excerpts from my interview with Cam Wilson."
+  },
+  {
+    "date": "2026-09-13",
+    "title": "He was close to a huge math breakthrough. Then he got scooped by AI.",
+    "author": "Miriam Waldvogel",
+    "outlet": "The Washington Post",
+    "type": "Article",
+    "url": "https://www.washingtonpost.com/technology/2026/09/13/he-was-close-1-million-breakthrough-then-openai-swooped/",
+    "group": "general-media"
+  },
+  {
+    "date": "2026-09-12",
+    "title": "»Von Anfang an hatte ich den Eindruck, dass sie uns anlügen«",
+    "outlet": "DIE ZEIT",
+    "author": "Sibylle Anderl and Philip-Johann Moser",
+    "type": "Interview",
+    "group": "general-media",
+    "url": "https://www.zeit.de/wissenschaft/2026-09/tristan-buckmaster-millenium-problem-mathematik-openai-kuenstliche-intelligenz"
+  },
+  {
+    "date": "2026-09-11",
+    "title": "‘Not selling my soul’: Why this Aussie maths professor took on OpenAI",
+    "outlet": "The Australian Financial Review",
+    "author": "Jessica Gardner",
+    "type": "Profile",
+    "group": "general-media",
+    "url": "https://www.afr.com/world/north-america/not-selling-my-soul-why-this-aussie-maths-professor-took-on-openai-20260911-p60wf8"
+  },
+  {
+    "date": "2026-09-10",
+    "title": "An N.Y.U. Mathematician Clashed With OpenAI Over a $1 Million Proof",
+    "outlet": "The New York Times",
+    "author": "Kenneth Chang",
+    "type": "Article",
+    "group": "general-media",
+    "url": "https://www.nytimes.com/2026/09/10/science/tristan-buckmaster-openai-math-navier-stokes.html"
+  },
+  {
+    "date": "2026-09-09",
+    "title": "OpenAI’s sly mathematical breakthrough sends a chill through academia",
+    "outlet": "The Verge",
+    "author": "Robert Hart",
+    "type": "Article",
+    "group": "general-media",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/992953/openai-math-millennium-prize-navier-stokes"
+  },
+  {
+    "date": "2026-01-09",
+    "title": "Using AI, Mathematicians Find Hidden Glitches in Fluid Equations",
+    "author": "Charlie Wood",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/using-ai-mathematicians-find-hidden-glitches-in-fluid-equations-20260109/",
+    "links": [
+      {
+        "label": "Podcast: Mathematicians Want to Make Fluid Equations Glitch Out",
+        "url": "https://podcasts.apple.com/us/podcast/mathematicians-want-to-make-fluid-equations-glitch-out/id1021340531?i=1000749065367"
+      }
+    ],
+    "group": "popular-science"
+  },
+  {
+    "date": "2022-04-12",
+    "title": "Deep Learning Poised to ‘Blow Up’ Famed Fluid Equations",
+    "author": "Jordana Cepelewicz",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/deep-learning-poised-to-blow-up-famed-fluid-equations-20220412/",
+    "links": [
+      {
+        "label": "Listen to the Quanta podcast",
+        "url": "https://podcasts.apple.com/us/podcast/deep-learning-poised-to-blow-up-famed-fluid-equations/id1021340531?i=1000574930829"
+      }
+    ],
+    "group": "popular-science"
+  },
+  {
+    "date": "2017-12-21",
+    "title": "Mathematicians Find Wrinkle in Famed Fluid Equations",
+    "author": "Kevin Hartnett",
+    "outlet": "Quanta Magazine",
+    "type": "Article",
+    "url": "https://www.quantamagazine.org/mathematicians-find-wrinkle-in-famed-fluid-equations-20171221/",
+    "links": [
+      {
+        "label": "Listen to the Quanta podcast",
+        "url": "https://podcasts.apple.com/us/podcast/mathematicians-find-wrinkle-in-famed-fluid-equations/id1021340531?i=1000414320357"
+      }
+    ],
+    "group": "popular-science"
+  }
+]

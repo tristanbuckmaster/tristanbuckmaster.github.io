@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+# Exercise the uploader against a local web directory and a small fixture build.
+set -euo pipefail
+project_dir=$(cd -- "$(dirname -- "$0")/.." && pwd)
+scratch=$(mktemp -d)
+trap 'rm -rf -- "$scratch"' EXIT
+export COURANT_DESTINATION="$scratch/web"
+export PATH="$scratch/bin:$PATH"
+mkdir -p "$scratch/bin" "$scratch/checkout/bin" "$COURANT_DESTINATION/assets" "$COURANT_DESTINATION/old"
+cp "$project_dir/deploy.sh" "$scratch/checkout/"
+upload="$scratch/checkout/deploy.sh"
+
+cat > "$scratch/checkout/bin/build-cv" <<'SH'
+#!/bin/sh
+set -eu
+[ "$1" = --check ]
+exit "${FIXTURE_CV_STATUS:-0}"
+SH
+chmod +x "$scratch/checkout/bin/build-cv"
+
+cat > "$scratch/bin/bundle" <<'SH'
+#!/bin/sh
+set -eu
+[ "$1 $2 $3 $4" = 'exec jekyll build --destination' ]
+mkdir -p "$5/assets"
+echo new > "$5/index.html"
+echo asset > "$5/assets/new.txt"
+echo collision > "$5/statement.pdf"
+echo collision > "$5/assets/.htaccess"
+if [ "${FIXTURE_PATH_CONFLICT:-0}" = 1 ]; then echo collision > "$5/old"; fi
+if [ "${FIXTURE_PATH_CONFLICT:-0}" = 2 ]; then
+  mkdir -p "$5/handout"
+  echo collision > "$5/handout/index.html"
+fi
+exit "${FIXTURE_BUILD_STATUS:-0}"
+SH
+chmod +x "$scratch/bin/bundle"
+
+echo old > "$COURANT_DESTINATION/index.html"
+echo statement > "$COURANT_DESTINATION/statement.pdf"
+echo nested > "$COURANT_DESTINATION/assets/notes.pdf"
+echo private > "$COURANT_DESTINATION/assets/.htaccess"
+echo legacy > "$COURANT_DESTINATION/old/talk.pdf"
+echo handout > "$COURANT_DESTINATION/handout"
+
+"$upload" > "$scratch/preview"
+grep -q 'index.html' "$scratch/preview"
+test "$(cat "$COURANT_DESTINATION/index.html")" = old
+test ! -e "$COURANT_DESTINATION/assets/new.txt"
+
+if FIXTURE_CV_STATUS=1 "$upload" --apply; then
+  echo 'Expected the stale CV to be rejected' >&2
+  exit 1
+fi
+test "$(cat "$COURANT_DESTINATION/index.html")" = old
+if FIXTURE_BUILD_STATUS=1 "$upload" --apply; then
+  echo 'Expected the incomplete build to be rejected' >&2
+  exit 1
+fi
+test "$(cat "$COURANT_DESTINATION/index.html")" = old
+
+"$upload" --apply
+test "$(cat "$COURANT_DESTINATION/index.html")" = new
+test "$(cat "$COURANT_DESTINATION/assets/new.txt")" = asset
+test "$(cat "$COURANT_DESTINATION/statement.pdf")" = statement
+test "$(cat "$COURANT_DESTINATION/assets/notes.pdf")" = nested
+test "$(cat "$COURANT_DESTINATION/assets/.htaccess")" = private
+test "$(cat "$COURANT_DESTINATION/old/talk.pdf")" = legacy
+"$upload" --dry-run > "$scratch/retry"
+test ! -s "$scratch/retry"
+if FIXTURE_PATH_CONFLICT=1 "$upload" --apply > "$scratch/conflict" 2>&1; then
+  echo 'Expected the nonempty remote directory to be preserved and a conflict reported' >&2
+  exit 1
+fi
+test "$(cat "$COURANT_DESTINATION/old/talk.pdf")" = legacy
+if FIXTURE_PATH_CONFLICT=2 "$upload" --apply > "$scratch/conflict" 2>&1; then
+  echo 'Expected the remote file to be preserved and a conflict reported' >&2
+  exit 1
+fi
+test "$(cat "$COURANT_DESTINATION/handout")" = handout
+echo 'Local Courant upload checks passed.'

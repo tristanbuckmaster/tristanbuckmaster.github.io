@@ -1,0 +1,46 @@
+<section id="research" class="highlights" aria-labelledby="research-heading">
+  <div class="bound">
+    <div class="feature-head">
+      <h2 id="research-heading">Research highlights</h2>
+      <div class="subjects" aria-label="Research topics">
+        {% for item in site.data.highlights %}
+          <a id="tab-{{ item.id }}" href="#{{ item.id }}">{{ item.topic | escape }}</a>
+        {% endfor %}
+      </div>
+    </div>
+    {% for item in site.data.highlights %}
+      <article id="{{ item.id }}" class="feature">
+        <div class="feature-copy">
+          <h3>{{ item.title | escape }}</h3>
+          <p>{{ item.description | escape }}</p>
+          <div class="feature-paper"><a class="paper-link" href="{{ item.url }}">{{ item.paper | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}</div>
+        </div>
+        <figure>
+          {% assign first_clip = item.clips | first %}
+          {% if first_clip or item.movie %}
+          {% if item.clips.size > 1 %}
+          <div class="clip-choices" role="group" aria-label="Choose a simulation">
+            {% for clip in item.clips %}
+            <a href="{{ clip.movie | relative_url }}" data-clip data-poster="{{ clip.poster | relative_url }}"
+               data-description="{{ clip.description | escape }}" data-caption="{{ clip.caption | escape }}"
+               aria-controls="movie-{{ item.id }}"{% if forloop.first %} aria-current="true"{% endif %}>{{ clip.label | escape }}</a>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <video id="movie-{{ item.id }}" class="feature-image" data-feature-movie controls playsinline muted preload="none"
+                 poster="{{ first_clip.poster | default: item.figure | relative_url }}" width="{{ item.width }}" height="{{ item.height }}"
+                 aria-label="{{ first_clip.description | default: item.alt | escape }}" aria-describedby="caption-{{ item.id }}">
+            <source src="{{ first_clip.movie | default: item.movie | relative_url }}" type="video/mp4">
+            <a href="{{ first_clip.movie | default: item.movie | relative_url }}">Open the animation (MP4)</a>
+          </video>
+          {% else %}
+          <img class="feature-image{% if item.light_ground %} on-paper{% endif %}" src="{{ item.figure | relative_url }}"
+               alt="{{ item.alt | escape }}" width="{{ item.width }}" height="{{ item.height }}">
+          {% endif %}
+          <figcaption id="caption-{{ item.id }}"><span>{{ first_clip.caption | default: item.caption | escape }}</span> {% if item.figure_source %}<a href="{{ item.figure_source }}">{{ item.figure_label | escape }}</a>{% endif %}</figcaption>
+        </figure>
+      </article>
+    {% endfor %}
+    <div class="all-papers"><a href="{{ '/publications/' | relative_url }}">Full publication list</a></div>
+  </div>
+</section>

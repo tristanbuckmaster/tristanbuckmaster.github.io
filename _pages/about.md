@@ -1,32 +1,43 @@
 ---
-layout: about
-title: about
+layout: plates
 permalink: /
-subtitle: Professor of Mathematics, <a href='https://www.cims.nyu.edu/'>Courant Institute of Mathematical Sciences</a>, <a href='https://www.nyu.edu/'>New York University</a>,<br>email&#58; <i>buckmaster </i><b>at</b><i> cims <b> dot </b> nyu <b> dot </b> edu</i> 
-profile:
-  align: right
-  image: prof_pic.jpg
-  image_cicular: false # crops the image to make it circular
-  address: >
-    <p>Office 713,</p>
-    <p>251 Mercer St, </p>
-    <p>New York, NY 10012 </p>
-
-news: true  # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true  # includes social icons at the bottom of the page
+title: Home
+description: Tristan Buckmaster, Professor of Mathematics at NYU Courant. Research in mathematical fluid dynamics, partial differential equations, and wave turbulence.
+page_css: home
+page_js: highlights
 ---
-My current research is divided into three projects:
-<ul>
-<li><i>Singularity formation and development for compressible fluid</i></li>
-<li><i>Self-similar blowup for incompressible fluid</i></li>
-<li><i>Development of a mathematically rigorous framework for the theory of wave turbulence</i></li>
-</ul>
-Previously, stemming from my doctoral work, I worked on applying the technique of convex-integration to prove non-uniqueness results for weak solutions to fluid equations. For my joint work with Vlad Vicol on non-uniqueness of weak solutions to the Navier-Stokes, I was awarded the <a href="https://www.claymath.org/events/news/2019-clay-research-awards">2019 Clay Research Award</a> (joint with Vlad Vicol and Philip Isett).
-
-My research is currently supported through following grants:
-<ul>
-<li>National Science Foundation grant <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=2243205">DMS-2243205 'CAREER: Singularities in fluids'</a></li>
-<li>National Science Foundation grant <a href="http://www.nsf.gov/awardsearch/showAward?AWD_ID=2244879">DMS-2244879 'FRG: Collaborative Research: Singularities in Incompressible Flows: Computer Assisted Proofs and Physics-Informed Neural Networks'</a></li>
-<li>Simons Foundation Mathematical and Physical Sciences collaborative grant <a href="https://cims.nyu.edu/wave-turbulence/">'Wave Turbulence'</a></li>
-</ul>
+{% assign profile = site.data.profile %}
+<section class="bound profile" aria-labelledby="name">
+  <div class="identity">
+    <h1 id="name">{{ profile.name }}</h1>
+    <p class="role">{{ profile.role }}</p>
+    <div class="intro-grid">
+      <p class="research-intro">{{ profile.intro }}</p>
+      <p class="support"><strong>Research support</strong> An <a href="{{ profile.funding.career }}">NSF CAREER award</a> supports my work on singularities in fluids. Other support has included an <a href="{{ profile.funding.frg }}">NSF Focused Research Group</a> and the <a href="{{ profile.funding.simons }}">Simons Collaboration on Wave Turbulence</a>.</p>
+    </div>
+    {% include plates/people.html %}
+  </div>
+  <figure class="profile-photo">
+    <img class="portrait" src="{{ profile.portrait | relative_url }}" alt="{{ profile.name }} in front of bookshelves" width="690" height="740">
+    {% if profile.portrait_credit %}<figcaption>{{ profile.portrait_credit | escape }}{% if profile.portrait_location %}, {{ profile.portrait_location | escape }}{% endif %}</figcaption>{% endif %}
+  </figure>
+</section>
+{% include plates/highlights.html %}
+<section class="bound news" id="news" aria-labelledby="news-heading">
+  <h2 class="section-title" id="news-heading">What’s new</h2>
+  <ul>
+    {% assign featured_media = site.data.media | where: 'in_news', true %}
+    {% assign ordered_updates = featured_media | concat: site.data.updates | sort: 'date' | reverse %}
+    {% for item in ordered_updates %}
+      <li>
+        <time datetime="{{ item.date }}">{{ item.date | date: '%-d %b %Y' }}</time>
+        <div>
+          <a class="entry-title" href="{{ item.url | escape }}">{{ item.title | escape }}</a>{% include plates/paper-mark.html key=item.paper_key %}
+          {% if item.outlet %}<p class="entry-note">{{ item.outlet | escape }}{% if item.author %} · {{ item.author | escape }}{% endif %}</p>
+          {% elsif item.note %}<p class="entry-note">{{ item.note | escape }}</p>{% endif %}
+        </div>
+        <span class="entry-kind">{{ item.kind | default: item.type | escape }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+</section>

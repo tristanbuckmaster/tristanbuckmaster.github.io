@@ -1,0 +1,12 @@
+- title: Home
+  path: /
+- title: Publications
+  path: /publications/
+- title: Media
+  path: /media/
+- title: Videos
+  path: /videos/
+- title: CV
+  path: /cv/
+- title: Misc
+  path: /misc/
