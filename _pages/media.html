@@ -4,11 +4,6 @@ title: Media
 permalink: /media/
 description: Articles, videos, and podcasts about the work of Tristan Buckmaster.
 page_css: catalogues
-media_sections:
-  - id: popular-science
-    title: Popular science
-  - id: general-media
-    title: News and other media
 ---
 <div class="bound catalogue">
   <header class="catalogue-heading">
@@ -19,13 +14,13 @@ media_sections:
   {% assign media = site.data.media | sort: 'date' | reverse %}
   {% assign groups = media | group_by_exp: 'item', "item.group | default: 'general-media'" %}
   <nav class="catalogue-jumps" aria-label="Media sections">
-    {% for section in page.media_sections %}
+    {% for section in site.data.media_sections %}
       {% assign group = groups | where: 'name', section.id | first %}
       {% if group %}<a href="#{{ section.id }}">{{ section.title | escape }}</a>{% endif %}
     {% endfor %}
   </nav>
 
-  {% for section in page.media_sections %}
+  {% for section in site.data.media_sections %}
     {% assign group = groups | where: 'name', section.id | first %}
     {% if group %}
       <section class="press-section" id="{{ section.id }}" aria-labelledby="heading-{{ section.id }}">
@@ -38,11 +33,14 @@ media_sections:
                 <span>{{ item.type | escape }}</span>
               </div>
               <div>
-                <h3><a href="{{ item.url | escape }}">{{ item.title | escape }}</a></h3>
+                <h3>{% if item.primary_label %}{{ item.title | escape }}{% else %}<a href="{{ item.url | escape }}">{{ item.title | escape }}</a>{% endif %}</h3>
                 <p class="press-credit">{{ item.outlet | escape }}{% if item.author and item.author != item.outlet %} · {{ item.author | escape }}{% endif %}</p>
                 {% if item.description %}<p class="press-description">{{ item.description | escape }}</p>{% endif %}
-                {% if item.links and item.links.size > 0 %}
-                  <div class="press-resources">{% for link in item.links %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% endfor %}</div>
+                {% if item.primary_label or item.links.size > 0 %}
+                  <div class="press-resources">
+                    {% if item.primary_label %}<a href="{{ item.url | escape }}">{{ item.primary_label | escape }}</a>{% endif %}
+                    {% for link in item.links %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% endfor %}
+                  </div>
                 {% endif %}
               </div>
             </li>

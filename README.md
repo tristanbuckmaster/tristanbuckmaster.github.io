@@ -37,6 +37,18 @@ The Courant web directory also holds public documents outside this repository, i
 
 Page templates live in `_pages/`. The shared layout is `_layouts/plates.html`, and the shared header, footer, and research feature are in `_includes/plates/`. Page-specific styles and scripts are loaded through the `page_css` and `page_js` front matter fields. Publications and all research topics remain readable with JavaScript disabled.
 
+## Review the media archive
+
+Open `/media/review/` on the local preview. Check **Keep** beside each link you want to retain, including any companion recordings. The page saves your draft in the current browser. **Export decisions** downloads `media-review.json`, marking unchecked links for removal.
+
+Preview what the file would change from the repository root:
+
+```sh
+python3 bin/apply-media-review.py ~/Downloads/media-review.json
+```
+
+Add `--apply` to write those changes to `_data/media.json`. Links added after the review are preserved. If you keep only a companion link, it becomes the primary link for that entry.
+
 ## Build the CV
 
 From the repository root, use a clean build directory so BibTeX reads the current bibliography. The PDF uses the TeX Live packages `stix2-type1` and `sourcesanspro`.
