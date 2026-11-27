@@ -1,3 +1,8 @@
+- date: '2026-11-23'
+  kind: Guest post
+  title: Finite-Time Singularity Formation for the Three-Dimensional Euler Equations
+  note: Matei P. Coiculescu on Terence Tao’s blog
+  url: https://terrytao.wordpress.com/2026/11/23/finite-time-singularity-formation-for-the-three-dimensional-euler-equations/
 - date: '2026-11-20'
   paper_key: AlpogeBuckmaster2026NavierStokes
   kind: Preprint
